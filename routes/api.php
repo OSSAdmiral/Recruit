@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,5 +25,14 @@ Route::middleware('auth:sanctum')
        /*
         * Authentication Route
         */
-        Route::post('/login',);
+        Route::prefix('auth')
+            ->middleware('api')
+            ->group(function (){
+                Route::post('login',[AuthenticationController::class, 'login']);
+                Route::post('logout', [AuthenticationController::class, 'logout'])
+                    ->middleware('auth:api');
+                Route::post('refresh', [AuthenticationController::class, 'refresh'])
+                    ->middleware('auth:api');
+        });
+
     });
