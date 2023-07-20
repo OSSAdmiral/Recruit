@@ -15,3 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', env('FRONTEND_APP_URL'));
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
