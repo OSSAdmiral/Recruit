@@ -31,6 +31,7 @@ class AuthenticationController extends Controller
             'code' => Response::HTTP_OK,
             'message' => 'Successfully Logged in',
             'data' => [
+                'user' => auth()->user(),
                 'access_token' => $token,
                 'token_type' => 'bearer',
                 'expires_in' => auth()->factory()->getTTL() * 60,
