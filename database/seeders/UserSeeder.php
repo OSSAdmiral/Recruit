@@ -19,20 +19,29 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         
-        /* 
-        * This will create a dummy user. 
-        */
-        $faker = Faker::create();
-        foreach(range(1,2) as $index)
-        {
-           $user = User::create([
-                'name' => $faker->name,
-                'email' => $faker->email,
-                'email_verified_at' => now(),
-                'password' =>  Hash::make('password123'), 
-            ]);
-            $user->assignRole('admin');
-        }
+        $SuperUserAccess = User::create([
+            'name' => 'SUPER USER',
+            'email' => 'superuser@mail.com',
+            'password' =>  Hash::make('superuser')
+         ]);
+
+         $AdminAccess = User::create([
+            'name' => 'ADMIN',
+            'email' => 'admin@mail.com',
+            'password' =>  Hash::make('admin')
+        ]);
+        
+        $userAccess = User::create([
+            'name' => 'USER',
+            'email' => 'user@mail.com',
+            'password' =>  Hash::make('user')
+        ]);
+
+       /** -- Assign the Pre-defined Role to the User -- **/
+        $SuperUserAccess->assignRole('SUPER_USER');
+        $AdminAccess->assignRole('ADMIN');
+        $userAccess->assignRole('USER');
+        
     
     }
 }

@@ -14,26 +14,22 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
+        
         /*-- 
-        * Roles For Users 
+        * Create  Permission 
         *--*/
-        Role::create(['name' => 'writer']);
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'user']);
-        /*-- 
-        * Permission For Admin 
-        *--*/
-        $adminRole = Role::findByName('admin');
+        $arrayOfPermissionNames = ['Add Role', 'Delete Role', 'Add User', 'Delete User', 'View User', 'View Role', 'View Profile', 'View Permissions'];
+        $permissions = collect($arrayOfPermissionNames)->map(function ($permission) {
+            return ['name' => $permission, 'guard_name' => 'api'];
+        });
+        Permission::insert($permissions->toArray());
 
         /*-- 
-        * Permission For User 
+        * Roles and Permission For Users 
         *--*/
-        $userRole = Role::findByName('user');
-        /*-- 
-        * Permission For Writer 
-        *--*/
-        $writerRole = Role::findByName('writer');
-
+        Role::create(['name' => 'SUPER_USER'])->givePermissionTo(Permission::all());
+        Role::create(['name' => 'USER'])->givePermissionTo(['View Profile']);
+        Role::create(['name' => 'ADMIN'])->givePermissionTo(['Add Role', 'Add User', 'View User', 'View Role', 'View Profile']);
 
 
     }
