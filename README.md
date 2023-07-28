@@ -1,10 +1,51 @@
 :construction: This project is under hard development and not yet ready for production :construction:
 <p align="center"><img src="https://github.com/RecruitLab/.github/assets/18107626/7ecd02ac-d48e-4710-8f15-c419b9802ba9" width="400" alt="Laravel Logo"></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[![Laravel](https://img.shields.io/badge/Laravel-v10-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://img.shields.io/badge/Laravel-v10-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+[![PHP](https://img.shields.io/badge/PHP-v8.1-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://img.shields.io/badge/PHP-v8.1-777BB4?style=for-the-badge&logo=php&logoColor=white)
+
+# Installation
+
+You can install the dependency package via composer:
+
+```bash
+composer install
+```
+
+Run Database Migration
+```bash
+php artisan migrate
+```
+
+Generate new JWT secret key for your application
+```bash
+php artisan jwt:secret
+```
+
+Run Database Seeder to populate the database
+```bash
+php artisan db:seed
+```
+
+
+# Pre-defined Access Credentials
+
+###### SUPER USER
+```
+superuser@mail.com
+superuser
+```
+###### ADMIN
+```
+admin@mail.com
+admin
+```
+###### USER
+```
+user@mail.com
+user
+```
+
 
 ## About RecruitLab
 
