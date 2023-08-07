@@ -29,12 +29,13 @@ class JobOpeningsResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'postingTitle';
 
+    protected static ?int $navigationSort = 1;
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Section::make('job-opening-information-section')
-                ->label('Job Opening Information')
+                Section::make('Job Opening Information')
                 ->icon('heroicon-o-briefcase')
                 ->schema([
                     TextInput::make('postingTitle')
@@ -62,9 +63,9 @@ class JobOpeningsResource extends Resource
                         ->options(config('recruit.job_opening.departments'))
                         ->required(),
                     Select::make('HiringManager')
-                        ->options(User::class),
+                        ->options(User::all()->pluck('name', 'id')),
                     Select::make('AssignedRecruiters')
-                        ->options(User::class),
+                        ->options(User::all()->pluck('name', 'id')),
                     DatePicker::make('DateOpened')
                         ->format('d/m/Y')
                         ->native(false)
@@ -81,11 +82,12 @@ class JobOpeningsResource extends Resource
                         ->options(config('recruit.job_opening.work_experience'))
                         ->required(),
                     Checkbox::make('RemoteJob')
+                        ->inline(false)
                         ->default(false),
                 ])->columns(2),
-                Section::make('job-opening-address-information-section')
+                Section::make('Address Information')
                 ->id('job-opening-address-information-section')
-                ->label('Address Information')
+                ->icon('heroicon-o-map')
                 ->schema([
                     TextInput::make('City')
                         ->required(),
@@ -98,8 +100,9 @@ class JobOpeningsResource extends Resource
                         ->label('Zip/Postal Code')
                         ->required(),
                 ])->columns(2),
-                Section::make('job-opening-description-information')
+                Section::make('Description Information')
                 ->id('job-opening-description-information')
+                ->icon('heroicon-o-briefcase')
                 ->label('Description Information')
                 ->schema([
                     RichEditor::make('JobDescription')
@@ -109,15 +112,17 @@ class JobOpeningsResource extends Resource
                     RichEditor::make('JobBenefits')
                         ->required(),
                 ])->columns(1),
-                Section::make('job-opening-system-info')
+                Section::make('System Information')
+                ->hiddenOn('create')
                 ->id('job-opening-system-info')
+                ->icon('heroicon-o-computer-desktop')
                 ->label('System Information')
                 ->schema([
-                    TextEntry::make('CreatedBy'),
-                    TextEntry::make('ModifiedBy'),
-                    TextEntry::make('created_at')
+                    TextInput::make('CreatedBy'),
+                    TextInput::make('ModifiedBy'),
+                    TextInput::make('created_at')
                         ->label('Created Date'),
-                    TextEntry::make('updated_at')
+                    TextInput::make('updated_at')
                         ->label('Last Modified Date')
                 ])->columns(2)
             ]);
