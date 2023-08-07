@@ -31,8 +31,9 @@ return new class extends Migration
             $table->string('State');
             $table->string('ZipCode');
             $table->boolean('RemoteJob');
-            $table->string('CreatedBy');
-            $table->string('ModifiedBy');
+            $table->unsignedBigInteger('CreatedBy')->nullable();
+            $table->unsignedBigInteger('ModifiedBy')->nullable();
+            $table->unsignedBigInteger('DeletedBy')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
