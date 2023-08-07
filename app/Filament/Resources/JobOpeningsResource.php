@@ -15,6 +15,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
+use Filament\Tables\Columns\BooleanColumn;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use function Laravel\Prompts\confirm;
@@ -123,27 +125,30 @@ class JobOpeningsResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('postingTitle'),
-                TextColumn::make('NumberOfPosition'),
-                TextColumn::make('JobTitle'),
-                TextColumn::make('JobOpeningSystemID'),
-                TextColumn::make('TargetDate'),
-                TextColumn::make('Status'),
-                TextColumn::make('Industry'),
-                TextColumn::make('Salary'),
-                TextColumn::make('Department'),
-                TextColumn::make('HiringManager'),
-                TextColumn::make('AssignedRecruiters'),
-                TextColumn::make('DateOpened'),
-                TextColumn::make('JobType'),
-                TextColumn::make('RequiredSkill'),
-                TextColumn::make('WorkExperience'),
-                TextColumn::make('JobDescription'),
+                TextColumn::make('postingTitle')
+                    ->label('Job Opening Title'),
+                TextColumn::make('NumberOfPosition')
+                    ->label('Number Of Vacancy'),
+                TextColumn::make('Status')
+                    ->label('Status'),
+                TextColumn::make('TargetDate')
+                    ->label('Job Opening Target Date'),
+                TextColumn::make('Industry')
+                    ->label('Industry'),
+                TextColumn::make('Department')
+                    ->label('Department'),
+                TextColumn::make('DateOpened')
+                    ->label('Job Opening Date Opened'),
+                TextColumn::make('JobType')
+                    ->label('Job Type'),
+                IconColumn::make('RemoteJob')
+                    ->label('Remote')
+                    ->boolean()
+                    ->trueIcon('heroicon-o-check-badge'),
                 TextColumn::make('City'),
                 TextColumn::make('Country'),
                 TextColumn::make('State'),
                 TextColumn::make('ZipCode'),
-                TextColumn::make('RemoteJob'),
                 TextColumn::make('CreatedBy'),
                 TextColumn::make('ModifiedBy'),
             ]);
