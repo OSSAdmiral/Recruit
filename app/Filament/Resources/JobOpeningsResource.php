@@ -149,14 +149,8 @@ class JobOpeningsResource extends Resource
                     ->label('Job Opening Title'),
                 TextColumn::make('NumberOfPosition')
                     ->label('Number Of Vacancy'),
-                TextColumn::make('Status')
-                    ->label('Status'),
                 TextColumn::make('TargetDate')
                     ->label('Job Opening Target Date'),
-                TextColumn::make('Industry')
-                    ->label('Industry'),
-                TextColumn::make('Department')
-                    ->label('Department'),
                 TextColumn::make('DateOpened')
                     ->label('Job Opening Date Opened'),
                 TextColumn::make('JobType')
@@ -165,9 +159,6 @@ class JobOpeningsResource extends Resource
                     ->label('Remote')
                     ->boolean()
                     ->trueIcon('heroicon-o-check-badge'),
-                TextColumn::make('City'),
-                TextColumn::make('Country'),
-                TextColumn::make('State'),
             ])->actions([
                 ViewAction::make(),
                 EditAction::make(),
