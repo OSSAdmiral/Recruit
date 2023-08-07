@@ -52,7 +52,8 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+        "format": "./vendor/bin/pint --dirty"
     },
     "extra": {
         "laravel": {
