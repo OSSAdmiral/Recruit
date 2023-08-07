@@ -39,6 +39,7 @@ class JobOpenings extends Model
         'RemoteJob',
         'CreatedBy',
         'ModifiedBy',
+        'DeletedBy'
     ];
 
     protected $casts = [
