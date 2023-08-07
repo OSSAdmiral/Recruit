@@ -43,6 +43,6 @@ class JobOpenings extends Model
     ];
 
     protected $casts = [
-        'Industry' => 'array',
+        'RequiredSkill' => 'array'
     ];
 }

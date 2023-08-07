@@ -4,16 +4,20 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\JobOpeningsResource\Pages;
 use App\Models\JobOpenings;
+use App\Models\User;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use function Laravel\Prompts\confirm;
 
 class JobOpeningsResource extends Resource
 {
@@ -52,19 +56,30 @@ class JobOpeningsResource extends Resource
                         ->default('New')
                         ->required(),
                     TextInput::make('Salary'),
-                    TextInput::make('Department')
+                    Select::make('Department')
+                        ->options(config('recruit.job_opening.departments'))
                         ->required(),
-                    TextInput::make('HiringManager'),
-                    TextInput::make('AssignedRecruiters'),
-                    TextInput::make('DateOpened')
+                    Select::make('HiringManager')
+                        ->options(User::class),
+                    Select::make('AssignedRecruiters')
+                        ->options(User::class),
+                    DatePicker::make('DateOpened')
+                        ->format('d/m/Y')
+                        ->native(false)
+                        ->displayFormat('m/d/Y')
                         ->required(),
-                    TextInput::make('JobType')
+                    Select::make('JobType')
+                        ->options(config('recruit.job_opening.job_type_options'))
                         ->required(),
-                    TextInput::make('RequiredSkill')
+                    Select::make('RequiredSkill')
+                        ->multiple()
+                        ->options(config('recruit.job_opening.required_skill_options'))
                         ->required(),
-                    TextInput::make('WorkExperience')
+                    Select::make('WorkExperience')
+                        ->options(config('recruit.job_opening.work_experience'))
                         ->required(),
-                    Checkbox::make('RemoteJob'),
+                    Checkbox::make('RemoteJob')
+                        ->default(false),
                 ])->columns(2),
                 Section::make('job-opening-address-information-section')
                 ->id('job-opening-address-information-section')
@@ -83,23 +98,23 @@ class JobOpeningsResource extends Resource
                 ->id('job-opening-description-information')
                 ->label('Description Information')
                 ->schema([
-                    TextInput::make('JobDescription')
+                    RichEditor::make('JobDescription')
+                        ->required(),
+                    RichEditor::make('JobRequirement')
+                        ->required(),
+                    RichEditor::make('JobBenefits')
                         ->required(),
                 ])->columns(1),
                 Section::make('job-opening-system-info')
                 ->id('job-opening-system-info')
                 ->label('System Information')
                 ->schema([
-                    TextInput::make('CreatedBy')
-                        ->required(),
-                    TextInput::make('ModifiedBy')
-                        ->required(),
-                    Placeholder::make('created_at')
-                        ->label('Created Date')
-                        ->content(fn (?JobOpenings $record): string => $record?->created_at?->diffForHumans() ?? '-'),
-                    Placeholder::make('updated_at')
+                    TextEntry::make('CreatedBy'),
+                    TextEntry::make('ModifiedBy'),
+                    TextEntry::make('created_at')
+                        ->label('Created Date'),
+                    TextEntry::make('updated_at')
                         ->label('Last Modified Date')
-                        ->content(fn (?JobOpenings $record): string => $record?->updated_at?->diffForHumans() ?? '-'),
                 ])->columns(2)
             ]);
     }
