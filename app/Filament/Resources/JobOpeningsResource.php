@@ -15,6 +15,9 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\BooleanColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -165,6 +168,10 @@ class JobOpeningsResource extends Resource
                 TextColumn::make('City'),
                 TextColumn::make('Country'),
                 TextColumn::make('State'),
+            ])->actions([
+                ViewAction::make(),
+                EditAction::make(),
+                DeleteAction::make()
             ]);
     }
 
