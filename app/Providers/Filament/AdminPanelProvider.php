@@ -24,6 +24,7 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
+            ->maxContentWidth('full')
             ->id('recruit')
             ->path('recruit')
             ->topNavigation()

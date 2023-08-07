@@ -17,12 +17,12 @@ return [
             'management'=> 'Management'
         ],
         'job_type_options' => [
-            'full_time' => 'Full Time',
-            'part_time' => 'Part Time',
-            'freelance' => 'Freelance',
-            'temporary' => 'Temporary',
-            'contract' => 'Contract',
-            'permanent' => 'Permanent',
+            'Full Time' => 'Full Time',
+            'Part Time' => 'Part Time',
+            'Freelance' => 'Freelance',
+            'Temporary' => 'Temporary',
+            'Contract' => 'Contract',
+            'Permanent' => 'Permanent',
             'Volunteer' => 'Volunteer'
         ],
         'work_experience' => [

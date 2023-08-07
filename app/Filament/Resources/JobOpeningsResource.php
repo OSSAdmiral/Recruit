@@ -39,16 +39,20 @@ class JobOpeningsResource extends Resource
                 ->icon('heroicon-o-briefcase')
                 ->schema([
                     TextInput::make('postingTitle')
-                        ->length(225)
+                        ->maxLength(225)
                         ->required(),
                     TextInput::make('NumberOfPosition')
                         ->numeric()
                         ->required(),
                     TextInput::make('JobTitle')
-                        ->length(225)
+                        ->maxLength(225)
                         ->required(),
-                    TextInput::make('JobOpeningSystemID'),
+                    TextInput::make('JobOpeningSystemID')
+                        ->label('Job Opening Unique Key ID')
+                        ->readOnly()
+                        ->hiddenOn('create'),
                     DatePicker::make('TargetDate')
+                        ->label('Target Date')
                         ->format('d/m/Y')
                         ->native(false)
                         ->displayFormat('m/d/Y')
@@ -56,9 +60,11 @@ class JobOpeningsResource extends Resource
                     Select::make('Status')
                         ->options(config('recruit.job_opening.status_options'))
                         ->hiddenOn('create')
-                        ->default('New')
+                        ->native(false)
+                        ->default('new')
                         ->required(),
-                    TextInput::make('Salary'),
+                    TextInput::make('Salary')
+                        ->numeric(),
                     Select::make('Department')
                         ->options(config('recruit.job_opening.departments'))
                         ->required(),
@@ -67,6 +73,7 @@ class JobOpeningsResource extends Resource
                     Select::make('AssignedRecruiters')
                         ->options(User::all()->pluck('name', 'id')),
                     DatePicker::make('DateOpened')
+                        ->label('Date Opened')
                         ->format('d/m/Y')
                         ->native(false)
                         ->displayFormat('m/d/Y')
@@ -106,10 +113,13 @@ class JobOpeningsResource extends Resource
                 ->label('Description Information')
                 ->schema([
                     RichEditor::make('JobDescription')
+                        ->label('Job Description')
                         ->required(),
                     RichEditor::make('JobRequirement')
+                        ->label('Requirements')
                         ->required(),
                     RichEditor::make('JobBenefits')
+                        ->label('Benefits')
                         ->required(),
                 ])->columns(1),
                 Section::make('System Information')
@@ -163,7 +173,8 @@ class JobOpeningsResource extends Resource
         return [
             'index' => Pages\ListJobOpenings::route('/'),
             'create' => Pages\CreateJobOpenings::route('/create'),
-            'edit' => Pages\EditJobOpenings::route('/{record}/edit'),
+            'view' => Pages\ViewJobOpenings::route('/{record}'),
+            'edit' => Pages\EditJobOpenings::route('/{record}/edit')
         ];
     }
 
