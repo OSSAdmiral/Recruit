@@ -92,8 +92,10 @@ class JobOpeningsResource extends Resource
                     TextInput::make('Country')
                         ->required(),
                     TextInput::make('State')
+                        ->label('State/Province')
                         ->required(),
                     TextInput::make('ZipCode')
+                        ->label('Zip/Postal Code')
                         ->required(),
                 ])->columns(2),
                 Section::make('job-opening-description-information')
@@ -148,9 +150,6 @@ class JobOpeningsResource extends Resource
                 TextColumn::make('City'),
                 TextColumn::make('Country'),
                 TextColumn::make('State'),
-                TextColumn::make('ZipCode'),
-                TextColumn::make('CreatedBy'),
-                TextColumn::make('ModifiedBy'),
             ]);
     }
 
