@@ -5,8 +5,10 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\JobOpeningsResource\Pages;
 use App\Models\JobOpenings;
 use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -30,15 +32,24 @@ class JobOpeningsResource extends Resource
                 ->icon('heroicon-o-briefcase')
                 ->schema([
                     TextInput::make('postingTitle')
+                        ->length(225)
                         ->required(),
                     TextInput::make('NumberOfPosition')
+                        ->numeric()
                         ->required(),
                     TextInput::make('JobTitle')
+                        ->length(225)
                         ->required(),
                     TextInput::make('JobOpeningSystemID'),
-                    TextInput::make('TargetDate')
+                    DatePicker::make('TargetDate')
+                        ->format('d/m/Y')
+                        ->native(false)
+                        ->displayFormat('m/d/Y')
                         ->required(),
-                    TextInput::make('Status')
+                    Select::make('Status')
+                        ->options(config('recruit.job_opening.status_options'))
+                        ->hiddenOn('create')
+                        ->default('New')
                         ->required(),
                     TextInput::make('Salary'),
                     TextInput::make('Department')
