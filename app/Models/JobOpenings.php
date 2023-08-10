@@ -42,6 +42,11 @@ class JobOpenings extends Model
         'DeletedBy'
     ];
 
+    public function department(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Departments::class, 'Department', 'id');
+    }
+
     protected $casts = [
         'RequiredSkill' => 'array'
     ];

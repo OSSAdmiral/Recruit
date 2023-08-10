@@ -22,4 +22,9 @@ class Departments extends Model
         'ModifiedBy',
         'DeletedBy'
     ];
+
+    public function jobOpenings(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(JobOpenings::class, 'Department', 'id');
+    }
 }
