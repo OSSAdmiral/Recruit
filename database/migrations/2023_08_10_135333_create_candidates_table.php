@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->decimal('ExperienceInYears')->nullable();
             $table->string('CurrentJobTitle')->nullable();
             $table->string('ExpectedSalary')->nullable();
-            $table->longText('SkillSet')->nullable();
+            $table->json('SkillSet')->nullable();
             $table->string('HighestQualificationHeld')->nullable();
             $table->string('CurrentEmployer')->nullable();
             $table->string('CurrentSalary')->nullable();
