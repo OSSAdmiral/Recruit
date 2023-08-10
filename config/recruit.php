@@ -31,10 +31,6 @@ return [
             '1_3years' => '1-3 years',
             '4_5years' => '4-5 years',
             '5+years' => '5+ years'
-        ],
-        'departments' => [
-            'IT' => 'IT Department',
-            'Finance' => 'Finance Department'
         ]
     ]
 ];
