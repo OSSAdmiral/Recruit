@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('Status')->default('new');
             $table->string('Industry')->nullable();
             $table->string('Salary')->nullable();
-            $table->string('Department');
+            $table->unsignedBigInteger('Department')->nullable();
             $table->string('HiringManager')->nullable();
             $table->string('AssignedRecruiters')->nullable();
             $table->string('DateOpened');

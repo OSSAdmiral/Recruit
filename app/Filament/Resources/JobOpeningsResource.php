@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\JobOpeningsResource\Pages;
+use App\Models\Departments;
 use App\Models\JobOpenings;
 use App\Models\User;
 use Filament\Forms\Components\Checkbox;
@@ -15,13 +16,11 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
-use Filament\Tables\Actions\DeleteAction;
-use Filament\Tables\Actions\EditAction;
-use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\BooleanColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Tables;
 use function Laravel\Prompts\confirm;
 
 class JobOpeningsResource extends Resource
@@ -69,7 +68,7 @@ class JobOpeningsResource extends Resource
                     TextInput::make('Salary')
                         ->numeric(),
                     Select::make('Department')
-                        ->options(config('recruit.job_opening.departments'))
+                        ->options(Departments::all()->pluck('DepartmentName', 'id'))
                         ->required(),
                     Select::make('HiringManager')
                         ->options(User::all()->pluck('name', 'id')),
@@ -159,10 +158,13 @@ class JobOpeningsResource extends Resource
                     ->label('Remote')
                     ->boolean()
                     ->trueIcon('heroicon-o-check-badge'),
-            ])->actions([
-                ViewAction::make(),
-                EditAction::make(),
-                DeleteAction::make()
+            ])->emptyStateActions([
+                Tables\Actions\CreateAction::make(),
+            ])
+            ->actions([
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
             ]);
     }
 
