@@ -20,8 +20,8 @@ class ViewDepartments extends ViewRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        $data['CreatedBy'] = $this->record->author()->pluck('name');
-        $data['ModifiedBy'] = $this->record->modified()->pluck('name');
+        $data['CreatedBy'] = $this->record->creator()->pluck('name');
+        $data['ModifiedBy'] = $this->record->editor()->pluck('name');
 
         return $data;
     }
