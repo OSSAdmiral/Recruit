@@ -22,14 +22,4 @@ class Departments extends Model
         'ModifiedBy',
         'DeletedBy'
     ];
-
-    public function author() {
-        return $this->creator();
-    }
-    public function modified() {
-        return $this->editor();
-    }
-    public function deletedby() {
-        return $this->destroyer();
-    }
 }

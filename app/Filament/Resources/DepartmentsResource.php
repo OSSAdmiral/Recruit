@@ -58,7 +58,7 @@ class DepartmentsResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('DepartmentName')
                     ->label('Department Name'),
-                Tables\Columns\TextColumn::make('author.name')
+                Tables\Columns\TextColumn::make('destroyer.name')
                     ->label('Parent Department'),
             ])
             ->filters([
