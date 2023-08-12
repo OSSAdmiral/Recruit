@@ -27,14 +27,10 @@ return new class extends Migration {
             $table->string('Country')->nullable();
             $table->string('ZipCode')->nullable();
             $table->string('State')->nullable();
-            $table->string('CandidateStatus')->nullable();
-            $table->string('CandidateSource')->nullable();
-            $table->unsignedBigInteger('CandidateOwner')->nullable();
-            $table->string('SchoolName')->nullable();
-            $table->string('SchoolMajor')->nullable();
-            $table->string('SchoolDegree')->nullable();
-            $table->string('SchoolDuration')->nullable();
-            $table->boolean('SchoolCurrentlyPursuing')->nullable();
+//            $table->string('CandidateStatus')->nullable();
+//            $table->string('CandidateSource')->nullable();
+//            $table->unsignedBigInteger('CandidateOwner')->nullable();
+            $table->string('School')->nullable();
             $table->json('ExperienceDetails')->nullable();
             $table->softDeletes();
             $table->timestamps();

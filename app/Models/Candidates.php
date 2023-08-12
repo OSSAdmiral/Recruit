@@ -39,6 +39,11 @@ class Candidates extends Model
         'ExperienceDetails',
     ];
 
+    public function fullNameAttribute()
+    {
+        return sprintf("%s%s", $this->FirstName, $this->LastName);
+    }
+
     protected $casts = [
         'ExperienceDetails' => 'array',
         'SkillSet' => 'array'
