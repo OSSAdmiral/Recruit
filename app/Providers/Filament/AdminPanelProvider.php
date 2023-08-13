@@ -26,7 +26,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->maxContentWidth('full')
             ->id('recruit')
-            ->path('recruit')
+            ->path('')
             ->topNavigation()
             ->login()
             ->colors([
