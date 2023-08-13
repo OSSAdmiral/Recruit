@@ -16,7 +16,6 @@
         "laravel/tinker": "^2.8",
         "mallardduck/blade-lucide-icons": "^1.11",
         "spatie/laravel-permission": "^5.10",
-        "tymon/jwt-auth": "^2.0",
         "wildside/userstamps": "^2.3"
     },
     "require-dev": {
