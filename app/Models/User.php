@@ -46,6 +46,8 @@ class User extends Authenticatable implements FilamentUser
         'password' => 'hashed',
     ];
 
+    protected array $guard_name = ['api', 'web'];
+
     public function canAccessPanel(Panel $panel): bool
     {
         return true;
