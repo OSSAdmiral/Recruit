@@ -26,6 +26,7 @@ class AuthenticationController extends Controller
                 'message' => 'Invalid Email or Password.',
             ], Response::HTTP_UNAUTHORIZED);
         }
+
         return response()->json([
             'status' => 'success',
             'code' => Response::HTTP_OK,
@@ -38,6 +39,7 @@ class AuthenticationController extends Controller
             ],
         ], Response::HTTP_OK);
     }
+
     public function logout()
     {
         auth()->logout();
@@ -48,6 +50,7 @@ class AuthenticationController extends Controller
             'message' => 'Successfully logged out',
         ], Response::HTTP_OK);
     }
+
     public function refresh()
     {
         return response()->json([
@@ -62,5 +65,4 @@ class AuthenticationController extends Controller
             ],
         ], Response::HTTP_OK);
     }
-
 }

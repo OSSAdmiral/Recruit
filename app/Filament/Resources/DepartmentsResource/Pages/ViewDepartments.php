@@ -14,7 +14,7 @@ class ViewDepartments extends ViewRecord
     {
         return [
             Actions\EditAction::make(),
-            Actions\DeleteAction::make()
+            Actions\DeleteAction::make(),
         ];
     }
 
