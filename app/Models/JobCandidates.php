@@ -11,11 +11,11 @@ class JobCandidates extends Model
 {
     use SoftDeletes, HasFactory, Userstamps;
 
-
     const CREATED_BY = 'CreatedBy';
-    const UPDATED_BY = 'ModifiedBy';
-    const DELETED_BY = 'DeletedBy';
 
+    const UPDATED_BY = 'ModifiedBy';
+
+    const DELETED_BY = 'DeletedBy';
 
     protected $fillable = [
         'JobCandidateId',
@@ -39,11 +39,10 @@ class JobCandidates extends Model
         'CandidateOwner',
         'CreatedBy',
         'ModifiedBy',
-        'DeletedBy'
+        'DeletedBy',
     ];
 
     protected $casts = [
         'SkillSet' => 'array',
     ];
-
 }
