@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Enums\JobCandidateStatus;
 use App\Filament\Resources\JobCandidatesResource\Pages;
-use App\Filament\Resources\JobCandidatesResource\RelationManagers;
 use App\Models\Candidates;
 use App\Models\JobCandidates;
 use App\Models\User;
@@ -30,10 +29,10 @@ class JobCandidatesResource extends Resource
         return $form
             ->schema(
                 array_merge([],
-                self::candidatePipelineFormLayout(),
-                self::candidateBasicInformationFormLayout(),
-                self::candidateCurrentJobInformationFormLayout(),
-                self::candidateAddressInformationFormLayout()
+                    self::candidatePipelineFormLayout(),
+                    self::candidateBasicInformationFormLayout(),
+                    self::candidateCurrentJobInformationFormLayout(),
+                    self::candidateAddressInformationFormLayout()
                 ));
     }
 
@@ -50,14 +49,14 @@ class JobCandidatesResource extends Resource
                         ->default('web'),
                     Forms\Components\Select::make('CandidateOwner')
                         ->options(User::all()->pluck('name', 'id'))
-                        ->nullable()
-                ])->columns(2)
+                        ->nullable(),
+                ])->columns(2),
         ];
     }
 
     public static function candidateBasicInformationFormLayout(): array
     {
-        return  [
+        return [
             Forms\Components\TextInput::make('JobCandidateId')
                 ->visibleOn('view')
                 ->readOnly()
@@ -95,7 +94,7 @@ class JobCandidatesResource extends Resource
                             'Doctorate Degree' => 'Doctorate Degree',
                         ])
                         ->label('Highest Qualification Held'),
-                ])->columns(2)
+                ])->columns(2),
         ];
     }
 
@@ -155,14 +154,14 @@ class JobCandidatesResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -171,8 +170,8 @@ class JobCandidatesResource extends Resource
             'view' => Pages\ViewJobCandidates::route('/{record}'),
             'edit' => Pages\EditJobCandidates::route('/{record}/edit'),
         ];
-    }    
-    
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
