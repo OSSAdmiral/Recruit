@@ -47,5 +47,29 @@ jobs:
       - name: List Installed Dependencies
         run: composer show -D
 
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+      - name: Generate key
+        run: php artisan key:generate
+
+      - name: JWT Secret
+        run: php artisan jwt:secret
+
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+
+      - name: Create Database
+        run: |
+          sudo systemctl start mysql
+          mysql --user="root" --password="root" -e "CREATE DATABASE \`recruit\` character set UTF8mb4 collate utf8mb4_bin;"
+
       - name: Execute tests
+        env:
+          APP_URL: "http://127.0.0.1:8000"
+          DB_CONNECTION: mysql
+          DB_DATABASE: recruit
+          DB_PORT: 3306
+          DB_PASSWORD: root
+          DB_USERNAME: root
         run: ./vendor/bin/pest --ci
