@@ -12,7 +12,7 @@ class CreateJobOpenings extends CreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $data['Status'] = 'New';
+
         return $data;
     }
-
 }

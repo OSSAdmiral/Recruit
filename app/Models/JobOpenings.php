@@ -12,8 +12,10 @@ class JobOpenings extends Model
     use SoftDeletes, HasFactory, Userstamps;
 
     const CREATED_BY = 'CreatedBy';
+
     const UPDATED_BY = 'ModifiedBy';
-    const DELETED_BY  = 'DeletedBy';
+
+    const DELETED_BY = 'DeletedBy';
 
     protected $fillable = [
         'postingTitle',
@@ -39,7 +41,7 @@ class JobOpenings extends Model
         'RemoteJob',
         'CreatedBy',
         'ModifiedBy',
-        'DeletedBy'
+        'DeletedBy',
     ];
 
     public function department(): \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -48,6 +50,6 @@ class JobOpenings extends Model
     }
 
     protected $casts = [
-        'RequiredSkill' => 'array'
+        'RequiredSkill' => 'array',
     ];
 }

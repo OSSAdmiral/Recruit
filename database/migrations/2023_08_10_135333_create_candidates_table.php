@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up(): void
     {
         Schema::create('candidates', function (Blueprint $table) {
@@ -27,9 +28,9 @@ return new class extends Migration {
             $table->string('Country')->nullable();
             $table->string('ZipCode')->nullable();
             $table->string('State')->nullable();
-//            $table->string('CandidateStatus')->nullable();
-//            $table->string('CandidateSource')->nullable();
-//            $table->unsignedBigInteger('CandidateOwner')->nullable();
+            //            $table->string('CandidateStatus')->nullable();
+            //            $table->string('CandidateSource')->nullable();
+            //            $table->unsignedBigInteger('CandidateOwner')->nullable();
             $table->string('School')->nullable();
             $table->json('ExperienceDetails')->nullable();
             $table->softDeletes();

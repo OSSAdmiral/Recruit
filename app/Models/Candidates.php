@@ -41,11 +41,11 @@ class Candidates extends Model
 
     public function fullNameAttribute()
     {
-        return sprintf("%s%s", $this->FirstName, $this->LastName);
+        return sprintf('%s%s', $this->FirstName, $this->LastName);
     }
 
     protected $casts = [
         'ExperienceDetails' => 'array',
-        'SkillSet' => 'array'
+        'SkillSet' => 'array',
     ];
 }

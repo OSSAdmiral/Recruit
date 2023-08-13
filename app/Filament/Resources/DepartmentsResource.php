@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\DepartmentsResource\Pages;
-use App\Filament\Resources\DepartmentsResource\RelationManagers;
 use App\Models\Departments;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -26,15 +25,15 @@ class DepartmentsResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Section::make('Department Information')
-                ->id('department-information')
-                ->icon('lucide-building-2')
-                ->schema([
-                    Forms\Components\TextInput::make('DepartmentName')
-                        ->required(),
-                    Forms\Components\Select::make('ParentDepartment')
-                        ->options(Departments::all()->pluck('DepartmentName', 'id'))
-                        ->nullable()
-                ]),
+                    ->id('department-information')
+                    ->icon('lucide-building-2')
+                    ->schema([
+                        Forms\Components\TextInput::make('DepartmentName')
+                            ->required(),
+                        Forms\Components\Select::make('ParentDepartment')
+                            ->options(Departments::all()->pluck('DepartmentName', 'id'))
+                            ->nullable(),
+                    ]),
                 Forms\Components\Section::make('System Information')
                     ->hiddenOn('create')
                     ->id('job-opening-system-info')
@@ -46,8 +45,8 @@ class DepartmentsResource extends Resource
                         Forms\Components\DateTimePicker::make('created_at')
                             ->label('Created Date'),
                         Forms\Components\DateTimePicker::make('updated_at')
-                            ->label('Last Modified Date')
-                    ])->columns(2)
+                            ->label('Last Modified Date'),
+                    ])->columns(2),
 
             ]);
     }

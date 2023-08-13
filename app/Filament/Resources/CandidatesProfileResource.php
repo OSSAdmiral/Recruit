@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CandidatesProfileResource\Pages;
-use App\Filament\Resources\CandidatesProfileResource\RelationManagers;
 use App\Models\Candidates;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -14,7 +13,6 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Str;
 
 class CandidatesProfileResource extends Resource
 {
@@ -55,7 +53,7 @@ class CandidatesProfileResource extends Resource
                             Forms\Components\Select::make('duration')
                                 ->options([
                                     '4years' => '4 Years',
-                                    '5years' => '5 Years'
+                                    '5years' => '5 Years',
                                 ])
                                 ->required(),
                             Forms\Components\Checkbox::make('pursuing')
@@ -94,7 +92,7 @@ class CandidatesProfileResource extends Resource
                             '2years' => '2 Years',
                             '3years' => '3 Years',
                             '4years' => '4 Years',
-                            '5years+' => '5 Years & Above'
+                            '5years+' => '5 Years & Above',
                         ]),
                     Forms\Components\TextInput::make('ExpectedSalary')
                         ->mask(RawJs::make(<<<'JS'
@@ -107,11 +105,10 @@ class CandidatesProfileResource extends Resource
                             'Associates Degree' => 'Associates Degree',
                             'Bachelors Degree' => 'Bachelors Degree',
                             'Masters Degree' => 'Masters Degree',
-                            'Doctorate Degree' => 'Doctorate Degree'
+                            'Doctorate Degree' => 'Doctorate Degree',
                         ])
                         ->label('Highest Qualification Held'),
                 ])->columns(2),
-
 
         ];
 
@@ -151,23 +148,21 @@ class CandidatesProfileResource extends Resource
                                 ])
                                 ->label('Experience'),
                             Forms\Components\Select::make('last_used')
-                                ->options(function (){
-                                    $lastUsedOptions = array();
+                                ->options(function () {
+                                    $lastUsedOptions = [];
                                     $counter = 30;
-                                    for ($i = $counter; $i >= 0; $i--)
-                                    {
+                                    for ($i = $counter; $i >= 0; $i--) {
                                         $lastUsedOptions[
                                         sprintf('%s', Carbon::now()->subYear($i)->year)
                                             ] =
-                                            sprintf('%s', Carbon::now()->subYear($i)->year)
-                                        ;
+                                            sprintf('%s', Carbon::now()->subYear($i)->year);
                                     }
 
                                     return $lastUsedOptions;
                                 })
                                 ->label('Last Used'),
 
-                        ])
+                        ]),
                 ]),
 
         ];
@@ -188,13 +183,13 @@ class CandidatesProfileResource extends Resource
                         ->mask(RawJs::make(<<<'JS'
                                 $money($input, '.',',')
                                 JS)),
-                ])->columns(2)
+                ])->columns(2),
         ];
     }
 
     public static function standardAddressInformationFormLayout(): array
     {
-        return  [
+        return [
             Forms\Components\Section::make('Candidate Address Information')
                 ->schema([
                     Forms\Components\TextInput::make('Street'),
@@ -221,7 +216,7 @@ class CandidatesProfileResource extends Resource
                             Forms\Components\TextInput::make('company_name'),
                             Forms\Components\TextInput::make('duration'),
                             Forms\Components\TextInput::make('role'),
-                            Forms\Components\Textarea::make('company_address')
+                            Forms\Components\Textarea::make('company_address'),
                         ])
                         ->deleteAction(
                             fn (Forms\Components\Actions\Action $action) => $action->requiresConfirmation(),
@@ -239,7 +234,6 @@ class CandidatesProfileResource extends Resource
                     Forms\Components\Textarea::make('AdditionalInformation')
                         ->label(''),
                 ]),
-
 
         ];
     }
@@ -268,14 +262,14 @@ class CandidatesProfileResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -284,8 +278,8 @@ class CandidatesProfileResource extends Resource
             'view' => Pages\ViewCandidatesProfile::route('/{record}'),
             'edit' => Pages\EditCandidatesProfile::route('/{record}/edit'),
         ];
-    }    
-    
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
