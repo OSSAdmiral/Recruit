@@ -28,6 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('recruit')
             ->path('')
             ->topNavigation()
+            ->passwordReset()
             ->login()
             ->colors([
                 'primary' => Color::Amber,
