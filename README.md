@@ -17,11 +17,6 @@ Run Database Migration
 php artisan migrate
 ```
 
-Generate new JWT secret key for your application
-```bash
-php artisan jwt:secret
-```
-
 Run Database Seeder to populate the database
 ```bash
 php artisan db:seed
