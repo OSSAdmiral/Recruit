@@ -16,19 +16,20 @@
      a Forem Team member.
 -->
 
-## What type of PR is this? (check all applicable)
+## 🛠️ What type of PR is this? (check all applicable)
 
-- [ ] Refactor
-- [ ] Feature
-- [ ] Bug Fix
-- [ ] Optimization
-- [ ] Documentation Update
+- [ ] 🔨 Refactor
+- [ ] ✨ Feature
+- [ ] 🐛 Bug Fix
+- [ ] 🚑 Hot Fix
+- [ ] 🐎 Optimization
+- [ ] 📚 Documentation Update
 
-## Description
+## 📓 Description
 
 _Please provide description of the PR_
 
-## Related Tickets & Documents
+## 🎟️ Related Tickets & 📚 Documents
 
 <!--
 For pull requests that relate or close an issue, please include them
@@ -39,15 +40,15 @@ request to issue 1234.  And when we merge the pull request, Github will
 automatically close the issue.
 -->
 
-- Related Issue #
-- Closes #
+- 🎫 Related Issue #
+- 🔐 Closes #
 
-## Added/updated tests?
+## 🚨 Added/updated tests?
 
 - [ ] Yes
 - [ ] No, and this is why: _please replace this line with details on why tests
       have not been included_
 - [ ] I need help with writing tests
 
-## Added/Removed package(s)?
+## 🔥 Added/Removed package(s)?
 _**Please provide if there is any**_
