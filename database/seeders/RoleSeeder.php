@@ -19,7 +19,7 @@ class RoleSeeder extends Seeder
         *--*/
         $arrayOfPermissionNames = ['Add Role', 'Delete Role', 'Add User', 'Delete User', 'View User', 'View Role', 'View Profile', 'View Permissions'];
         $permissions = collect($arrayOfPermissionNames)->map(function ($permission) {
-            return ['name' => $permission, 'guard_name' => 'api'];
+            return ['name' => $permission, 'guard_name' => 'web'];
         });
         Permission::insert($permissions->toArray());
 
