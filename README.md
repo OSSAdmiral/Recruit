@@ -3,6 +3,11 @@
 
 [![Laravel](https://img.shields.io/badge/Laravel-v10-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://img.shields.io/badge/Laravel-v10-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 [![PHP](https://img.shields.io/badge/PHP-v8.1-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://img.shields.io/badge/PHP-v8.1-777BB4?style=for-the-badge&logo=php&logoColor=white)
+[![FilamentPhp ](https://img.shields.io/badge/Filamentphp-v3.x-yellow?style=for-the-badge&logo=filamentphp)](https://img.shields.io/badge/PHP-8.0-777BB4?style=for-the-badge&logo=php)
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/RecruitLab/Recruit/run-tests.yml?style=for-the-badge&logo=GitHub&label=Test%20Case)
+![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/RecruitLab/Recruit/fix-php-code-style-issues.yml?style=for-the-badge&logo=GitHub&label=Code%20Style)
+![GitHub](https://img.shields.io/github/license/RecruitLab/Recruit?style=for-the-badge&label=License)
+
 
 # Installation
 
@@ -15,11 +20,6 @@ composer install
 Run Database Migration
 ```bash
 php artisan migrate
-```
-
-Generate new JWT secret key for your application
-```bash
-php artisan jwt:secret
 ```
 
 Run Database Seeder to populate the database
