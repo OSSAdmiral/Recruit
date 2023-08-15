@@ -6,7 +6,6 @@ use Filament\Support\Contracts\HasLabel;
 
 enum JobCandidateStatus: string implements HasLabel
 {
-
     case New = 'New';
     case WaitingForEvaluation = 'Waiting-for-Evaluation';
     case Contacted = 'Contacted';
@@ -39,9 +38,6 @@ enum JobCandidateStatus: string implements HasLabel
     case NoShow = 'No-Show';
     case ConvertedEmployee = 'Converted - Employee';
     case ForwardToOnboarding = 'Forward-to-Onboarding';
-
-
-
 
     public function getLabel(): ?string
     {
