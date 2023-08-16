@@ -19,7 +19,7 @@ enum AttachmentCategory: string implements HasLabel, HasColor
         return $this->name;
     }
 
-    public function getColor(): string | array | null
+    public function getColor(): string|array|null
     {
         return match ($this) {
             self::Others => 'gray',
@@ -30,5 +30,4 @@ enum AttachmentCategory: string implements HasLabel, HasColor
             self::JobSummary => 'yellow',
         };
     }
-
 }

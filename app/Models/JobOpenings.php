@@ -50,9 +50,6 @@ class JobOpenings extends Model
         return $this->belongsTo(Departments::class, 'Department', 'id');
     }
 
-    /**
-     * @return HasMany
-     */
     public function attachments(): HasMany
     {
         return $this->hasMany(Attachments::class, 'attachmentOwner', 'id');
@@ -61,5 +58,4 @@ class JobOpenings extends Model
     protected $casts = [
         'RequiredSkill' => 'array',
     ];
-
 }

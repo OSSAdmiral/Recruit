@@ -64,9 +64,6 @@ class JobCandidates extends Model
         return $this->belongsTo(User::class, 'CandidateOwner', 'id');
     }
 
-    /**
-     * @return HasMany
-     */
     public function attachments(): HasMany
     {
         return $this->hasMany(Attachments::class, 'attachmentOwner', 'id');
