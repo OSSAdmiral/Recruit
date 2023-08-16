@@ -48,25 +48,16 @@ class JobCandidates extends Model
         'SkillSet' => 'array',
     ];
 
-    /**
-     * @return BelongsTo
-     */
     public function candidateProfile(): BelongsTo
     {
         return $this->belongsTo(Candidates::class, 'candidate', 'id');
     }
 
-    /**
-     * @return BelongsTo
-     */
     public function job(): BelongsTo
     {
         return $this->belongsTo(JobOpenings::class, 'JobId', 'id');
     }
 
-    /**
-     * @return BelongsTo
-     */
     public function candidateOwner(): BelongsTo
     {
         return $this->belongsTo(User::class, 'CandidateOwner', 'id');
