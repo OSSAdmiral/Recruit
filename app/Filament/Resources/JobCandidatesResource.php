@@ -6,6 +6,7 @@ use App\Filament\Enums\JobCandidateStatus;
 use App\Filament\Resources\JobCandidatesResource\Pages;
 use App\Models\Candidates;
 use App\Models\JobCandidates;
+use App\Models\JobOpenings;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -41,6 +42,10 @@ class JobCandidatesResource extends Resource
         return [
             Forms\Components\Section::make('Candidate Pipeline')
                 ->schema([
+                    Forms\Components\Select::make('JobId')
+                        ->label('Job Associated')
+                        ->options(JobOpenings::all()->pluck('JobTitle', 'id'))
+                        ->required(),
                     Forms\Components\Select::make('CandidateStatus')
                         ->options(JobCandidateStatus::class)
                         ->required(),
@@ -134,7 +139,58 @@ class JobCandidatesResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('candidateProfile.FullName')
+                    ->label('Candidate Name'),
+                Tables\Columns\TextColumn::make('Email'),
+                Tables\Columns\TextColumn::make('CandidateStatus')
+                    ->label('Candidate Status')
+                    ->color(fn (string $state): string => match ($state) {
+                        'draft' => 'gray',
+                        'reviewing' => 'warning',
+                        'published' => 'success',
+                        'rejected' => 'danger',
+                    }),
+                Tables\Columns\TextColumn::make('CandidateSource')
+                    ->label('Candidate Source')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('candidateOwner.name')
+                    ->label('Candidate Owner')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('mobile')
+                    ->label('Mobile')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('ExpectedSalary')
+                    ->label('Expected Salary')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('ExperienceInYears')
+                    ->label('Experience In Years')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('HighestQualificationHeld')
+                    ->label('Highest Qualification Held')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('CurrentEmployer')
+                    ->label('Current Employer Company Name')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('CurrentJobTitle')
+                    ->label('Current Job Title')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('CurrentSalary')
+                    ->label('Current Salary')
+                    ->money(config('recruit.currency_field'))
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('Street')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('City')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('Country')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('ZipCode')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('State')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->toggleable(isToggledHiddenByDefault: true)
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -142,6 +198,7 @@ class JobCandidatesResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -63,4 +63,12 @@ class JobCandidates extends Model
     {
         return $this->belongsTo(JobOpenings::class, 'JobId', 'id');
     }
+
+    /**
+     * @return BelongsTo
+     */
+    public function candidateOwner(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'CandidateOwner', 'id');
+    }
 }
