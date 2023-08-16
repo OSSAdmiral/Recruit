@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\JobOpeningsResource\Pages;
+use App\Filament\Resources\JobOpeningsResource\RelationManagers;
 use App\Models\Departments;
 use App\Models\JobOpenings;
 use App\Models\User;
@@ -171,6 +172,13 @@ class JobOpeningsResource extends Resource
             'create' => Pages\CreateJobOpenings::route('/create'),
             'view' => Pages\ViewJobOpenings::route('/{record}'),
             'edit' => Pages\EditJobOpenings::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            RelationManagers\AttachmentsRelationManager::class,
         ];
     }
 

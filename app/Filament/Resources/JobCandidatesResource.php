@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Enums\JobCandidateStatus;
 use App\Filament\Resources\JobCandidatesResource\Pages;
+use App\Filament\Resources\JobCandidatesResource\RelationManagers;
 use App\Models\Candidates;
 use App\Models\JobCandidates;
 use App\Models\JobOpenings;
@@ -215,7 +216,7 @@ class JobCandidatesResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\AttachmentsRelationManager::class,
         ];
     }
 

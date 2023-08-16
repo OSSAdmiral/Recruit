@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\DepartmentsResource\Pages;
+use App\Filament\Resources\DepartmentsResource\RelationManagers;
 use App\Models\Departments;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -83,7 +84,7 @@ class DepartmentsResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\AttachmentsRelationManager::class,
         ];
     }
 

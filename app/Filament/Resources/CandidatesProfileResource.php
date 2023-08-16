@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CandidatesProfileResource\Pages;
+use App\Filament\Resources\CandidatesProfileResource\RelationManagers;
 use App\Models\Candidates;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -266,7 +267,7 @@ class CandidatesProfileResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\AttachmentsRelationManager::class,
         ];
     }
 
