@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('job_candidates', function (Blueprint $table) {
             $table->id();
             $table->string('JobCandidateId')->nullable();
+            $table->unsignedBigInteger('JobId')->nullable();
             $table->unsignedBigInteger('candidate');
             $table->string('mobile')->nullable();
             $table->string('Email');
