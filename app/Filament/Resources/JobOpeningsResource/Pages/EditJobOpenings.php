@@ -16,4 +16,9 @@ class EditJobOpenings extends EditRecord
             DeleteAction::make(),
         ];
     }
+
+    public function getRelationManagers() : array
+    {
+        return  [];
+    }
 }

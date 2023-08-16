@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Candidates extends Model
@@ -42,6 +43,14 @@ class Candidates extends Model
     public function fullNameAttribute()
     {
         return sprintf('%s%s', $this->FirstName, $this->LastName);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function attachments(): HasMany
+    {
+        return $this->hasMany(Attachments::class, 'attachmentOwner', 'id');
     }
 
     protected $casts = [
