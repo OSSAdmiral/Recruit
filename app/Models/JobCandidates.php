@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Wildside\Userstamps\Userstamps;
 
@@ -19,6 +20,7 @@ class JobCandidates extends Model
 
     protected $fillable = [
         'JobCandidateId',
+        'JobId',
         'candidate',
         'mobile',
         'Email',
@@ -45,4 +47,20 @@ class JobCandidates extends Model
     protected $casts = [
         'SkillSet' => 'array',
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function candidateProfile(): BelongsTo
+    {
+        return $this->belongsTo(Candidates::class, 'candidate', 'id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function job(): BelongsTo
+    {
+        return $this->belongsTo(JobOpenings::class, 'JobId', 'id');
+    }
 }
