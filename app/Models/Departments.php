@@ -26,14 +26,11 @@ class Departments extends Model
         'DeletedBy',
     ];
 
-    public function jobOpenings(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function jobOpenings(): HasMany
     {
         return $this->hasMany(JobOpenings::class, 'Department', 'id');
     }
 
-    /**
-     * @return HasMany
-     */
     public function attachments(): HasMany
     {
         return $this->hasMany(Attachments::class, 'attachmentOwner', 'id');

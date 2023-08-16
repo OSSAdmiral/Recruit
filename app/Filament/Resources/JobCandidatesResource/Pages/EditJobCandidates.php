@@ -20,8 +20,8 @@ class EditJobCandidates extends EditRecord
         ];
     }
 
-    public function getRelationManagers() : array
+    public function getRelationManagers(): array
     {
-        return  [];
+        return [];
     }
 }

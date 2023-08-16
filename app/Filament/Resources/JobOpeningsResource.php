@@ -178,7 +178,7 @@ class JobOpeningsResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\AttachmentsRelationManager::class
+            RelationManagers\AttachmentsRelationManager::class,
         ];
     }
 

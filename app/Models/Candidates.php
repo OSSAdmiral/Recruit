@@ -45,9 +45,6 @@ class Candidates extends Model
         return sprintf('%s%s', $this->FirstName, $this->LastName);
     }
 
-    /**
-     * @return HasMany
-     */
     public function attachments(): HasMany
     {
         return $this->hasMany(Attachments::class, 'attachmentOwner', 'id');
