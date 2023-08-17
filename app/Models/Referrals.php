@@ -28,29 +28,21 @@ class Referrals extends Model
         'Notes',
         'CreatedBy',
         'ModifiedBy',
-        'DeletedBy'
+        'DeletedBy',
     ];
 
-    /**
-     * @return BelongsTo
-     */
-    public function candidates(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function candidates(): BelongsTo
     {
         return $this->belongsTo(Candidates::class, 'Candidate', 'id');
     }
-    /**
-     * @return BelongsTo
-     */
-    public function jobopenings(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+
+    public function jobopenings(): BelongsTo
     {
         return $this->belongsTo(JobOpenings::class, 'ReferringJob', 'id');
     }
 
-    /**
-     * @return BelongsTo
-     */
     public function jobcandidates(): BelongsTo
     {
-        return$this->belongsTo(JobCandidates::class, 'JobCandidate', 'id');
+        return $this->belongsTo(JobCandidates::class, 'JobCandidate', 'id');
     }
 }

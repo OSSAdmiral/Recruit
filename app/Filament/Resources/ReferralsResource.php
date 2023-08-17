@@ -3,8 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ReferralsResource\Pages;
-use App\Filament\Resources\ReferralsResource\RelationManagers;
-use App\Models\Candidates;
 use App\Models\JobOpenings;
 use App\Models\Referrals;
 use Filament\Forms;
@@ -12,8 +10,6 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ReferralsResource extends Resource
 {
@@ -22,7 +18,6 @@ class ReferralsResource extends Resource
     protected static ?string $recordTitleAttribute = 'postingTitle';
 
     protected static ?int $navigationSort = 5;
-
 
     public static function form(Form $form): Form
     {
@@ -34,14 +29,14 @@ class ReferralsResource extends Resource
                             ->hint('Supported file types: .pdf')
                             ->nullable()
                             ->acceptedFileTypes([
-                                'application/pdf'
+                                'application/pdf',
                             ]),
                         Forms\Components\Section::make('Job Recommendation')
                             ->schema([
                                 Forms\Components\Select::make('ReferringJob')
                                     ->prefixIcon('heroicon-s-briefcase')
                                     ->options(JobOpenings::all()->pluck('JobTitle', 'id'))
-                                    ->required()
+                                    ->required(),
                             ]),
                         Forms\Components\Section::make('Candidate Information')
                             ->schema([
@@ -76,7 +71,7 @@ class ReferralsResource extends Resource
                                         'Former Colleague' => 'Former Colleague',
                                         'Socially Connected' => 'Socially Connected',
                                         'Got the resume through a common fried' => 'Got the resume through a common fried',
-                                        'Others' => 'Others'
+                                        'Others' => 'Others',
                                     ]),
                                 Forms\Components\Select::make('KnownPeriod')
                                     ->options([
@@ -84,12 +79,12 @@ class ReferralsResource extends Resource
                                         'Less than a year',
                                         '1-2 years' => '1-2 years',
                                         '3-5 years' => '3-5 years',
-                                        '5+ years' => '5+ years'
+                                        '5+ years' => '5+ years',
                                     ]),
                                 Forms\Components\Textarea::make('Notes')
-                                    ->nullable()
-                            ])
-                    ])
+                                    ->nullable(),
+                            ]),
+                    ]),
             ]);
     }
 
