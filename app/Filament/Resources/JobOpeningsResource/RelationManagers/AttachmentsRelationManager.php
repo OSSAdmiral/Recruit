@@ -28,7 +28,7 @@ class AttachmentsRelationManager extends RelationManager
                     ->acceptedFileTypes([
                         'application/pdf',
                         'image/jpeg',
-                        'image/png'
+                        'image/png',
                     ])
                     ->disabledOn('edit')
                     ->required(),
