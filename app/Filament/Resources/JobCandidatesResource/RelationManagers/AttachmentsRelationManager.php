@@ -24,25 +24,31 @@ class AttachmentsRelationManager extends RelationManager
                     ->visibility('private')
                     ->openable()
                     ->downloadable()
-                    ->previewable(false)
+                    ->previewable()
                     ->acceptedFileTypes([
                         'application/pdf',
+                        'image/jpeg',
+                        'image/png',
                     ])
+                    ->disabledOn('edit')
                     ->required(),
                 Forms\Components\TextInput::make('attachmentName')
+                    ->disabledOn('edit')
                     ->hidden()
                     ->maxLength(255),
                 Forms\Components\Select::make('category')
                     ->options(AttachmentCategory::class)
                     ->required(),
                 Forms\Components\TextInput::make('attachmentOwner')
+                    ->readOnly()
                     ->default(fn ($livewire) => $livewire->ownerRecord->id)
                     ->required()
-                    ->hidden(true)
+                    ->hidden()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('moduleName')
+                    ->readOnly()
                     ->default('JobCandidates')
-                    ->hidden(true)
+                    ->hidden()
                     ->maxLength(255),
             ]);
     }
