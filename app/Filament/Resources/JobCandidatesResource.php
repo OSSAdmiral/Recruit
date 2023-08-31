@@ -154,7 +154,7 @@ class JobCandidatesResource extends Resource
                 Tables\Columns\TextColumn::make('CandidateSource')
                     ->label('Candidate Source')
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('candidateOwner.name')
+                Tables\Columns\TextColumn::make('recordOwner.name')
                     ->label('Candidate Owner')
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('mobile')
