@@ -9,10 +9,6 @@ use Livewire\Component;
 
 class CareerLandingPage extends Component
 {
-
-
-
-
     private static function queryTable(): Builder
     {
         return JobOpenings::query()->where('published_career_site', '=', true);
