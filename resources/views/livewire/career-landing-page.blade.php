@@ -14,6 +14,9 @@
                             <li>
                                 <a class="crp1m czlxp chrwa cxa4q c9csv ckncn c0ndj c91mf chlg0" href="#">Sign in</a>
                             </li>
+                            <li>
+                                <a class="crp1m czlxp chrwa cxa4q c9csv ckncn c0ndj c91mf chlg0" href="#">Sign up</a>
+                            </li>
                         </ul>
                     </nav>
                 </div>
