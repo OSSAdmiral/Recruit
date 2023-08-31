@@ -42,7 +42,7 @@ class ReferralsResource extends Resource
                             ->schema([
                                 Forms\Components\Select::make('Candidate')
                                     ->prefixIcon('heroicon-s-briefcase')
-                                    ->relationship(name: 'candidates', titleAttribute: 'FullName')
+                                    ->relationship(name: 'candidates', titleAttribute: 'full_name')
                                     ->searchable(['email', 'LastName', 'FirstName'])
                                     ->preload()
                                     ->required()
