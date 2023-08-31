@@ -11,7 +11,7 @@ use Wildside\Userstamps\Userstamps;
 
 class JobCandidates extends Model
 {
-    use SoftDeletes, HasFactory, Userstamps;
+    use HasFactory, SoftDeletes, Userstamps;
 
     const CREATED_BY = 'CreatedBy';
 
@@ -59,7 +59,7 @@ class JobCandidates extends Model
         return $this->belongsTo(JobOpenings::class, 'JobId', 'id');
     }
 
-    public function candidateOwner(): BelongsTo
+    public function recordOwner(): BelongsTo
     {
         return $this->belongsTo(User::class, 'CandidateOwner', 'id');
     }
