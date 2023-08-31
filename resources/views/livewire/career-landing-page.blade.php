@@ -1,6 +1,4 @@
-<div>
-    <body class="crmga c4q7l c2yan cax0a cecw5">
-
+<div class="crmga c4q7l c2yan cax0a cecw5">
     <!-- Page wrapper -->
     <div class="crp1m cjiiw cj2th c78an c069h">
         <!-- Site header -->
@@ -157,5 +155,4 @@
             </section>
         </main>
     </div>
-    </body>
 </div>
