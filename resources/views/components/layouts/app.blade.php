@@ -13,6 +13,7 @@
             display: none !important;
         }
     </style>
+    <link href="https://preview.cruip.com/job-board/style.css" rel="stylesheet">
 
     @filamentStyles
     @vite('resources/css/app.css')
