@@ -13,4 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
- Route::get('/career', \App\Livewire\CareerLandingPage::class);
+Route::get('/career', \App\Livewire\CareerLandingPage::class);
