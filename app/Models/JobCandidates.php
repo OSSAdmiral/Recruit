@@ -11,7 +11,7 @@ use Wildside\Userstamps\Userstamps;
 
 class JobCandidates extends Model
 {
-    use SoftDeletes, HasFactory, Userstamps;
+    use HasFactory, SoftDeletes, Userstamps;
 
     const CREATED_BY = 'CreatedBy';
 

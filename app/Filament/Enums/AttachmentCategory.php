@@ -5,7 +5,7 @@ namespace App\Filament\Enums;
 use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasLabel;
 
-enum AttachmentCategory: string implements HasLabel, HasColor
+enum AttachmentCategory: string implements HasColor, HasLabel
 {
     case Others = 'Others';
     case Contracts = 'Contracts';
