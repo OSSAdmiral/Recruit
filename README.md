@@ -11,10 +11,13 @@
 
 # Installation
 
-You can install the dependency package via composer:
+You can install the dependency package via composer and NPM:
 
 ```bash
 composer install
+```
+```bash
+npm install && npm run build
 ```
 
 Run Database Migration
