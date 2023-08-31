@@ -40,6 +40,7 @@ class JobOpenings extends Model
         'State',
         'ZipCode',
         'RemoteJob',
+        'published_career_site',
         'CreatedBy',
         'ModifiedBy',
         'DeletedBy',
