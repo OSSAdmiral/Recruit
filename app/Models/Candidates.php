@@ -40,11 +40,6 @@ class Candidates extends Model
         'ExperienceDetails',
     ];
 
-    public function fullNameAttribute()
-    {
-        return sprintf('%s%s', $this->FirstName, $this->LastName);
-    }
-
     public function attachments(): HasMany
     {
         return $this->hasMany(Attachments::class, 'attachmentOwner', 'id');
