@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('State')->nullable();
             $table->string('ZipCode')->nullable();
             $table->boolean('RemoteJob')->default(false);
+            $table->boolean('published_career_site')->default(false);
             $table->unsignedBigInteger('CreatedBy')->nullable();
             $table->unsignedBigInteger('ModifiedBy')->nullable();
             $table->unsignedBigInteger('DeletedBy')->nullable();
