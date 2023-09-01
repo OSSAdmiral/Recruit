@@ -9,11 +9,11 @@ use Livewire\Component;
 
 class CareerLandingPage extends Component
 {
-    public ?bool $showRemote;
+    public ?bool $showRemote = false;
 
-    public ?array $jobTypeFilter;
+    public ?array $jobTypeFilter = [];
 
-    public array|Builder|null $jobTypeList;
+    public array|Builder|null $jobTypeList = [];
 
     private static function queryTable(): Builder
     {
