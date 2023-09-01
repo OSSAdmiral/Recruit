@@ -15,6 +15,11 @@ class CareerLandingPage extends Component
 
     public array|Builder|null $jobTypeList = [];
 
+    public function mount()
+    {
+        $this->jobTypeList = static::queryTable();
+    }
+
     private static function queryTable(): Builder
     {
         return JobOpenings::query()->where('published_career_site', '=', true);
