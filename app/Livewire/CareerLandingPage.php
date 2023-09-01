@@ -28,6 +28,8 @@ class CareerLandingPage extends Component
     #[Title('Work with us')]
     public function render()
     {
-        return view('livewire.career-landing-page');
+        return view('livewire.career-landing-page', [
+            'jobTypeFilter' => self::$jobTypeList
+        ]);
     }
 }
