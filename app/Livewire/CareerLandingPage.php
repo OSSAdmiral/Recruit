@@ -13,23 +13,23 @@ class CareerLandingPage extends Component
 
     public ?array $jobTypeFilter;
 
-    protected static array|Builder|null $jobTypeList;
+    public array|Builder|null $jobTypeList;
 
     private static function queryTable(): Builder
     {
         return JobOpenings::query()->where('published_career_site', '=', true);
     }
 
-    private static function jobTypes(): array|\Illuminate\Database\Eloquent\Collection
+    private function jobTypes(): array|\Illuminate\Database\Eloquent\Collection
     {
-        return self::$jobTypeList = self::queryTable()->select(['JobType'])->distinct()->get();
+       return $this->jobTypeList = $jobTypeList = self::queryTable()->select(['JobType'])->distinct()->get();
     }
 
     #[Title('Work with us')]
-    public function render()
+    public function render(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('livewire.career-landing-page', [
-            'jobTypeFilter' => self::$jobTypeList
+            'jobTypeFilter' => $this->jobTypeList
         ]);
     }
 }
