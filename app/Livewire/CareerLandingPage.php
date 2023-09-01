@@ -9,6 +9,9 @@ use Livewire\Component;
 
 class CareerLandingPage extends Component
 {
+    public ?bool $showRemote;
+    public ?array $jobTypeFilter;
+
     private static function queryTable(): Builder
     {
         return JobOpenings::query()->where('published_career_site', '=', true);
