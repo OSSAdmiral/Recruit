@@ -62,7 +62,7 @@
                                                 <div class="crp1m czlxp" x-data="{ checked: false }">
                                                     <div class="c9jgf">
                                                         <input type="checkbox" id="remote-toggle" class="cqgiy"
-                                                               x-model="checked">
+                                                               x-model="checked" wire:model.live="showRemote">
                                                         <label class="c0e8u" for="remote-toggle">
                                                             <span class="crmga c8dh7" aria-hidden="true"></span>
                                                             <span class="cqgiy">Remote Only</span>
