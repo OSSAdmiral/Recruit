@@ -14,10 +14,11 @@ class CareerLandingPage extends Component
     public ?array $jobTypeFilter = [];
 
     public array|Builder|null $jobTypeList = [];
+    public array|Builder|null $jobsList = [];
 
     public function mount()
     {
-        $this->jobTypeList = static::queryTable();
+        $this->jobsList = static::queryTable()->count() <= 0 ? [] : static::queryTable()->get()->toArray();
     }
 
     private static function queryTable(): Builder
@@ -27,14 +28,14 @@ class CareerLandingPage extends Component
 
     private function jobTypes(): array|\Illuminate\Database\Eloquent\Collection
     {
-       return $this->jobTypeList = $jobTypeList = self::queryTable()->select(['JobType'])->distinct()->get();
+       return $this->jobTypeList = static::queryTable()->count() > 0 ? [] : self::queryTable()->select(['JobType'])->distinct()->get()->toArray();
     }
 
     #[Title('Work with us')]
     public function render(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('livewire.career-landing-page', [
-            'jobTypeFilter' => $this->jobTypeList
+            'jobList' => $this->jobsList
         ]);
     }
 }
