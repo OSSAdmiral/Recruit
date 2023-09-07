@@ -11,7 +11,7 @@
             display: none !important;
         }
     </style>
-
+    @filamentStyles
     @vite('resources/css/app.css')
     @vite('resources/css/career.css')
     @vite('resources/css/career-job-post.css')
@@ -19,7 +19,7 @@
 
 <body class="antialiased">
 {{ $slot }}
-
+@filamentScripts
 @vite('resources/js/app.js')
 </body>
 </html>
