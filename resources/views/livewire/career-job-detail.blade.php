@@ -113,7 +113,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="cjp65 chq2y cvqf0 cs792 cs8ht cqho4 c6eaa chdfx ct9wm cdo22 csqne clipboard" href="#" aria-label="Link" id="share-link"  x-clipboard.raw={{url()->current()}} >
+                                                    <a class="cjp65 chq2y cvqf0 cs792 cs8ht cqho4 c6eaa chdfx ct9wm cdo22 csqne clipboard" href="#" aria-label="Link" id="share-link"  x-clipboard.raw="{{url()->current()}}?source=CareerSite" >
                                                         <svg class="cmig7 c5ey2 c7gev" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                             <g transform="translate(1.5, 1.326)">
                                                                 <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/> <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
