@@ -7,6 +7,7 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/css/career.css',
+                'resources/css/career-job-post.css',
                 'resources/js/app.js'],
             refresh: [
                 'app/livewire/**'

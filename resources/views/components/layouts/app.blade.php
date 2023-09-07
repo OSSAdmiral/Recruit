@@ -14,6 +14,7 @@
 
     @vite('resources/css/app.css')
     @vite('resources/css/career.css')
+    @vite('resources/css/career-job-post.css')
 </head>
 
 <body class="antialiased">
