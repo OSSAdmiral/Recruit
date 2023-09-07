@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Filament\Notifications\Notification;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -12,6 +13,15 @@ class CareerJobDetail extends Component
     {
         // search for the job reference number, if not valid, redirect to all job
 
+    }
+
+    public function copiedShareLink(): void
+    {
+        Notification::make()
+            ->title('Link Copied')
+            ->icon('heroicon-o-check-badge')
+            ->iconColor('success')
+            ->send();
     }
     #[Title('Job Details')]
     public function render()

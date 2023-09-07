@@ -1,3 +1,4 @@
+
 <div class="clnbd c8tys c58e1 c9gkl cqikb">
     <!-- Page wrapper -->
     <div class="c4ihh cm95r ckoci cbp69 csqne">
@@ -113,7 +114,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a class="cjp65 chq2y cvqf0 cs792 cs8ht cqho4 c6eaa chdfx ct9wm cdo22 csqne clipboard" href="#" aria-label="Link" id="share-link"  x-clipboard.raw="{{url()->current()}}?source=CareerSite" >
+                                                    <a class="cjp65 chq2y cvqf0 cs792 cs8ht cqho4 c6eaa chdfx ct9wm cdo22 csqne clipboard" href="#" aria-label="Link" id="shareLink"  x-clipboard.raw="{{url()->current()}}?source=CareerSite" wire:click="copiedShareLink">
                                                         <svg class="cmig7 c5ey2 c7gev" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                             <g transform="translate(1.5, 1.326)">
                                                                 <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/> <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
@@ -129,7 +130,6 @@
 
                             <!-- Main content -->
                             <div class="cmgbb">
-
                                 <!-- Job description -->
                                 <div class="ctz8u">
                                     <div class="cnog5">
@@ -178,33 +178,6 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- Social share -->
-                                    <div class="cqho4 c392o cjs1m csqne">
-                                        <div class="cm94q c9gw4 chhg4">Share job</div>
-                                        <ul class="c00re cn13m">
-                                            <li>
-                                                <a class="cjp65 chq2y cvqf0 cs792 cs8ht cqho4 c6eaa chdfx ct9wm cdo22 csqne" href="#0" aria-label="Twitter">
-                                                    <svg class="cmig7 c5ey2 c7gev" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M24 11.5c-.6.3-1.2.4-1.9.5.7-.4 1.2-1 1.4-1.8-.6.4-1.3.6-2.1.8-.6-.6-1.5-1-2.4-1-1.7 0-3.2 1.5-3.2 3.3 0 .3 0 .5.1.7-2.7-.1-5.2-1.4-6.8-3.4-.3.5-.4 1-.4 1.7 0 1.1.6 2.1 1.5 2.7-.5 0-1-.2-1.5-.4 0 1.6 1.1 2.9 2.6 3.2-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.3 1.6 2.3 3.1 2.3-1.1.9-2.5 1.4-4.1 1.4H8c1.5.9 3.2 1.5 5 1.5 6 0 9.3-5 9.3-9.3v-.4c.7-.5 1.3-1.1 1.7-1.8z"></path>
-                                                    </svg>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="cjp65 chq2y cvqf0 cs792 cs8ht cqho4 c6eaa chdfx ct9wm cdo22 csqne" href="#0" aria-label="Facebook">
-                                                    <svg class="cmig7 c5ey2 c7gev" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M14.023 24 14 17h-3v-3h3v-2c0-2.7 1.672-4 4.08-4 1.153 0 2.144.086 2.433.124v2.821h-1.67c-1.31 0-1.563.623-1.563 1.536V14H21l-1 3h-2.72v7h-3.257Z"></path>
-                                                    </svg>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="cjp65 chq2y cvqf0 cs792 cs8ht cqho4 c6eaa chdfx ct9wm cdo22 csqne" href="#0" aria-label="Telegram">
-                                                    <svg class="cmig7 c5ey2 c7gev" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M22.968 10.276a.338.338 0 0 0-.232-.253 1.192 1.192 0 0 0-.63.045s-14.019 5.038-14.82 5.596c-.172.121-.23.19-.259.272-.138.4.293.573.293.573l3.613 1.177a.388.388 0 0 0 .183-.011c.822-.519 8.27-5.222 8.7-5.38.068-.02.118 0 .1.049-.172.6-6.606 6.319-6.64 6.354a.138.138 0 0 0-.05.118l-.337 3.528s-.142 1.1.956 0a30.66 30.66 0 0 1 1.9-1.738c1.242.858 2.58 1.806 3.156 2.3a1 1 0 0 0 .732.283.825.825 0 0 0 .7-.622s2.561-10.275 2.646-11.658c.008-.135.021-.217.021-.317a1.177 1.177 0 0 0-.032-.316Z"></path>
-                                                    </svg>
-                                                </a>
-                                            </li>
-                                        </ul>
                                     </div>
                                 </div>
                             </div>
