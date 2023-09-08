@@ -12,11 +12,13 @@ class CareerJobDetail extends Component
 {
 
     private static array|Model $jobDetails;
+    public ?string $referenceNumber;
 
     public function mount($jobReferenceNumber)
     {
         // search for the job reference number, if not valid, redirect to all job
         $this->jobOpeningDetails($jobReferenceNumber);
+        $this->referenceNumber = $jobReferenceNumber;
 
     }
 
