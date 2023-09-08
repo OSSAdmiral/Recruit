@@ -16,10 +16,11 @@ class CareerJobDetail extends Component
     public function mount($jobReferenceNumber)
     {
         // search for the job reference number, if not valid, redirect to all job
+        $this->jobOpeningDetails($jobReferenceNumber);
 
     }
 
-    private function jobOpeningDetails($reference)
+    private function jobOpeningDetails($reference): void
     {
         static::$jobDetails = JobOpenings::jobStillOpen()->where('JobOpeningSystemID', '=', $reference)->first();
         if(!static::$jobDetails)
@@ -30,7 +31,7 @@ class CareerJobDetail extends Component
                 ->icon('heroicon-o-x-circle')
                 ->iconColor('warning')
                 ->send();
-            return redirect()->back();
+            redirect()->back();
         }
     }
 
