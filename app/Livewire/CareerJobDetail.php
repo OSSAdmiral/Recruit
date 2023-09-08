@@ -10,8 +10,8 @@ use Livewire\Component;
 
 class CareerJobDetail extends Component
 {
-
     private static array|Model $jobDetails;
+
     public ?string $referenceNumber;
 
     public function mount($jobReferenceNumber)
@@ -25,8 +25,7 @@ class CareerJobDetail extends Component
     private function jobOpeningDetails($reference): void
     {
         static::$jobDetails = JobOpenings::jobStillOpen()->where('JobOpeningSystemID', '=', $reference)->first();
-        if(!static::$jobDetails)
-        {
+        if (! static::$jobDetails) {
             // redirect back as the job opening is closed or tampered id or not existing
             Notification::make()
                 ->title('Job Opening is already closed.')
@@ -45,6 +44,7 @@ class CareerJobDetail extends Component
             ->iconColor('success')
             ->send();
     }
+
     #[Title('Job Details')]
     public function render()
     {
