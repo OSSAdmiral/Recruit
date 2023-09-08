@@ -2,17 +2,36 @@
 
 namespace App\Livewire;
 
+use App\Models\JobOpenings;
 use Filament\Notifications\Notification;
+use Illuminate\Database\Eloquent\Model;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
 class CareerJobDetail extends Component
 {
 
+    private static array|Model $jobDetails;
+
     public function mount($jobReferenceNumber)
     {
         // search for the job reference number, if not valid, redirect to all job
 
+    }
+
+    private function jobOpeningDetails($reference)
+    {
+        static::$jobDetails = JobOpenings::jobStillOpen()->where('JobOpeningSystemID', '=', $reference)->first();
+        if(!static::$jobDetails)
+        {
+            // redirect back as the job opening is closed or tampered id or not existing
+            Notification::make()
+                ->title('Job Opening is already closed.')
+                ->icon('heroicon-o-x-circle')
+                ->iconColor('warning')
+                ->send();
+            return redirect()->back();
+        }
     }
 
     public function copiedShareLink(): void

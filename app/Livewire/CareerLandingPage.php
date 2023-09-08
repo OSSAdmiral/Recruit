@@ -24,7 +24,7 @@ class CareerLandingPage extends Component
 
     private static function queryTable(): Builder
     {
-        return JobOpenings::query()->where('published_career_site', '=', true);
+        return JobOpenings::jobStillOpen()->where('published_career_site', '=', true);
     }
 
     private function jobTypes(): array|\Illuminate\Database\Eloquent\Collection
