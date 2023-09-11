@@ -48,6 +48,8 @@ class CareerJobDetail extends Component
     #[Title('Job Details')]
     public function render()
     {
-        return view('livewire.career-job-detail');
+        return view('livewire.career-job-detail',[
+            'jobDetails' => static::$jobDetails
+        ]);
     }
 }
