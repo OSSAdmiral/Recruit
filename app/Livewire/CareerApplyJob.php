@@ -9,7 +9,6 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
-use Filament\Support\RawJs;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -52,9 +51,9 @@ class CareerApplyJob extends Component implements HasForms
             ->schema([
                 Wizard::make([
 
-                        static::applicationStepWizard(),
+                    static::applicationStepWizard(),
                 ])
-                ->skippable(),
+                    ->skippable(),
             ]);
     }
 
@@ -114,9 +113,10 @@ class CareerApplyJob extends Component implements HasForms
 
                 ]);
     }
+
     private static function candidateEducationalDetails(): Wizard\Step
     {
-        return  Wizard\Step::make('Educational Details')
+        return Wizard\Step::make('Educational Details')
             ->icon('heroicon-o-user')
             ->schema([
                 Forms\Components\Repeater::make('School')
