@@ -2,11 +2,14 @@
 
 namespace App\Livewire;
 
+use App\Models\Candidates;
 use App\Models\JobOpenings;
 use Filament\Forms\Form;
+use Filament\Forms;
 use Filament\Notifications\Notification;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Support\RawJs;
 use Livewire\Attributes\Title;
 use Filament\Forms\Components\Wizard;
 use Livewire\Component;
@@ -32,7 +35,7 @@ class CareerApplyJob extends Component implements HasForms
     private function jobOpeningDetails($reference): void
     {
         static::$jobDetails = JobOpenings::jobStillOpen()->where('JobOpeningSystemID', '=', $reference)->first();
-        if (! static::$jobDetails) {
+        if (!static::$jobDetails) {
             // redirect back as the job opening is closed or tampered id or not existing
             Notification::make()
                 ->title('Job Opening is already closed or doesn\'t exist.')
@@ -49,7 +52,10 @@ class CareerApplyJob extends Component implements HasForms
             ->statePath('data')
             ->schema([
                 Wizard::make(
-                    array_merge(static::candidateBasicDetailsForm())
+                    array_merge(
+                        static::candidateBasicDetailsForm(),
+                        static::candidateCurrentJobDetails()
+                    )
                 )
             ]);
     }
@@ -59,10 +65,51 @@ class CareerApplyJob extends Component implements HasForms
         return [
             Wizard\Step::make('Candidate Profile')
                 ->description('candidate basic information')
-                ->icon('heroicon-o')
+                ->icon('heroicon-o-user')
+                ->columns(2)
                 ->schema([
-                    // ...
+                    Forms\Components\TextInput::make('FirstName')
+                        ->required()
+                        ->label('First Name'),
+                    Forms\Components\TextInput::make('LastName')
+                        ->required()
+                        ->label('Last Name'),
+                    Forms\Components\TextInput::make('mobile')
+                        ->required(),
+                    Forms\Components\TextInput::make('Email')
+                        ->required()
+                        ->email(),
+                    Forms\Components\Select::make('HighestQualificationHeld')
+                        ->options([
+                            'Secondary/High School' => 'Secondary/High School',
+                            'Associates Degree' => 'Associates Degree',
+                            'Bachelors Degree' => 'Bachelors Degree',
+                            'Masters Degree' => 'Masters Degree',
+                            'Doctorate Degree' => 'Doctorate Degree',
+                        ])
+                        ->label('Highest Qualification Held'),
                 ]),
+        ];
+    }
+
+    private static function candidateCurrentJobDetails(): array
+    {
+        return  [
+            Wizard\Step::make('Candidate Profile')
+                ->description('candidate basic information')
+                ->icon('heroicon-o-user')
+                ->columns(2)
+                ->schema([
+                    Forms\Components\TextInput::make('CurrentEmployer')
+                        ->label('Current Employer (Company Name)'),
+                    Forms\Components\TextInput::make('CurrentJobTitle')
+                        ->label('Current Job Title'),
+                    Forms\Components\TextInput::make('CurrentSalary')
+                        ->label('Current Salary')
+                        ->mask(RawJs::make(<<<'JS'
+                                $money($input, '.',',')
+                                JS)),
+                ])
         ];
     }
 
