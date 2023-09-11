@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Models\JobOpenings;
 use Filament\Notifications\Notification;
-use Illuminate\Database\Eloquent\Model;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 

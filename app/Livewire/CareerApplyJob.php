@@ -2,16 +2,15 @@
 
 namespace App\Livewire;
 
-use App\Models\Candidates;
 use App\Models\JobOpenings;
-use Filament\Forms\Form;
 use Filament\Forms;
-use Filament\Notifications\Notification;
+use Filament\Forms\Components\Wizard;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Support\RawJs;
 use Livewire\Attributes\Title;
-use Filament\Forms\Components\Wizard;
 use Livewire\Component;
 
 class CareerApplyJob extends Component implements HasForms
@@ -35,14 +34,14 @@ class CareerApplyJob extends Component implements HasForms
     private function jobOpeningDetails($reference): void
     {
         static::$jobDetails = JobOpenings::jobStillOpen()->where('JobOpeningSystemID', '=', $reference)->first();
-        if (!static::$jobDetails) {
+        if (! static::$jobDetails) {
             // redirect back as the job opening is closed or tampered id or not existing
             Notification::make()
                 ->title('Job Opening is already closed or doesn\'t exist.')
                 ->icon('heroicon-o-x-circle')
                 ->iconColor('warning')
                 ->send();
-//            $this->redirectRoute('career.landing_page');
+            //            $this->redirectRoute('career.landing_page');
         }
     }
 
@@ -56,7 +55,7 @@ class CareerApplyJob extends Component implements HasForms
                         static::candidateBasicDetailsForm(),
                         static::candidateCurrentJobDetails()
                     )
-                )
+                ),
             ]);
     }
 
@@ -94,7 +93,7 @@ class CareerApplyJob extends Component implements HasForms
 
     private static function candidateCurrentJobDetails(): array
     {
-        return  [
+        return [
             Wizard\Step::make('Candidate Profile')
                 ->description('candidate basic information')
                 ->icon('heroicon-o-user')
@@ -109,13 +108,9 @@ class CareerApplyJob extends Component implements HasForms
                         ->mask(RawJs::make(<<<'JS'
                                 $money($input, '.',',')
                                 JS)),
-                ])
+                ]),
         ];
     }
-
-
-
-
 
     #[Title('Apply Job ')]
     public function render()
