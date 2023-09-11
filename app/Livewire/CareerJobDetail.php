@@ -22,7 +22,7 @@ class CareerJobDetail extends Component
 
     }
 
-    private function jobOpeningDetails($reference)
+    private function jobOpeningDetails($reference): void
     {
         static::$jobDetails = JobOpenings::jobStillOpen()->where('JobOpeningSystemID', '=', $reference)->first();
         if (! static::$jobDetails) {
