@@ -10,29 +10,29 @@ use Livewire\Component;
 
 class CareerJobDetail extends Component
 {
-    private static array|Model $jobDetails;
+    private static ?JobOpenings $jobDetails;
 
     public ?string $referenceNumber;
 
     public function mount($jobReferenceNumber)
     {
         // search for the job reference number, if not valid, redirect to all job
-        $this->jobOpeningDetails($jobReferenceNumber);
         $this->referenceNumber = $jobReferenceNumber;
+        $this->jobOpeningDetails($jobReferenceNumber);
 
     }
 
-    private function jobOpeningDetails($reference): void
+    private function jobOpeningDetails($reference)
     {
         static::$jobDetails = JobOpenings::jobStillOpen()->where('JobOpeningSystemID', '=', $reference)->first();
         if (! static::$jobDetails) {
             // redirect back as the job opening is closed or tampered id or not existing
             Notification::make()
-                ->title('Job Opening is already closed.')
+                ->title('Job Opening is already closed or doesn\'t exist.')
                 ->icon('heroicon-o-x-circle')
                 ->iconColor('warning')
                 ->send();
-            redirect()->back();
+            $this->redirectRoute('career.landing_page');
         }
     }
 
