@@ -146,9 +146,7 @@ class CareerApplyJob extends Component implements HasActions, HasForms
                                 Forms\Components\Checkbox::make('pursuing')
                                     ->inline(false),
                             ])
-                            ->deleteAction(
-                                fn (Action $action) => $action->requiresConfirmation(),
-                            )
+                            ->deletable(true)
                             ->columns(4),
                     ]),
                 Forms\Components\Section::make('Experience Details')
@@ -165,9 +163,7 @@ class CareerApplyJob extends Component implements HasActions, HasForms
                                 Forms\Components\TextInput::make('role'),
                                 Forms\Components\Textarea::make('company_address'),
                             ])
-                            ->deleteAction(
-                                fn (Forms\Components\Actions\Action $action) => $action->requiresConfirmation(),
-                            )
+                            ->deletable(true)
                             ->columns(5),
                     ]),
                 Forms\Components\FileUpload::make('attachment')
