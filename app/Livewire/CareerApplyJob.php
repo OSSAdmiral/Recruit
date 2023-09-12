@@ -3,12 +3,12 @@
 namespace App\Livewire;
 
 use App\Models\JobOpenings;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
 use Filament\Forms;
 use Filament\Forms\Components\Wizard;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Blade;
@@ -16,7 +16,7 @@ use Illuminate\Support\HtmlString;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-class CareerApplyJob extends Component implements HasForms, HasActions
+class CareerApplyJob extends Component implements HasActions, HasForms
 {
     use InteractsWithActions;
     use InteractsWithForms;
@@ -58,7 +58,7 @@ class CareerApplyJob extends Component implements HasForms, HasActions
 
                     static::applicationStepWizard(),
                 ])
-                ->submitAction(new HtmlString(Blade::render(<<<BLADE
+                    ->submitAction(new HtmlString(Blade::render(<<<'BLADE'
                             <x-filament::button
                                 type="submit"
                                 size="sm"
