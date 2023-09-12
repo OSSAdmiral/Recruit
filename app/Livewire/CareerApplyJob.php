@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\JobOpenings;
 use Filament\Forms;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Wizard;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -57,16 +58,15 @@ class CareerApplyJob extends Component implements HasForms, HasActions
                 Wizard::make([
 
                     static::applicationStepWizard(),
+                    Wizard\Step::make('Application')
+                        ->icon('heroicon-o-user')
+                        ->columns(2)
+                        ->schema([])
                 ])
-                ->submitAction(new HtmlString(Blade::render(<<<BLADE
-                            <x-filament::button
-                                type="submit"
-                                size="sm"
-                            >
-                                Submit Application
-                            </x-filament::button>
-                        BLADE))
-                    ),
+                ->nextAction(
+                    fn (Action $action) => $action->view('career-form.apply-job-components.NextActionButton'),
+                )
+                ->submitAction(view('career-form.apply-job-components.SubmitApplicationButton')),
             ]);
     }
 
