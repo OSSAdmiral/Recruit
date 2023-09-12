@@ -147,7 +147,7 @@ class CareerApplyJob extends Component implements HasActions, HasForms
                                     ->inline(false),
                             ])
                             ->deleteAction(
-                                fn (Forms\Components\Actions\Action $action) => $action->requiresConfirmation(),
+                                fn (Action $action) => $action->requiresConfirmation(),
                             )
                             ->columns(4),
                     ]),
