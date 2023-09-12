@@ -4,21 +4,19 @@ namespace App\Livewire;
 
 use AbanoubNassem\FilamentGRecaptchaField\Forms\Components\GRecaptcha;
 use App\Models\JobOpenings;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
 use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Wizard;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Actions\Concerns\InteractsWithActions;
-use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\HtmlString;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-class CareerApplyJob extends Component implements HasForms, HasActions
+class CareerApplyJob extends Component implements HasActions, HasForms
 {
     use InteractsWithActions;
     use InteractsWithForms;
@@ -78,6 +76,7 @@ class CareerApplyJob extends Component implements HasForms, HasActions
     {
         return [];
     }
+
     private function applicationStepWizard(): array
     {
         return
@@ -188,15 +187,19 @@ class CareerApplyJob extends Component implements HasForms, HasActions
 
     private function captchaField(): array
     {
-        if(!config('recruit.enable_captcha')) return [];
-        if(config('recruit.enable_captcha') && config('recruit.captcha_provider') === 'Google') return [ GRecaptcha::make('captcha') ];
+        if (! config('recruit.enable_captcha')) {
+            return [];
+        }
+        if (config('recruit.enable_captcha') && config('recruit.captcha_provider') === 'Google') {
+            return [GRecaptcha::make('captcha')];
+        }
     }
 
     #[Title('Apply Job ')]
     public function render()
     {
         return view('livewire.career-apply-job', [
-            'jobDetails' => static::$jobDetails
+            'jobDetails' => static::$jobDetails,
         ]);
     }
 }

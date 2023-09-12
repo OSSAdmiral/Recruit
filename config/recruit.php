@@ -9,11 +9,11 @@ return [
      *  Career Apply page for Captcha
      */
     'enable_captcha' => false,
-    'captcha_provider' =>[
+    'captcha_provider' => [
         'Google' => [
-            'provider_name' => 'Google'
+            'provider_name' => 'Google',
         ],
-        ''
+        '',
     ],
     // Applicable value will be the provider name from the "Captcha Provider"
     'captcha_provider_name' => 'Google',
