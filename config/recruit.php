@@ -6,6 +6,18 @@ return [
      */
     'currency_field' => 'PHP',
     /*
+     *  Career Apply page for Captcha
+     */
+    'enable_captcha' => false,
+    'captcha_provider' =>[
+        'Google' => [
+            'provider_name' => 'Google'
+        ],
+        ''
+    ],
+    // Applicable value will be the provider name from the "Captcha Provider"
+    'captcha_provider_name' => 'Google',
+    /*
      * Job Opening Module Field setup and options
      */
     'job_opening' => [

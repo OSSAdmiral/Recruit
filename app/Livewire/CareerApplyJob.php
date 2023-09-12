@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use AbanoubNassem\FilamentGRecaptchaField\Forms\Components\GRecaptcha;
 use App\Models\JobOpenings;
 use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
@@ -56,189 +57,139 @@ class CareerApplyJob extends Component implements HasForms, HasActions
             ->statePath('data')
             ->schema([
                 Wizard::make([
-
-                    static::applicationStepWizard(),
-                    static::assessmentStepWizard(),
+                    Wizard\Step::make('Application')
+                        ->icon('heroicon-o-user')
+                        ->columns(2)
+                        ->schema(array_merge($this->applicationStepWizard(), $this->captchaField())),
+                    Wizard\Step::make('Assessment')
+                        ->visible(false)
+                        ->icon('heroicon-o-user')
+                        ->columns(2)
+                        ->schema(array_merge([], $this->assessmentStepWizard())),
                 ])
-                ->nextAction(
-                    fn (Action $action) => $action->view('career-form.apply-job-components.NextActionButton'),
-                )
-                ->submitAction(view('career-form.apply-job-components.SubmitApplicationButton')),
+                    ->nextAction(
+                        fn (Action $action) => $action->view('career-form.apply-job-components.NextActionButton'),
+                    )
+                    ->submitAction(view('career-form.apply-job-components.SubmitApplicationButton')),
             ]);
     }
 
-    private static function assessmentStepWizard(): Wizard\Step|array
+    private function assessmentStepWizard(): Wizard\Step|array
     {
-        return Wizard\Step::make('Assessment')
-            ->visible(false)
-            ->icon('heroicon-o-user')
-            ->columns(2)
-            ->schema([]);
+        return [];
     }
-    private static function applicationStepWizard(): Wizard\Step
+    private function applicationStepWizard(): array
     {
         return
-            Wizard\Step::make('Application')
-                ->icon('heroicon-o-user')
-                ->columns(2)
-                ->schema([
-                    Forms\Components\FileUpload::make('attachment')
-                        ->preserveFilenames()
-                        ->directory('JobCandidate-attachments')
-                        ->visibility('private')
-                        ->openable()
-                        ->downloadable()
-                        ->previewable()
-                        ->acceptedFileTypes([
-                            'application/pdf',
-                        ])
-                        ->required()
-                        ->label('Resume'),
-                    Forms\Components\Section::make('Basic Information')
-                        ->columns(2)
-                        ->schema([
-                            Forms\Components\TextInput::make('FirstName')
-                                ->required()
-                                ->label('First Name'),
-                            Forms\Components\TextInput::make('LastName')
-                                ->required()
-                                ->label('Last Name'),
-                            Forms\Components\TextInput::make('mobile')
-                                ->required(),
-                            Forms\Components\TextInput::make('Email')
-                                ->required()
-                                ->email(),
-                        ]),
-                    Forms\Components\Section::make('Address Information')
-                        ->columns(2)
-                        ->schema([
-                            Forms\Components\TextInput::make('Street'),
-                            Forms\Components\TextInput::make('City'),
-                            Forms\Components\TextInput::make('Country'),
-                            Forms\Components\TextInput::make('ZipCode'),
-                            Forms\Components\TextInput::make('State'),
-                        ]),
-                    Forms\Components\Section::make('Professional Details')
-                        ->columns(2)
-                        ->schema([
-                            Forms\Components\TextInput::make('CurrentEmployer')
-                                ->label('Current Employer (Company Name)'),
-                            Forms\Components\TextInput::make('CurrentJobTitle')
-                                ->label('Current Job Title'),
-                            Forms\Components\Select::make('experience')
-                                ->options([
-                                    '1year' => '1year',
-                                    '2year' => '2 Years',
-                                    '3year' => '3 Years',
-                                    '4year' => '4 Years',
-                                    '5year' => '5 Years',
-                                    '6year' => '6 Years',
-                                    '7year' => '7 Years',
-                                    '8year' => '8 Years',
-                                    '9year' => '9 Years',
-                                    '10year+' => '10 Years & Above',
-                                ])
-                                ->label('Experience'),
-                        ]),
-                    Forms\Components\Section::make('Educational Details')
-                        ->schema([
-                            Forms\Components\Repeater::make('School')
-                                ->label('')
-                                ->addActionLabel('+ Add Degree Information')
-                                ->schema([
-                                    Forms\Components\TextInput::make('school_name')
-                                        ->required(),
-                                    Forms\Components\TextInput::make('major')
-                                        ->required(),
-                                    Forms\Components\Select::make('duration')
-                                        ->options([
-                                            '4years' => '4 Years',
-                                            '5years' => '5 Years',
-                                        ])
-                                        ->required(),
-                                    Forms\Components\Checkbox::make('pursuing')
-                                        ->inline(false),
-                                ])
-                                ->deleteAction(
-                                    fn (Forms\Components\Actions\Action $action) => $action->requiresConfirmation(),
-                                )
-                                ->columns(4),
-                        ]),
-                    Forms\Components\Section::make('Experience Details')
-                        ->schema([
-                            Forms\Components\Repeater::make('ExperienceDetails')
-                                ->label('')
-                                ->addActionLabel('Add Experience Details')
-                                ->schema([
-                                    Forms\Components\Checkbox::make('current')
-                                        ->label('Current?')
-                                        ->inline(false),
-                                    Forms\Components\TextInput::make('company_name'),
-                                    Forms\Components\TextInput::make('duration'),
-                                    Forms\Components\TextInput::make('role'),
-                                    Forms\Components\Textarea::make('company_address'),
-                                ])
-                                ->deleteAction(
-                                    fn (Forms\Components\Actions\Action $action) => $action->requiresConfirmation(),
-                                )
-                                ->columns(5),
-                        ]),
-
-                ]);
-    }
-
-    private static function candidateEducationalDetails(): Wizard\Step
-    {
-        return Wizard\Step::make('Educational Details')
-            ->icon('heroicon-o-user')
-            ->schema([
-                Forms\Components\Repeater::make('School')
-                    ->label('')
-                    ->addActionLabel('Add Degree Information')
+            [
+                Forms\Components\FileUpload::make('attachment')
+                    ->preserveFilenames()
+                    ->directory('JobCandidate-attachments')
+                    ->visibility('private')
+                    ->openable()
+                    ->downloadable()
+                    ->previewable()
+                    ->acceptedFileTypes([
+                        'application/pdf',
+                    ])
+                    ->required()
+                    ->label('Resume'),
+                Forms\Components\Section::make('Basic Information')
+                    ->columns(2)
                     ->schema([
-                        Forms\Components\TextInput::make('school_name')
+                        Forms\Components\TextInput::make('FirstName')
+                            ->required()
+                            ->label('First Name'),
+                        Forms\Components\TextInput::make('LastName')
+                            ->required()
+                            ->label('Last Name'),
+                        Forms\Components\TextInput::make('mobile')
                             ->required(),
-                        Forms\Components\TextInput::make('major')
-                            ->required(),
-                        Forms\Components\Select::make('duration')
+                        Forms\Components\TextInput::make('Email')
+                            ->required()
+                            ->email(),
+                    ]),
+                Forms\Components\Section::make('Address Information')
+                    ->columns(2)
+                    ->schema([
+                        Forms\Components\TextInput::make('Street'),
+                        Forms\Components\TextInput::make('City'),
+                        Forms\Components\TextInput::make('Country'),
+                        Forms\Components\TextInput::make('ZipCode'),
+                        Forms\Components\TextInput::make('State'),
+                    ]),
+                Forms\Components\Section::make('Professional Details')
+                    ->columns(2)
+                    ->schema([
+                        Forms\Components\TextInput::make('CurrentEmployer')
+                            ->label('Current Employer (Company Name)'),
+                        Forms\Components\TextInput::make('CurrentJobTitle')
+                            ->label('Current Job Title'),
+                        Forms\Components\Select::make('experience')
                             ->options([
-                                '4years' => '4 Years',
-                                '5years' => '5 Years',
+                                '1year' => '1year',
+                                '2year' => '2 Years',
+                                '3year' => '3 Years',
+                                '4year' => '4 Years',
+                                '5year' => '5 Years',
+                                '6year' => '6 Years',
+                                '7year' => '7 Years',
+                                '8year' => '8 Years',
+                                '9year' => '9 Years',
+                                '10year+' => '10 Years & Above',
                             ])
-                            ->required(),
-                        Forms\Components\Checkbox::make('pursuing')
-                            ->inline(false),
-                    ])
-                    ->deleteAction(
-                        fn (Forms\Components\Actions\Action $action) => $action->requiresConfirmation(),
-                    )
-                    ->columns(4),
-            ]);
+                            ->label('Experience'),
+                    ]),
+                Forms\Components\Section::make('Educational Details')
+                    ->schema([
+                        Forms\Components\Repeater::make('School')
+                            ->label('')
+                            ->addActionLabel('+ Add Degree Information')
+                            ->schema([
+                                Forms\Components\TextInput::make('school_name')
+                                    ->required(),
+                                Forms\Components\TextInput::make('major')
+                                    ->required(),
+                                Forms\Components\Select::make('duration')
+                                    ->options([
+                                        '4years' => '4 Years',
+                                        '5years' => '5 Years',
+                                    ])
+                                    ->required(),
+                                Forms\Components\Checkbox::make('pursuing')
+                                    ->inline(false),
+                            ])
+                            ->deleteAction(
+                                fn (Forms\Components\Actions\Action $action) => $action->requiresConfirmation(),
+                            )
+                            ->columns(4),
+                    ]),
+                Forms\Components\Section::make('Experience Details')
+                    ->schema([
+                        Forms\Components\Repeater::make('ExperienceDetails')
+                            ->label('')
+                            ->addActionLabel('Add Experience Details')
+                            ->schema([
+                                Forms\Components\Checkbox::make('current')
+                                    ->label('Current?')
+                                    ->inline(false),
+                                Forms\Components\TextInput::make('company_name'),
+                                Forms\Components\TextInput::make('duration'),
+                                Forms\Components\TextInput::make('role'),
+                                Forms\Components\Textarea::make('company_address'),
+                            ])
+                            ->deleteAction(
+                                fn (Forms\Components\Actions\Action $action) => $action->requiresConfirmation(),
+                            )
+                            ->columns(5),
+                    ]),
+            ];
     }
 
-    private static function candidateExperienceDetails(): Wizard\Step
+    private function captchaField(): array
     {
-        return Wizard\Step::make('Experience Details')
-            ->icon('heroicon-o-user')
-            ->columns(2)
-            ->schema([
-                Forms\Components\Repeater::make('ExperienceDetails')
-                    ->label('')
-                    ->addActionLabel('Add Experience Details')
-                    ->schema([
-                        Forms\Components\Checkbox::make('current')
-                            ->label('Current?')
-                            ->inline(false),
-                        Forms\Components\TextInput::make('company_name'),
-                        Forms\Components\TextInput::make('duration'),
-                        Forms\Components\TextInput::make('role'),
-                        Forms\Components\Textarea::make('company_address'),
-                    ])
-                    ->deleteAction(
-                        fn (Forms\Components\Actions\Action $action) => $action->requiresConfirmation(),
-                    )
-                    ->columns(5),
-            ]);
+        if(!config('recruit.enable_captcha')) return [];
+        if(config('recruit.enable_captcha') && config('recruit.captcha_provider') === 'Google') return [ GRecaptcha::make('captcha') ];
     }
 
     #[Title('Apply Job ')]
