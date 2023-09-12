@@ -58,6 +58,7 @@ class CareerApplyJob extends Component implements HasForms, HasActions
                 Wizard::make([
 
                     static::applicationStepWizard(),
+                    static::assessmentStepWizard(),
                 ])
                 ->nextAction(
                     fn (Action $action) => $action->view('career-form.apply-job-components.NextActionButton'),
@@ -66,6 +67,14 @@ class CareerApplyJob extends Component implements HasForms, HasActions
             ]);
     }
 
+    private static function assessmentStepWizard(): Wizard\Step|array
+    {
+        return Wizard\Step::make('Assessment')
+            ->visible(false)
+            ->icon('heroicon-o-user')
+            ->columns(2)
+            ->schema([]);
+    }
     private static function applicationStepWizard(): Wizard\Step
     {
         return
