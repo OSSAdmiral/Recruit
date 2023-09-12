@@ -21,7 +21,7 @@ class CareerApplyJob extends Component implements HasForms, HasActions
     use InteractsWithActions;
     use InteractsWithForms;
 
-    public ?array $data = [];
+    public ?array $data = ['attachment' => null];
 
     private static ?JobOpenings $jobDetails;
 
