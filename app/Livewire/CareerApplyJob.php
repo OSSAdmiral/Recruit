@@ -58,10 +58,6 @@ class CareerApplyJob extends Component implements HasForms, HasActions
                 Wizard::make([
 
                     static::applicationStepWizard(),
-                    Wizard\Step::make('Application')
-                        ->icon('heroicon-o-user')
-                        ->columns(2)
-                        ->schema([])
                 ])
                 ->nextAction(
                     fn (Action $action) => $action->view('career-form.apply-job-components.NextActionButton'),
