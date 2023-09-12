@@ -82,18 +82,6 @@ class CareerApplyJob extends Component implements HasForms, HasActions
     {
         return
             [
-                Forms\Components\FileUpload::make('attachment')
-                    ->preserveFilenames()
-                    ->directory('JobCandidate-attachments')
-                    ->visibility('private')
-                    ->openable()
-                    ->downloadable()
-                    ->previewable()
-                    ->acceptedFileTypes([
-                        'application/pdf',
-                    ])
-                    ->required()
-                    ->label('Resume'),
                 Forms\Components\Section::make('Basic Information')
                     ->columns(2)
                     ->schema([
@@ -183,6 +171,18 @@ class CareerApplyJob extends Component implements HasForms, HasActions
                             )
                             ->columns(5),
                     ]),
+                Forms\Components\FileUpload::make('attachment')
+                    ->preserveFilenames()
+                    ->directory('JobCandidate-attachments')
+                    ->visibility('private')
+                    ->openable()
+                    ->downloadable()
+                    ->previewable()
+                    ->acceptedFileTypes([
+                        'application/pdf',
+                    ])
+                    ->required()
+                    ->label('Resume'),
             ];
     }
 
@@ -195,6 +195,8 @@ class CareerApplyJob extends Component implements HasForms, HasActions
     #[Title('Apply Job ')]
     public function render()
     {
-        return view('livewire.career-apply-job');
+        return view('livewire.career-apply-job', [
+            'jobDetails' => static::$jobDetails
+        ]);
     }
 }
