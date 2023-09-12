@@ -7,13 +7,18 @@ use Filament\Forms;
 use Filament\Forms\Components\Wizard;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Actions\Contracts\HasActions;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\HtmlString;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-class CareerApplyJob extends Component implements HasForms
+class CareerApplyJob extends Component implements HasForms, HasActions
 {
+    use InteractsWithActions;
     use InteractsWithForms;
 
     public ?array $data = [];
@@ -53,7 +58,15 @@ class CareerApplyJob extends Component implements HasForms
 
                     static::applicationStepWizard(),
                 ])
-                    ->skippable(),
+                ->submitAction(new HtmlString(Blade::render(<<<BLADE
+                            <x-filament::button
+                                type="submit"
+                                size="sm"
+                            >
+                                Submit Application
+                            </x-filament::button>
+                        BLADE))
+                    ),
             ]);
     }
 
@@ -64,6 +77,18 @@ class CareerApplyJob extends Component implements HasForms
                 ->icon('heroicon-o-user')
                 ->columns(2)
                 ->schema([
+                    Forms\Components\FileUpload::make('attachment')
+                        ->preserveFilenames()
+                        ->directory('JobCandidate-attachments')
+                        ->visibility('private')
+                        ->openable()
+                        ->downloadable()
+                        ->previewable()
+                        ->acceptedFileTypes([
+                            'application/pdf',
+                        ])
+                        ->required()
+                        ->label('Resume'),
                     Forms\Components\Section::make('Basic Information')
                         ->columns(2)
                         ->schema([
@@ -109,6 +134,49 @@ class CareerApplyJob extends Component implements HasForms
                                     '10year+' => '10 Years & Above',
                                 ])
                                 ->label('Experience'),
+                        ]),
+                    Forms\Components\Section::make('Educational Details')
+                        ->schema([
+                            Forms\Components\Repeater::make('School')
+                                ->label('')
+                                ->addActionLabel('+ Add Degree Information')
+                                ->schema([
+                                    Forms\Components\TextInput::make('school_name')
+                                        ->required(),
+                                    Forms\Components\TextInput::make('major')
+                                        ->required(),
+                                    Forms\Components\Select::make('duration')
+                                        ->options([
+                                            '4years' => '4 Years',
+                                            '5years' => '5 Years',
+                                        ])
+                                        ->required(),
+                                    Forms\Components\Checkbox::make('pursuing')
+                                        ->inline(false),
+                                ])
+                                ->deleteAction(
+                                    fn (Forms\Components\Actions\Action $action) => $action->requiresConfirmation(),
+                                )
+                                ->columns(4),
+                        ]),
+                    Forms\Components\Section::make('Experience Details')
+                        ->schema([
+                            Forms\Components\Repeater::make('ExperienceDetails')
+                                ->label('')
+                                ->addActionLabel('Add Experience Details')
+                                ->schema([
+                                    Forms\Components\Checkbox::make('current')
+                                        ->label('Current?')
+                                        ->inline(false),
+                                    Forms\Components\TextInput::make('company_name'),
+                                    Forms\Components\TextInput::make('duration'),
+                                    Forms\Components\TextInput::make('role'),
+                                    Forms\Components\Textarea::make('company_address'),
+                                ])
+                                ->deleteAction(
+                                    fn (Forms\Components\Actions\Action $action) => $action->requiresConfirmation(),
+                                )
+                                ->columns(5),
                         ]),
 
                 ]);
