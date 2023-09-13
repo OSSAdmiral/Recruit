@@ -29,5 +29,4 @@ trait ProgressBarConcern
 
         return $items;
     }
-
 }
