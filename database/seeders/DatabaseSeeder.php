@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
         // Job Openings
         $this->command->warn(PHP_EOL . 'Creating Job Openings...');
         $jobOpenings = $this->withProgressBar(15, fn () => JobOpenings::factory(1)->create([
-            'CreatedBy' => $user_admin->first()->id,
+            'CreatedBy' => $user_admin->random(1)->first()->id,
             'Status' => 'Opened',
         ]));
         $this->command->info('Job Openings created.');
