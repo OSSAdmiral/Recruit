@@ -30,6 +30,9 @@
                 display: none !important;
             }
         }
+        :root {
+            --font-family: {!! filament()->getFontFamily() !!};
+        }
     </style>
     @filamentStyles
     @vite('resources/css/app.css')
@@ -37,11 +40,11 @@
     @vite('resources/css/career-job-post.css')
 </head>
 
-<body class="antialiased">
+<body class="antialiased fi-body min-h-screen font-normal">
 @livewire('notifications')
 {{ $slot }}
 
-@filamentScripts
+@filamentScripts(withCore: true)
 @vite('resources/js/app.js')
 </body>
 </html>
