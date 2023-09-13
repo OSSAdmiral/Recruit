@@ -23,7 +23,6 @@ class JobOpeningsFactory extends Factory
             'Salary' => $this->faker->randomFloat(),
             'Department' => $this->faker->word(),
             'HiringManager' => $this->faker->word(),
-            'AssignedRecruiters' => $this->faker->word(),
             'DateOpened' => Carbon::now(),
             'JobType' => $this->faker->word(),
             'RequiredSkill' => $this->faker->word(),
