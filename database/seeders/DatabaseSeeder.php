@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
         // Job Openings
         $this->command->warn(PHP_EOL.'Creating Job Openings...');
         $this->withProgressBar(15, fn () => JobOpenings::factory(1)->create([
-            'Department' => $departments->random(rand(1,5))->first()->id,
+            'Department' => $departments->random(rand(1, 5))->first()->id,
             'JobType' => 'Permanent',
             'RequiredSkill' => 'Management',
             'WorkExperience' => '0_1year',

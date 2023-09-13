@@ -19,7 +19,7 @@ class JobOpeningsFactory extends Factory
             'JobOpeningSystemID' => $this->faker->randomDigit(),
             'TargetDate' => Carbon::now()->addMonth(5),
             'Industry' => $this->faker->text(255),
-            'Salary' => (string)$this->faker->randomDigit(),
+            'Salary' => (string) $this->faker->randomDigit(),
             'DateOpened' => Carbon::now(),
             'JobType' => $this->faker->word(),
             'JobDescription' => $this->faker->text(),
