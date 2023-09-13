@@ -35,17 +35,6 @@ php artisan db:seed
 superuser@mail.com
 superuser
 ```
-###### ADMIN
-```
-admin@mail.com
-admin
-```
-###### USER
-```
-user@mail.com
-user
-```
-
 
 ## About RecruitLab
 
