@@ -10,32 +10,31 @@ class JobOpeningsFactory extends Factory
 {
     protected $model = JobOpenings::class;
 
+    public ?string $jobTitle = '';
+
     public function definition(): array
     {
+
+        $this->jobTitle = $this->faker->jobTitle();
+
         return [
-            'postingTitle' => $this->faker->word(),
-            'NumberOfPosition' => $this->faker->word(),
-            'JobTitle' => $this->faker->word(),
-            'JobOpeningSystemID' => $this->faker->word(),
-            'TargetDate' => $this->faker->word(),
-            'Status' => $this->faker->word(),
-            'Industry' => $this->faker->words(),
-            'Salary' => $this->faker->word(),
-            'Department' => $this->faker->word(),
-            'HiringManager' => $this->faker->word(),
-            'AssignedRecruiters' => $this->faker->word(),
-            'DateOpened' => $this->faker->word(),
-            'JobType' => $this->faker->word(),
-            'RequiredSkill' => $this->faker->word(),
-            'WorkExperience' => $this->faker->word(),
-            'JobDescription' => $this->faker->text(),
+            'postingTitle' => $this->jobTitle,
+            'NumberOfPosition' => $this->faker->randomDigitNotZero(),
+            'JobTitle' => $this->jobTitle,
+            'JobOpeningSystemID' => $this->faker->randomDigitNotZero(),
+            'TargetDate' => Carbon::now()->addMonth(5),
+            'Industry' => $this->faker->text(255),
+            'Salary' => (string) $this->faker->randomDigitNotZero(),
+            'DateOpened' => Carbon::now(),
+            'JobDescription' => $this->faker->sentences(3, true),
             'City' => $this->faker->city(),
             'Country' => $this->faker->country(),
             'State' => $this->faker->word(),
             'ZipCode' => $this->faker->postcode(),
             'RemoteJob' => $this->faker->boolean(),
-            'CreatedBy' => $this->faker->word(),
-            'ModifiedBy' => $this->faker->word(),
+            'JobRequirement' => $this->faker->sentences(3, true),
+            'JobBenefits' => $this->faker->sentences(3, true),
+            'published_career_site' => $this->faker->boolean(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
