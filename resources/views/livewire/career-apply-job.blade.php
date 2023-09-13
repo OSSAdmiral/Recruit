@@ -51,7 +51,7 @@
                                         <h5 class="c5zpx c9gkl cn95v">Applying for Engineering Manager Developer Experience</h5>
                                         <!-- Job description -->
                                         <div class="c5rk9 coxki">
-                                            <form wire:submit="create">
+                                            <form wire:submit.prevent="create">
                                                 {{ $this->form }}
                                             </form>
                                         </div>
