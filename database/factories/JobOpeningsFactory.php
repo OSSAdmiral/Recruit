@@ -9,13 +9,16 @@ use Illuminate\Support\Carbon;
 class JobOpeningsFactory extends Factory
 {
     protected $model = JobOpenings::class;
-
+    public ?string $jobTitle = '';
     public function definition(): array
     {
+
+        $this->jobTitle = $this->faker->jobTitle();
+
         return [
-            'postingTitle' => $this->faker->jobTitle(),
+            'postingTitle' => $this->jobTitle,
             'NumberOfPosition' => $this->faker->randomDigitNotZero(),
-            'JobTitle' => $this->faker->jobTitle(),
+            'JobTitle' => $this->jobTitle,
             'JobOpeningSystemID' => $this->faker->randomDigitNotZero(),
             'TargetDate' => Carbon::now()->addMonth(5),
             'Industry' => $this->faker->text(255),
