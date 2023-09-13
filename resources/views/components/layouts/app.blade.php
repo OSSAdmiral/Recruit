@@ -8,7 +8,7 @@
         <link rel="icon" href="{{ $favicon }}" />
     @endif
     <title>
-        {{ filled($title = strip_tags($title) ? "{$title} - " : null }}
+        {{ filled($title = strip_tags($title)) ? "{$title} - " : null }}
         {{ filament()->getBrandName() }}
     </title>
 
