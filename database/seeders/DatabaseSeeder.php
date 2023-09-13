@@ -6,14 +6,10 @@ namespace Database\Seeders;
 use App\Models\Departments;
 use App\Models\JobOpenings;
 use App\Models\User;
-use Closure;
 use Database\Seeders\concerns\ProgressBarConcern;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use Symfony\Component\Console\Helper\ProgressBar;
-use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -39,9 +35,8 @@ class DatabaseSeeder extends Seeder
         $this->withProgressBar(1, fn () => Role::create(['name' => 'SUPER_USER'])->givePermissionTo(Permission::all()));
         $this->command->info('Super admin role has been created.');*/
 
-
         // Admin
-        $this->command->warn(PHP_EOL . 'Creating admin user...');
+        $this->command->warn(PHP_EOL.'Creating admin user...');
         $user_admin = $this->withProgressBar(1, fn () => User::factory(1)->create([
             'name' => 'Super Admin',
             'email' => 'superuser@mail.com',
@@ -54,21 +49,19 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Admin role assigned.');*/
 
         // Departments
-        $this->command->warn(PHP_EOL . 'Creating Departments...');
+        $this->command->warn(PHP_EOL.'Creating Departments...');
         $departments = $this->withProgressBar(5, fn () => Departments::factory(1)->create([
-            'ParentDepartment' => null
+            'ParentDepartment' => null,
         ]));
         $this->command->info('Departments created.');
 
         // Job Openings
-        $this->command->warn(PHP_EOL . 'Creating Job Openings...');
+        $this->command->warn(PHP_EOL.'Creating Job Openings...');
         $jobOpenings = $this->withProgressBar(15, fn () => JobOpenings::factory(1)->create([
             'CreatedBy' => $user_admin->first()->id,
             'Status' => 'Opened',
         ]));
         $this->command->info('Job Openings created.');
 
-
     }
-
 }
