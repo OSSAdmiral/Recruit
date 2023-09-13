@@ -6,13 +6,7 @@ namespace Database\Seeders;
 use App\Models\Departments;
 use App\Models\JobOpenings;
 use App\Models\User;
-use Closure;
 use Database\Seeders\concerns\ProgressBarConcern;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
-use Symfony\Component\Console\Helper\ProgressBar;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
