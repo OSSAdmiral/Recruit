@@ -33,9 +33,8 @@ class DatabaseSeeder extends Seeder
         $this->withProgressBar(1, fn () => Role::create(['name' => 'SUPER_USER'])->givePermissionTo(Permission::all()));
         $this->command->info('Super admin role has been created.');*/
 
-
         // Admin
-        $this->command->warn(PHP_EOL . 'Creating admin user...');
+        $this->command->warn(PHP_EOL.'Creating admin user...');
         $user_admin = $this->withProgressBar(1, fn () => User::factory(1)->create([
             'name' => 'Super Admin',
             'email' => 'superuser@mail.com',
@@ -48,21 +47,19 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Admin role assigned.');*/
 
         // Departments
-        $this->command->warn(PHP_EOL . 'Creating Departments...');
+        $this->command->warn(PHP_EOL.'Creating Departments...');
         $departments = $this->withProgressBar(5, fn () => Departments::factory(1)->create([
-            'ParentDepartment' => null
+            'ParentDepartment' => null,
         ]));
         $this->command->info('Departments created.');
 
         // Job Openings
-        $this->command->warn(PHP_EOL . 'Creating Job Openings...');
+        $this->command->warn(PHP_EOL.'Creating Job Openings...');
         $jobOpenings = $this->withProgressBar(15, fn () => JobOpenings::factory(1)->create([
             'CreatedBy' => $user_admin->first()->id,
             'Status' => 'Opened',
         ]));
         $this->command->info('Job Openings created.');
 
-
     }
-
 }
