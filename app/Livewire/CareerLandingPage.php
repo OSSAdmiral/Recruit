@@ -36,7 +36,7 @@ class CareerLandingPage extends Component
 
     public function updated()
     {
-//        ddd($this->jobTypeFilter);
+        //        ddd($this->jobTypeFilter);
         $this->filterLogic();
     }
 
@@ -53,14 +53,13 @@ class CareerLandingPage extends Component
     {
         $showRemote = $this->showRemote === true ? 1 : 0;
         $query = static::queryTable();
-        if($showRemote === 1)  $query->where('RemoteJob','=', $showRemote);
-        foreach ($this->jobTypeFilter as $value)
-        {
+        if ($showRemote === 1) {
+            $query->where('RemoteJob', '=', $showRemote);
+        }
+        foreach ($this->jobTypeFilter as $value) {
             $query->where('JobType', '=', $value);
         }
 
-
         $this->jobsList = $query?->get();
     }
-
 }
