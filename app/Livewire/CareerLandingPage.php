@@ -22,7 +22,6 @@ class CareerLandingPage extends Component
     {
         $this->jobsList = static::queryTable()->count() <= 0 ? [] : static::queryTable()->get();
         static::jobTypes();
-        //        ddd($this->jobTypeList );
     }
 
     private static function queryTable(): Builder
@@ -35,6 +34,12 @@ class CareerLandingPage extends Component
         $this->jobTypeList = static::queryTable()->count() < 0 ? [] : self::queryTable()->select(['JobType'])->distinct()->get()->toArray();
     }
 
+    public function updated()
+    {
+//        ddd($this->jobTypeFilter);
+        $this->filterLogic();
+    }
+
     #[Title('Work with us')]
     public function render(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
@@ -43,4 +48,19 @@ class CareerLandingPage extends Component
             'jobTypes' => $this->jobTypeList,
         ]);
     }
+
+    private function filterLogic(): void
+    {
+        $showRemote = $this->showRemote === true ? 1 : 0;
+        $query = static::queryTable();
+        if($showRemote === 1)  $query->where('RemoteJob','=', $showRemote);
+        foreach ($this->jobTypeFilter as $value)
+        {
+            $query->where('JobType', '=', $value);
+        }
+
+
+        $this->jobsList = $query?->get();
+    }
+
 }

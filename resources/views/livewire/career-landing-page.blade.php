@@ -89,7 +89,7 @@
                                                     @forelse($jobTypes as $index => $value)
                                                         <li>
                                                             <label class="crp1m czlxp">
-                                                                <input type="checkbox" class="cw1b8">
+                                                                <input type="checkbox" class="cw1b8" wire:model.live="jobTypeFilter" value="{{$value['JobType']}}">
                                                                 <span class="cdjzc c9csv cqfq4">{{$value['JobType']}}</span>
                                                             </label>
                                                         </li>
