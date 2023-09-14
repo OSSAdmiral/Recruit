@@ -1,54 +1,21 @@
-<!--
-     For Work In Progress Pull Requests, please use the Draft PR feature,
-     
-     For a timely review/response, please avoid force-pushing additional
-     commits if your PR already received reviews or comments.
+# Pull Request
 
-     Before submitting a Pull Request, please ensure you've done the following:
-     - 📖 Read the Forem Contributing Guide: https://developers.forem.com/contributing-guide/forem#create-a-pull-request
-     - 📖 Read the Forem Code of Conduct: https://github.com/forem/forem/blob/main/CODE_OF_CONDUCT.md
-     - 👷‍♀️ Create small PRs. In most cases this will be possible.
-     - ✅ Provide tests for your changes.
-     - 📝 Use descriptive commit messages.
-     - 📗 Update any related documentation and include any relevant screenshots.
+## What's Changed?
+[Describe in plain language what changes/additional you made and why.]
 
-     NOTE: Pull Requests from forked repositories will need to be reviewed by
-     a Forem Team member.
--->
+## Related Issues
+[Closes #IssueNumber]  <!-- Replace 'IssueNumber' with the relevant issue number -->
 
-## 🛠️ What type of PR is this? (check all applicable)
+## Screenshots (if applicable)
+[Attach screenshots or images here to visually show the changes, if relevant.]
 
-- [ ] 🔨 Refactor
-- [ ] ✨ Feature
-- [ ] 🐛 Bug Fix
-- [ ] 🚑 Hot Fix
-- [ ] 🐎 Optimization
-- [ ] 📚 Documentation Update
+## Checklist
+- [ ] I have read and followed the project's contribution guidelines.
+- [ ] My code follows the project's style and conventions.
+- [ ] I've tested my changes to make sure they work.
+- [ ] I've added or updated any necessary documentation.
+- [ ] I've checked for and resolved any merge conflicts.
 
-## 📓 Description
+## Notes (optional)
+[Share any additional information or thoughts here.]
 
-_Please provide description of the PR_
-
-## 🎟️ Related Tickets & 📚 Documents
-
-<!--
-For pull requests that relate or close an issue, please include them
-below.  We like to follow [Github's guidance on linking issues to pull requests](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue).
-
-For example having the text: "closes #1234" would connect the current pull
-request to issue 1234.  And when we merge the pull request, Github will
-automatically close the issue.
--->
-
-- 🎫 Related Issue #
-- 🔐 Closes #
-
-## 🚨 Added/updated tests?
-
-- [ ] Yes
-- [ ] No, and this is why: _please replace this line with details on why tests
-      have not been included_
-- [ ] I need help with writing tests
-
-## 🔥 Added/Removed package(s)?
-_**Please provide if there is any**_
