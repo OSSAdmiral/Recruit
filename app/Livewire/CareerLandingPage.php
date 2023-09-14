@@ -22,7 +22,7 @@ class CareerLandingPage extends Component
     {
         $this->jobsList = static::queryTable()->count() <= 0 ? [] : static::queryTable()->get();
         static::jobTypes();
-//        ddd($this->jobTypeList );
+        //        ddd($this->jobTypeList );
     }
 
     private static function queryTable(): Builder
@@ -40,7 +40,7 @@ class CareerLandingPage extends Component
     {
         return view('livewire.career-landing-page', [
             'jobLists' => $this->jobsList->toArray(),
-            'jobTypes' => $this->jobTypeList
+            'jobTypes' => $this->jobTypeList,
         ]);
     }
 }
