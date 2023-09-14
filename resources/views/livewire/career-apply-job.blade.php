@@ -48,7 +48,7 @@
                                         <div class="cnog5">
                                             <a class="cvqf0 crqt4" href="{{route('career.landing_page')}}"><span class="c8b8n">&lt;-</span> All Jobs</a>
                                         </div>
-                                        <h5 class="c5zpx c9gkl cn95v">Applying for Engineering Manager Developer Experience</h5>
+                                        <h5 class="c5zpx c9gkl cn95v">Applying for {{$jobDetails->postingTitle}}</h5>
                                         <!-- Job description -->
                                         <div class="c5rk9 coxki">
                                             <form wire:submit.prevent="create">
