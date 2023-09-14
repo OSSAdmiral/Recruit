@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\JobOpenings;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -15,11 +16,13 @@ class CareerLandingPage extends Component
 
     public array|Builder|null $jobTypeList = [];
 
-    public array|Builder|null $jobsList = [];
+    public array|Builder|Collection|null $jobsList = [];
 
     public function mount()
     {
-        $this->jobsList = static::queryTable()->count() <= 0 ? [] : static::queryTable()->get()->toArray();
+        $this->jobsList = static::queryTable()->count() <= 0 ? [] : static::queryTable()->get();
+        static::jobTypes();
+//        ddd($this->jobTypeList );
     }
 
     private static function queryTable(): Builder
@@ -27,16 +30,17 @@ class CareerLandingPage extends Component
         return JobOpenings::jobStillOpen()->where('published_career_site', '=', true);
     }
 
-    private function jobTypes(): array|\Illuminate\Database\Eloquent\Collection
+    private function jobTypes(): void
     {
-        return $this->jobTypeList = static::queryTable()->count() > 0 ? [] : self::queryTable()->select(['JobType'])->distinct()->get()->toArray();
+        $this->jobTypeList = static::queryTable()->count() < 0 ? [] : self::queryTable()->select(['JobType'])->distinct()->get()->toArray();
     }
 
     #[Title('Work with us')]
     public function render(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('livewire.career-landing-page', [
-            'jobList' => $this->jobsList,
+            'jobLists' => $this->jobsList->toArray(),
+            'jobTypes' => $this->jobTypeList
         ]);
     }
 }

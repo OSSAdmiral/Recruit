@@ -75,35 +75,24 @@
                                             <div>
                                                 <div class="cv7ca c9csv ct75g cax0a">Job Type</div>
                                                 <ul class="c89f3">
-                                                    <li>
-                                                        <label class="crp1m czlxp">
-                                                            <input type="checkbox" class="cw1b8">
-                                                            <span class="cdjzc c9csv cqfq4">Full-time</span>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label class="crp1m czlxp">
-                                                            <input type="checkbox" class="cw1b8">
-                                                            <span class="cdjzc c9csv cqfq4">Part-time</span>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label class="crp1m czlxp">
-                                                            <input type="checkbox" class="cw1b8">
-                                                            <span class="cdjzc c9csv cqfq4">Intership</span>
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label class="crp1m czlxp">
-                                                            <input type="checkbox" class="cw1b8">
-                                                            <span class="cdjzc c9csv cqfq4">Contract / Freelance</span>
-                                                        </label>
-                                                    </li>
+                                                    @forelse($jobTypes as $index => $value)
+                                                        <li>
+                                                            <label class="crp1m czlxp">
+                                                                <input type="checkbox" class="cw1b8">
+                                                                <span class="cdjzc c9csv cqfq4">{{$value['JobType']}}</span>
+                                                            </label>
+                                                        </li>
+                                                    @empty
+                                                        <li>
+                                                            <label class="crp1m czlxp">
+                                                                <span class="cdjzc c9csv cqfq4">no available filter</span>
+                                                            </label>
+                                                        </li>
+                                                    @endforelse
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </aside>
 
@@ -116,36 +105,42 @@
                                     <!-- List container -->
                                     <div class="crp1m cj2th">
                                         <!-- Item -->
-                                        <div class="chkpc c5dg1">
-                                            <div class="ckgol c4a7h cctbj cz2ao">
-                                                <div class="czlxp cj473 calf6 cl4tr cv9t7">
-                                                    <div class="cyy4k czlxp c7kkg ccmdo ct1nj cx8wq cq4e5">
-                                                        <div>
-                                                            <div class="c7csb">
-                                                                <a class="ckpvk cqnva cax0a" href="#">Engineering
-                                                                    Manager Developer Experience</a>
+                                        @forelse($jobLists as $jobs)
+                                            {{--<!-- Item -->--}}
+                                            <div class="clyea c9l7w cq3a6 cesvj">
+                                                <div class="cnm0k cwi2m">
+                                                    <div class="cqho4 cttum cnq6h cfv99 c1jf4">
+                                                        <div class="c8c54 cqho4 c1ls3 c4nmh cfzi6 cvz5l cxdqm">
+                                                            <div>
+                                                                <div class="cknhg font-bold">
+                                                                    <a class="cbde7 c89yv c8tys" href="{{route('career.job_details', [$jobs['JobOpeningSystemID']])}}">{{$jobs['postingTitle']}}</a>
+                                                                </div>
+                                                                <div class="italic font-thin ">
+                                                                    <p class="clvg0 text-xs mb-5">{{\Illuminate\Support\Str::limit($jobs['JobDescription'], 200)}}</p>
+                                                                </div>
+                                                                <div class="cvrk3">
+                                                                    <p class="cwu8g c00re cx250 ckpu6 csdzj c7x38 cobkt cesao crqt4 cdfls cdo22 chdfx ct9wm cebbr">💰 {{$jobs['Salary']}}</p>
+                                                                    <p class="cwu8g c00re cx250 ckpu6 csdzj c7x38 cobkt cesao crqt4 cdfls cdo22 chdfx ct9wm cebbr">💼 {{$jobs['JobType']}}</p>
+                                                                    <p class="cwu8g c00re cx250 ckpu6 csdzj c7x38 cobkt cesao crqt4 cdfls cdo22 chdfx ct9wm cebbr">
+                                                                        {{$jobs['RemoteJob'] === 1 ? '🌎 Remote' : '🏢 On-site'}}
+                                                                        </p>
+                                                                </div>
                                                             </div>
-                                                            <div class="cywhs">
-                                                                <a class="c8bcm ctziu cztod cwvwj cjbjl cjuhm c5jhe cwe8x ckncn clvg0 caxg1 c04ox c94my cgei4"
-                                                                   href="#0">$75K - $100K</a>
-                                                                <a class="c8bcm ctziu cztod cwvwj cjbjl cjuhm c5jhe cwe8x ckncn clvg0 caxg1 c04ox c94my cgei4"
-                                                                   href="#0">🇬🇧 London, UK</a>
+                                                            <div class="csqne c2kp1 cqho4 cn13m ctc7o ckjlt">
+                                                                <div class="cguey czwdx">
+                                                                    <a class="cmqi9 comj7 cr309 cebq5 c3fma cfkyn ch5p0 cq3a6" href="{{route('career.job_apply', [$jobs['JobOpeningSystemID']])}}">
+                                                                        Apply Now <span class="c6gnl c8b8n cv4h1 ci5s6 chdfx ct9wm ciidb"></span>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="ckc7d c551r cdfls cdts2">2h</div>
                                                             </div>
-                                                        </div>
-                                                        <div class="crp1m cs6in czlxp cddvb crd5f civx8">
-                                                            <div class="ca6hs cyv87">
-                                                                <a class="co11h croe6 chrwa cmcwx cday3 c8dh7 cd99b chkpc"
-                                                                   href="#">
-                                                                    Apply Now <span
-                                                                        class="cg4yh cwp6w c8h2n cv1su c04ox c94my cls93"></span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="c9csv cqaaz clvg0 c93pe">22d</div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @empty
+                                            <span>There is no open job available.</span>
+                                        @endforelse
                                     </div>
                                 </div>
                             </div>
