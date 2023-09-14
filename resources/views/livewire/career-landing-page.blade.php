@@ -5,6 +5,17 @@
         <header class="c5u32 cy7bv coz82">
             <div class="cscbh cyd7h cctbj c1dhf">
                 <div class="crp1m c7htb czlxp c7kkg cf6y5">
+
+                    <!-- Site branding -->
+                    <div class="cg571 cqfuo">
+                        <!-- Logo -->
+                        <a class="cdfr0 cq3a6" href="#" aria-label="{{ filament()->getBrandName() }}">
+                            @if ($favicon = filament()->getFavicon())
+                                <img src="{{ $favicon }}" alt="{{ filament()->getBrandName() }}"/>
+                            @endif
+                        </a>
+                    </div>
+
                     <!-- Desktop navigation -->
                     <nav class="crp1m cyy4k">
                         <!-- Desktop sign in links -->
