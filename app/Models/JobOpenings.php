@@ -59,7 +59,7 @@ class JobOpenings extends Model
 
     public function scopeJobStillOpen(Builder $query): void
     {
-        $query->where('TargetDate', '=', now()->format('d/m/Y'));
+        $query->where('TargetDate', '>=', now()->format('d/m/Y'));
     }
 
     public function scopeRemoteJob(Builder $query): void
