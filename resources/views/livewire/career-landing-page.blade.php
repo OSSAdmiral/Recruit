@@ -132,7 +132,7 @@
                                                                         Apply Now <span class="c6gnl c8b8n cv4h1 ci5s6 chdfx ct9wm ciidb"></span>
                                                                     </a>
                                                                 </div>
-                                                                <div class="ckc7d c551r cdfls cdts2">2h</div>
+                                                                <div class="ckc7d c551r cdfls cdts2">{{\Carbon\Carbon::createFromTimeStamp(strtotime($jobs['created_at']))->diffForHumans()}}</div>
                                                             </div>
                                                         </div>
                                                     </div>
