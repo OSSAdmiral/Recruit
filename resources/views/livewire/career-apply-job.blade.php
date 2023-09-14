@@ -12,6 +12,11 @@
                         <!-- Site branding -->
                         <div class="cqfuo cg571">
                             <!-- Logo -->
+                            <a class="cdfr0 cq3a6" href="#" aria-label="{{ filament()->getBrandName() }}">
+                                @if ($favicon = filament()->getFavicon())
+                                    <img src="{{ $favicon }}" alt="{{ filament()->getBrandName() }}"/>
+                                @endif
+                            </a>
                         </div>
 
                         <!-- Desktop navigation -->
