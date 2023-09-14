@@ -1,38 +1,37 @@
----
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
-assignees: ''
+# Bug Report
 
----
+## Title
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+A brief and descriptive title of the bug.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+## Summary
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+A short summary of the bug, including what is happening and what is expected to happen.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+## Steps to reproduce
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+Steps to reproduce the bug. This should be as detailed as possible, so that the developers can easily reproduce the bug.
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+## Expected vs. actual results
 
-**Additional context**
-Add any other context about the problem here.
+What is expected to happen when the steps are followed, and what actually happens.
+
+## Visual proof (screenshots, videos, text)
+
+If possible, include screenshots, videos, or text that illustrate the bug.
+
+## Environment
+
+The environment in which the bug was found, including the operating system, browser, and version of the software.
+
+## Console logs
+
+If available, include the console logs from the environment where the bug was found.
+
+## Network requests
+
+If available, include the network requests from the environment where the bug was found.
+
+## Additional information
+
+Any other information that may be relevant to the bug.
