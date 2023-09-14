@@ -72,7 +72,7 @@
                                         </div>
 
                                         <div class="cglzl c0spu c7764">
-                                            <a class="ch5p0 comj7 c3fma cfkyn cv0zi cq3a6 csg05" href="#0">
+                                            <a class="ch5p0 comj7 c3fma cfkyn cv0zi cq3a6 csg05" href="{{route('career.job_apply', [$jobDetails->JobOpeningSystemID])}}">
                                                 Apply Now <span class="ciidb ci5s6 c8b8n cv4h1 chdfx ct9wm c6gnl">-&gt;</span>
                                             </a>
                                         </div>
