@@ -20,7 +20,7 @@ class CareerLandingPage extends Component
 
     public function mount()
     {
-        $this->jobsList = static::queryTable()->count() <= 0 ? [] : static::queryTable()->get();
+        $this->jobsList = static::queryTable()->count() <= 0 ? [] : static::queryTable()->get()->toArray();
         static::jobTypes();
     }
 
@@ -44,7 +44,7 @@ class CareerLandingPage extends Component
     public function render(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('livewire.career-landing-page', [
-            'jobLists' => $this->jobsList->toArray(),
+            'jobLists' => $this->jobsList,
             'jobTypes' => $this->jobTypeList,
         ]);
     }
@@ -60,6 +60,6 @@ class CareerLandingPage extends Component
             $query->where('JobType', '=', $value);
         }
 
-        $this->jobsList = $query?->get();
+        $this->jobsList = $query?->get()->toArray();
     }
 }
