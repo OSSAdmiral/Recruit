@@ -59,6 +59,11 @@ class JobOpenings extends Model
 
     public function scopeJobStillOpen(Builder $query): void
     {
+        $query->where('Status', '=', 'Opened');
+    }
+
+    public function scopeFarFromTargetDate(Builder $query): void
+    {
         $query->where('TargetDate', '>=', now()->format('d/m/Y'));
     }
 
