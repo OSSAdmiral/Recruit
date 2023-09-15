@@ -43,6 +43,7 @@ class Candidates extends Model
 
     protected $casts = [
         'ExperienceDetails' => 'array',
+        'School' => 'array',
         'SkillSet' => 'array',
     ];
 }

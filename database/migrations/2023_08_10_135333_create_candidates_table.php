@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('Country')->nullable();
             $table->string('ZipCode')->nullable();
             $table->string('State')->nullable();
-            $table->string('School')->nullable();
+            $table->json('School')->nullable();
             $table->json('ExperienceDetails')->nullable();
             $table->softDeletes();
             $table->timestamps();

@@ -4,7 +4,9 @@ namespace App\Livewire;
 
 use AbanoubNassem\FilamentGRecaptchaField\Forms\Components\GRecaptcha;
 use Afatmustafa\FilamentTurnstile\Forms\Components\Turnstile;
+use App\Filament\Enums\JobCandidateStatus;
 use App\Models\Candidates;
+use App\Models\JobCandidates;
 use App\Models\JobOpenings;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
@@ -61,24 +63,41 @@ class CareerApplyJob extends Component implements HasActions, HasForms
     public function create(): void
     {
         $data = $this->form->getState();
-        ddd($data);
 
         // Create Candidate
-        $candidate = Candidates::create([
-            'FirstName' => $data['FirstName'],
-            'LastName' => $data['LastName'],
-            'Mobile' => $data['mobile'],
-            'Email' => $data['Email'],
+        $candidateModel = new Candidates();
+        $candidateModel->FirstName = $data['FirstName'];
+        $candidateModel->LastName = $data['LastName'];
+        $candidateModel->Mobile = $data['mobile'];
+        $candidateModel->Email = $data['Email'];
+        $candidateModel->ExperienceInYears = $data['experience'];
+        $candidateModel->Street = $data['Street'];
+        $candidateModel->City = $data['City'];
+        $candidateModel->Country = $data['Country'];
+        $candidateModel->ZipCode = $data['ZipCode'];
+        $candidateModel->State = $data['State'];
+        $candidateModel->CurrentEmployer =  $data['CurrentEmployer'];
+        $candidateModel->CurrentJobTitle = $data['CurrentJobTitle'];
+        $candidateModel->School = $data['School'] ?? [];
+        $candidateModel->ExperienceDetails = $data['ExperienceDetails'] ?? [];
+        $candidateModel->save();
+
+        // Job Candidates
+        $job_candidates = JobCandidates::create([
+            'JobId' => static::$jobDetails->id,
+            'CandidateSource' => 'Career Portal',
+            'CandidateStatus' => JobCandidateStatus::New,
+            'candidate' => $candidate->id,
+            'mobile' =>  $data['mobile'],
+            'Email' =>  $data['Email'],
             'ExperienceInYears' => $data['experience'],
+            'CurrentJobTitle' => $data['CurrentJobTitle'],
+            'CurrentEmployer' => $data['CurrentEmployer'],
             'Street' => $data['Street'],
             'City' => $data['City'],
             'Country' => $data['Country'],
             'ZipCode' => $data['ZipCode'],
             'State' => $data['State'],
-            'CurrentEmployer' => $data['CurrentEmployer'],
-            'CurrentJobTitle' => $data['CurrentJobTitle'],
-            'School' => $data['School'],
-            'ExperienceDetails' => $data['ExperienceDetails'],
         ]);
 
     }
