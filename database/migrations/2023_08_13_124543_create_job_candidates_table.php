@@ -15,7 +15,7 @@ return new class extends Migration
             $table->unsignedBigInteger('candidate');
             $table->string('mobile')->nullable();
             $table->string('Email');
-            $table->decimal('ExperienceInYears')->nullable();
+            $table->string('ExperienceInYears')->nullable();
             $table->string('CurrentJobTitle')->nullable();
             $table->string('ExpectedSalary')->nullable();
             $table->json('SkillSet')->nullable();
