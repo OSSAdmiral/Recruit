@@ -26,7 +26,7 @@ class CareerApplyJob extends Component implements HasActions, HasForms
 
     public $captcha = '';
 
-    public static ?JobOpenings $jobDetails;
+    public static ?JobOpenings $jobDetails = null;
 
     public ?string $referenceNumber;
 
