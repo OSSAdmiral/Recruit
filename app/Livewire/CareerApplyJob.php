@@ -26,7 +26,7 @@ class CareerApplyJob extends Component implements HasActions, HasForms
 
     public $captcha = '';
 
-    private static ?JobOpenings $jobDetails = null;
+    public static ?JobOpenings $jobDetails;
 
     public ?string $referenceNumber;
 
@@ -36,6 +36,11 @@ class CareerApplyJob extends Component implements HasActions, HasForms
         $this->jobOpeningDetails($jobReferenceNumber);
         $this->referenceNumber = $jobReferenceNumber;
 
+    }
+
+    public function updated()
+    {
+        $this->jobOpeningDetails($this->referenceNumber);
     }
 
     private function jobOpeningDetails($reference): void
@@ -48,7 +53,7 @@ class CareerApplyJob extends Component implements HasActions, HasForms
                 ->icon('heroicon-o-x-circle')
                 ->iconColor('warning')
                 ->send();
-            //            $this->redirectRoute('career.landing_page');
+           $this->redirectRoute('career.landing_page');
         }
     }
 
@@ -197,7 +202,7 @@ class CareerApplyJob extends Component implements HasActions, HasForms
         if (config('recruit.enable_captcha') && config('recruit.captcha_provider') === 'Google') {
             return [GRecaptcha::make('captcha')];
         }
-        if (config('recruit.enable_captcha') && config('recruit.captcha_provider') === 'Cloudflare') {
+        if (config('recruit.enable_captcha') && config('recruit.captcha_provider_name') === 'Cloudflare') {
             return [
                 Turnstile::make('turnstile')
                     ->theme('light')
@@ -211,7 +216,7 @@ class CareerApplyJob extends Component implements HasActions, HasForms
     public function render()
     {
         return view('livewire.career-apply-job', [
-            'jobDetails' => static::$jobDetails,
+            'jobDetail' => static::$jobDetails,
         ]);
     }
 }
