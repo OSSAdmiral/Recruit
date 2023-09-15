@@ -39,9 +39,13 @@ jobs:
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-      - name: Install dependencies
+      - name: Install composer dependencies
         run: |
           composer install --prefer-dist --no-interaction
+
+      - name: Install NPM Packages
+        run: |
+          npm ci
 
       - name: List Installed Dependencies
         run: composer show -D
@@ -69,6 +73,14 @@ jobs:
           DB_PASSWORD: root
           DB_USERNAME: root
         run: php artisan migrate:fresh --seed
+
+      - name: Run Artisan Serve
+        run: |
+          php artisan serve > /dev/null 2>&1 &
+
+      - name: Rebuild npm packagist
+        run: |
+          npm run build
 
       - name: Execute tests
         env:

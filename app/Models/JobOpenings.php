@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -40,6 +41,7 @@ class JobOpenings extends Model
         'State',
         'ZipCode',
         'RemoteJob',
+        'published_career_site',
         'CreatedBy',
         'ModifiedBy',
         'DeletedBy',
@@ -53,6 +55,21 @@ class JobOpenings extends Model
     public function attachments(): HasMany
     {
         return $this->hasMany(Attachments::class, 'attachmentOwner', 'id');
+    }
+
+    public function scopeJobStillOpen(Builder $query): void
+    {
+        $query->where('Status', '=', 'Opened');
+    }
+
+    public function scopeFarFromTargetDate(Builder $query): void
+    {
+        $query->where('TargetDate', '>=', now()->format('d/m/Y'));
+    }
+
+    public function scopeRemoteJob(Builder $query): void
+    {
+        $query->where('RemoteJob', '=', true);
     }
 
     protected $casts = [

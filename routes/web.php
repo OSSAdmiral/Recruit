@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/career', \App\Livewire\CareerLandingPage::class)->name('career.landing_page');
+Route::get('/career/job-details/{jobReferenceNumber}', \App\Livewire\CareerJobDetail::class)->name('career.job_details');
+Route::get('/career/job/apply/{jobReferenceNumber}', \App\Livewire\CareerApplyJob::class)->name('career.job_apply');

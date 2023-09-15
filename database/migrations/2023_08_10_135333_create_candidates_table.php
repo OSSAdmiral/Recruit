@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('FirstName')->nullable();
             $table->string('LastName');
             $table->string('Mobile')->nullable();
-            $table->decimal('ExperienceInYears')->nullable();
+            $table->string('ExperienceInYears')->nullable();
             $table->string('CurrentJobTitle')->nullable();
             $table->string('ExpectedSalary')->nullable();
             $table->json('SkillSet')->nullable();
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('Country')->nullable();
             $table->string('ZipCode')->nullable();
             $table->string('State')->nullable();
-            $table->string('School')->nullable();
+            $table->json('School')->nullable();
             $table->json('ExperienceDetails')->nullable();
             $table->softDeletes();
             $table->timestamps();

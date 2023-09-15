@@ -32,11 +32,7 @@ class Candidates extends Model
         'CandidateStatus',
         'CandidateSource',
         'CandidateOwner',
-        'SchoolName',
-        'SchoolMajor',
-        'SchoolDegree',
-        'SchoolDuration',
-        'SchoolCurrentlyPursuing',
+        'School',
         'ExperienceDetails',
     ];
 
@@ -47,6 +43,7 @@ class Candidates extends Model
 
     protected $casts = [
         'ExperienceDetails' => 'array',
+        'School' => 'array',
         'SkillSet' => 'array',
     ];
 }
