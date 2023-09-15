@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use AbanoubNassem\FilamentGRecaptchaField\Forms\Components\GRecaptcha;
 use Afatmustafa\FilamentTurnstile\Forms\Components\Turnstile;
+use App\Models\Candidates;
 use App\Models\JobOpenings;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
@@ -59,7 +60,27 @@ class CareerApplyJob extends Component implements HasActions, HasForms
 
     public function create(): void
     {
-        dd($this->form->getState());
+        $data = $this->form->getState();
+        ddd($data);
+
+        // Create Candidate
+        $candidate = Candidates::create([
+            'FirstName' => $data['FirstName'],
+            'LastName' => $data['LastName'],
+            'Mobile' => $data['mobile'],
+            'Email' => $data['Email'],
+            'ExperienceInYears' => $data['experience'],
+            'Street' => $data['Street'],
+            'City'  => $data['City'],
+            'Country' => $data['Country'],
+            'ZipCode' => $data['ZipCode'],
+            'State' => $data['State'],
+            'CurrentEmployer' => $data['CurrentEmployer'],
+            'CurrentJobTitle' => $data['CurrentJobTitle'],
+            'School' => $data['School'],
+            'ExperienceDetails' => $data['ExperienceDetails']
+        ]);
+
     }
 
     public function form(Form $form): Form

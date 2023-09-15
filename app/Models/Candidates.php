@@ -32,11 +32,7 @@ class Candidates extends Model
         'CandidateStatus',
         'CandidateSource',
         'CandidateOwner',
-        'SchoolName',
-        'SchoolMajor',
-        'SchoolDegree',
-        'SchoolDuration',
-        'SchoolCurrentlyPursuing',
+        'School',
         'ExperienceDetails',
     ];
 
