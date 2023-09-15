@@ -76,11 +76,11 @@ jobs:
 
       - name: Run Artisan Serve
         run: |
-          php artisan serve
+          php artisan serve > /dev/null 2>&1 &
 
       - name: Run NPM Dev Serve
         run: |
-          npm run dev
+          npm run dev > /dev/null 2>&1 &
 
       - name: Execute tests
         env:
