@@ -74,8 +74,13 @@ jobs:
           DB_USERNAME: root
         run: php artisan migrate:fresh --seed
 
-      - name: Run Application
-        run: php artisan serve && npm run dev
+      - name: Run Artisan Serve
+        run: |
+          php artisan serve
+
+      - name: Run NPM Dev Serve
+        run: |
+          npm run dev
 
       - name: Execute tests
         env:
