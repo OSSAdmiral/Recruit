@@ -1,9 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-uses(RefreshDatabase::class);
-
 test('can render career landing page', function () {
     $response = $this->get('/career');
     $response->assertStatus(200);
