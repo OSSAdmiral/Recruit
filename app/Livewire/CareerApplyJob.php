@@ -71,7 +71,9 @@ class CareerApplyJob extends Component implements HasActions, HasForms
                     Wizard\Step::make('Application')
                         ->icon('heroicon-o-user')
                         ->columns(2)
-                        ->schema(array_merge($this->applicationStepWizard(), $this->captchaField())),
+                        ->schema(array_merge($this->applicationStepWizard(),
+                            [Forms\Components\Grid::make('1')->schema($this->captchaField())]
+                        )),
                     Wizard\Step::make('Assessment')
                         ->visible(false)
                         ->icon('heroicon-o-user')
