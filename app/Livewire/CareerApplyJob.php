@@ -27,7 +27,9 @@ class CareerApplyJob extends Component implements HasActions, HasForms
 
     public ?array $data = ['attachment' => null];
 
-    public $captcha = '';
+    public string|null $captcha = '';
+
+    public string|null|JobOpenings $record = '';
 
     public static ?JobOpenings $jobDetails = null;
 
@@ -48,8 +50,8 @@ class CareerApplyJob extends Component implements HasActions, HasForms
 
     private function jobOpeningDetails($reference): void
     {
-        static::$jobDetails = JobOpenings::jobStillOpen()->where('JobOpeningSystemID', '=', $reference)->first();
-        if (! static::$jobDetails) {
+        $this->record = JobOpenings::jobStillOpen()->where('JobOpeningSystemID', '=', $reference)->first();
+        if (empty($this->record)) {
             // redirect back as the job opening is closed or tampered id or not existing
             Notification::make()
                 ->title('Job Opening is already closed or doesn\'t exist.')
@@ -65,26 +67,26 @@ class CareerApplyJob extends Component implements HasActions, HasForms
         $data = $this->form->getState();
 
         // Create Candidate
-        $candidateModel = new Candidates();
-        $candidateModel->FirstName = $data['FirstName'];
-        $candidateModel->LastName = $data['LastName'];
-        $candidateModel->Mobile = $data['mobile'];
-        $candidateModel->Email = $data['Email'];
-        $candidateModel->ExperienceInYears = $data['experience'];
-        $candidateModel->Street = $data['Street'];
-        $candidateModel->City = $data['City'];
-        $candidateModel->Country = $data['Country'];
-        $candidateModel->ZipCode = $data['ZipCode'];
-        $candidateModel->State = $data['State'];
-        $candidateModel->CurrentEmployer =  $data['CurrentEmployer'];
-        $candidateModel->CurrentJobTitle = $data['CurrentJobTitle'];
-        $candidateModel->School = $data['School'] ?? [];
-        $candidateModel->ExperienceDetails = $data['ExperienceDetails'] ?? [];
-        $candidateModel->save();
+        $candidate = Candidates::create([
+            'FirstName' => $data['FirstName'],
+            'LastName' => $data['LastName'],
+            'Mobile' => $data['mobile'],
+            'Email' => $data['Email'],
+            'ExperienceInYears' => $data['experience'],
+            'Street' => $data['Street'],
+            'City' => $data['City'],
+            'Country' => $data['Country'],
+            'ZipCode' => $data['ZipCode'],
+           'State' => $data['State'],
+            'CurrentEmployer' =>  $data['CurrentEmployer'],
+            'CurrentJobTitle' => $data['CurrentJobTitle'],
+            'School' => $data['School'],
+            'ExperienceDetails' => $data['ExperienceDetails']
+        ]);
 
         // Job Candidates
         $job_candidates = JobCandidates::create([
-            'JobId' => static::$jobDetails->id,
+            'JobId' => $this->record->id,
             'CandidateSource' => 'Career Portal',
             'CandidateStatus' => JobCandidateStatus::New,
             'candidate' => $candidate->id,
@@ -99,6 +101,21 @@ class CareerApplyJob extends Component implements HasActions, HasForms
             'ZipCode' => $data['ZipCode'],
             'State' => $data['State'],
         ]);
+
+        if($candidate && $job_candidates)
+        {
+            Notification::make()
+                ->title('Application submitted!')
+                ->success()
+                ->body('Thank you for submitting your application details.')
+                ->send();
+            Notification::make()
+                ->title('Reminder!')
+                ->success()
+                ->body('Please always check your communication for our hiring party response.')
+                ->send();
+            $this->redirectRoute('career.landing_page');
+        }
 
     }
 
@@ -258,7 +275,7 @@ class CareerApplyJob extends Component implements HasActions, HasForms
     public function render()
     {
         return view('livewire.career-apply-job', [
-            'jobDetail' => static::$jobDetails,
+            'jobDetail' => $this->record,
         ]);
     }
 }
