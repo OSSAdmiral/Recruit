@@ -56,56 +56,59 @@
                     <div class="cggc7 cx4jt">
 
                         <div class="cpeyd cbk09">
+                            @if(isset($jobLists) && count($jobLists) > 0)
+                                <aside class="cfnbb ckr3e cjj8z c5dnb cbk0u cgcix c8hmz cve1w">
+                                    <div class="c8e4z c2q0g">
 
-                            <!-- Sidebar -->
-                            <aside class="cfnbb ckr3e cjj8z c5dnb cbk0u cgcix c8hmz cve1w">
-                                <div class="c8e4z c2q0g">
+                                        <div class="cpsdf ckgol ciwnj cuiwd ccrxf ctokc">
 
-                                    <div class="cpsdf ckgol ciwnj cuiwd ccrxf ctokc">
-
-                                        <div class="c5u32 ccs55 cgzf4 co4wt">
-                                            <button class="c9csv ckncn c0ndj c91mf">Clear</button>
-                                        </div>
-
-                                        <div class="cfzub cu1y1 cnvfb c2et9">
-                                            <div>
-                                                <div class="cv7ca c9csv ct75g cax0a">Remote Only</div>
-                                                <div class="crp1m czlxp" x-data="{ checked: false }">
-                                                    <div class="c9jgf">
-                                                        <input type="checkbox" id="remote-toggle" class="cqgiy"
-                                                               x-model="checked" wire:model.live="showRemote">
-                                                        <label class="c0e8u" for="remote-toggle">
-                                                            <span class="crmga c8dh7" aria-hidden="true"></span>
-                                                            <span class="cqgiy">Remote Only</span>
-                                                        </label>
-                                                    </div>
-                                                    <div class="cdjzc c9csv cqaaz cucxo"
-                                                         x-text="checked ? 'On' : 'Off'"></div>
-                                                </div>
+                                            <div class="c5u32 ccs55 cgzf4 co4wt">
+                                                <button class="c9csv ckncn c0ndj c91mf">Clear</button>
                                             </div>
-                                            <div>
-                                                <div class="cv7ca c9csv ct75g cax0a">Job Type</div>
-                                                <ul class="c89f3">
-                                                    @forelse($jobTypes as $index => $value)
-                                                        <li>
-                                                            <label class="crp1m czlxp">
-                                                                <input type="checkbox" class="cw1b8" wire:model.live="jobTypeFilter" value="{{$value['JobType']}}">
-                                                                <span class="cdjzc c9csv cqfq4">{{$value['JobType']}}</span>
+
+                                            <div class="cfzub cu1y1 cnvfb c2et9">
+                                                <div>
+                                                    <div class="cv7ca c9csv ct75g cax0a">Remote Only</div>
+                                                    <div class="crp1m czlxp" x-data="{ checked: false }">
+                                                        <div class="c9jgf">
+                                                            <input type="checkbox" id="remote-toggle" class="cqgiy"
+                                                                   x-model="checked" wire:model.live="showRemote">
+                                                            <label class="c0e8u" for="remote-toggle">
+                                                                <span class="crmga c8dh7" aria-hidden="true"></span>
+                                                                <span class="cqgiy">Remote Only</span>
                                                             </label>
-                                                        </li>
-                                                    @empty
-                                                        <li>
-                                                            <label class="crp1m czlxp">
-                                                                <span class="cdjzc c9csv cqfq4">no available filter</span>
-                                                            </label>
-                                                        </li>
-                                                    @endforelse
-                                                </ul>
+                                                        </div>
+                                                        <div class="cdjzc c9csv cqaaz cucxo"
+                                                             x-text="checked ? 'On' : 'Off'"></div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="cv7ca c9csv ct75g cax0a">Job Type</div>
+                                                    <ul class="c89f3">
+                                                        @forelse($jobTypes as $index => $value)
+                                                            <li>
+                                                                <label class="crp1m czlxp">
+                                                                    <input type="checkbox" class="cw1b8" wire:model.live="jobTypeFilter" value="{{$value['JobType']}}">
+                                                                    <span class="cdjzc c9csv cqfq4">{{$value['JobType']}}</span>
+                                                                </label>
+                                                            </li>
+                                                        @empty
+                                                            <li>
+                                                                <label class="crp1m czlxp">
+                                                                    <span class="cdjzc c9csv cqfq4">no available filter</span>
+                                                                </label>
+                                                            </li>
+                                                        @endforelse
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </aside>
+                                </aside>
+                            @endif
+
+                            <!-- Sidebar -->
+
 
                             <!-- Main content -->
                             <div class="cj8w4">
