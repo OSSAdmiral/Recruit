@@ -70,6 +70,9 @@ jobs:
           DB_USERNAME: root
         run: php artisan migrate:fresh --seed
 
+      - name: Run Application
+        run: php artisan serve && npm run dev
+
       - name: Execute tests
         env:
           APP_URL: "http://127.0.0.1:8000"
