@@ -8,15 +8,17 @@ return [
     /*
      *  Career Apply page for Captcha
      */
-    'enable_captcha' => false,
+    'enable_captcha' => true,
     'captcha_provider' => [
         'Google' => [
             'provider_name' => 'Google',
         ],
-        '',
+        'Cloudflare' => [
+            'provider_name' => 'Cloudflare',
+        ],
     ],
     // Applicable value will be the provider name from the "Captcha Provider"
-    'captcha_provider_name' => 'Google',
+    'captcha_provider_name' => 'Cloudflare',
     /*
      * Job Opening Module Field setup and options
      */

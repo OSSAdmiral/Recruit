@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "873fa933555f2db71bcb0106e82be272",
+    "content-hash": "483f037280a3573b98520da90a11d92d",
     "packages": [
         {
             "name": "abanoubnassem/filament-grecaptcha-field",
@@ -79,6 +79,85 @@
                 "source": "https://github.com/AbanoubNassem/filament-grecaptcha-field/tree/v0.0.6"
             },
             "time": "2023-08-20T09:53:16+00:00"
+        },
+        {
+            "name": "afatmustafa/filamentv3-turnstile",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/afatmustafa/filamentv3-turnstile.git",
+                "reference": "83ac663cb7ec3762649f0945a18ffc9de42cd44d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/afatmustafa/filamentv3-turnstile/zipball/83ac663cb7ec3762649f0945a18ffc9de42cd44d",
+                "reference": "83ac663cb7ec3762649f0945a18ffc9de42cd44d",
+                "shasum": ""
+            },
+            "require": {
+                "coderflex/laravel-turnstile": "^1.0",
+                "filament/filament": "^3.0",
+                "illuminate/contracts": "^10.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.15.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^7.9",
+                "orchestra/testbench": "^8.0",
+                "pestphp/pest": "^2.0",
+                "pestphp/pest-plugin-arch": "^2.0",
+                "pestphp/pest-plugin-laravel": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Afatmustafa\\FilamentTurnstile\\FilamentTurnstileServiceProvider"
+                    ],
+                    "aliases": {
+                        "FilamentTurnstile": "Afatmustafa\\FilamentTurnstile\\Facades\\FilamentTurnstile"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Afatmustafa\\FilamentTurnstile\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mustafa Afat",
+                    "email": "mustafa@afat.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A plugin to help you implement the Cloudflare Turnstile into your Filament panels.",
+            "homepage": "https://github.com/afatmustafa/filamentv3-turnstile",
+            "keywords": [
+                "afatmustafa",
+                "cloudflare",
+                "filament",
+                "filament-plugin",
+                "filamentv3-turnstile",
+                "laravel",
+                "turnstile"
+            ],
+            "support": {
+                "issues": "https://github.com/afatmustafa/filamentv3-turnstile/issues",
+                "source": "https://github.com/afatmustafa/filamentv3-turnstile"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/afatmustafa",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-08-13T03:23:38+00:00"
         },
         {
             "name": "anhskohbo/no-captcha",
@@ -344,6 +423,81 @@
                 }
             ],
             "time": "2023-01-15T23:15:59+00:00"
+        },
+        {
+            "name": "coderflex/laravel-turnstile",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/coderflexx/laravel-turnstile.git",
+                "reference": "c1fb1bb923b8be8ebb65b553c37b55e2b16b970b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/coderflexx/laravel-turnstile/zipball/c1fb1bb923b8be8ebb65b553c37b55e2b16b970b",
+                "reference": "c1fb1bb923b8be8ebb65b553c37b55e2b16b970b",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.7",
+                "illuminate/contracts": "^10.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.14.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^7.9",
+                "nunomaduro/larastan": "^2.0.1",
+                "orchestra/testbench": "^8.0",
+                "pestphp/pest": "^2.0",
+                "pestphp/pest-plugin-arch": "^2.0",
+                "pestphp/pest-plugin-laravel": "^2.0",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Coderflex\\LaravelTurnstile\\LaravelTurnstileServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelTurnstile": "Coderflex\\LaravelTurnstile\\Facades\\LaravelTurnstile"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Coderflex\\LaravelTurnstile\\": "src/",
+                    "Coderflex\\LaravelTurnstile\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ousid",
+                    "email": "oussama@coderflex.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A package to help you implement the Cloudflare turnstile \"CAPTCHA Alternative\"",
+            "homepage": "https://github.com/coderflexx/laravel-turnstile",
+            "keywords": [
+                "cloudflare",
+                "coderflex",
+                "laravel",
+                "laravel-turnstile",
+                "turnstile"
+            ],
+            "support": {
+                "issues": "https://github.com/coderflexx/laravel-turnstile/issues",
+                "source": "https://github.com/coderflexx/laravel-turnstile/tree/v1.0.4"
+            },
+            "time": "2023-06-11T16:05:33+00:00"
         },
         {
             "name": "danharrin/date-format-converter",

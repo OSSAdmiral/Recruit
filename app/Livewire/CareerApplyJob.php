@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use AbanoubNassem\FilamentGRecaptchaField\Forms\Components\GRecaptcha;
+use Afatmustafa\FilamentTurnstile\Forms\Components\Turnstile;
 use App\Models\JobOpenings;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
@@ -195,6 +196,14 @@ class CareerApplyJob extends Component implements HasActions, HasForms
         }
         if (config('recruit.enable_captcha') && config('recruit.captcha_provider') === 'Google') {
             return [GRecaptcha::make('captcha')];
+        }
+        if (config('recruit.enable_captcha') && config('recruit.captcha_provider') === 'Cloudflare') {
+            return [
+                Turnstile::make('turnstile')
+                    ->theme('light')
+                    ->size('normal')
+                    ->language('en-US')
+            ];
         }
     }
 
