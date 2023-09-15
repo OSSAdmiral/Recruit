@@ -27,7 +27,7 @@ class CareerApplyJob extends Component implements HasActions, HasForms
 
     public ?array $data = ['attachment' => null];
 
-    public string|null $captcha = '';
+    public ?string $captcha = '';
 
     public string|null|JobOpenings $record = '';
 
@@ -77,11 +77,11 @@ class CareerApplyJob extends Component implements HasActions, HasForms
             'City' => $data['City'],
             'Country' => $data['Country'],
             'ZipCode' => $data['ZipCode'],
-           'State' => $data['State'],
-            'CurrentEmployer' =>  $data['CurrentEmployer'],
+            'State' => $data['State'],
+            'CurrentEmployer' => $data['CurrentEmployer'],
             'CurrentJobTitle' => $data['CurrentJobTitle'],
             'School' => $data['School'],
-            'ExperienceDetails' => $data['ExperienceDetails']
+            'ExperienceDetails' => $data['ExperienceDetails'],
         ]);
 
         // Job Candidates
@@ -90,8 +90,8 @@ class CareerApplyJob extends Component implements HasActions, HasForms
             'CandidateSource' => 'Career Portal',
             'CandidateStatus' => JobCandidateStatus::New,
             'candidate' => $candidate->id,
-            'mobile' =>  $data['mobile'],
-            'Email' =>  $data['Email'],
+            'mobile' => $data['mobile'],
+            'Email' => $data['Email'],
             'ExperienceInYears' => $data['experience'],
             'CurrentJobTitle' => $data['CurrentJobTitle'],
             'CurrentEmployer' => $data['CurrentEmployer'],
@@ -102,8 +102,7 @@ class CareerApplyJob extends Component implements HasActions, HasForms
             'State' => $data['State'],
         ]);
 
-        if($candidate && $job_candidates)
-        {
+        if ($candidate && $job_candidates) {
             Notification::make()
                 ->title('Application submitted!')
                 ->success()
