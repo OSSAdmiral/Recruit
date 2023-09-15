@@ -53,7 +53,7 @@ class CareerApplyJob extends Component implements HasActions, HasForms
                 ->icon('heroicon-o-x-circle')
                 ->iconColor('warning')
                 ->send();
-           $this->redirectRoute('career.landing_page');
+            $this->redirectRoute('career.landing_page');
         }
     }
 
@@ -209,7 +209,7 @@ class CareerApplyJob extends Component implements HasActions, HasForms
                 Turnstile::make('turnstile')
                     ->theme('light')
                     ->size('normal')
-                    ->language('en-US')
+                    ->language('en-US'),
             ];
         }
     }
