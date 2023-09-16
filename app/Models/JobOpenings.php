@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Alfa6661\AutoNumber\AutoNumberTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,7 @@ use Wildside\Userstamps\Userstamps;
 
 class JobOpenings extends Model
 {
-    use HasFactory, SoftDeletes, Userstamps;
+    use HasFactory, SoftDeletes, Userstamps, AutoNumberTrait;
 
     const CREATED_BY = 'CreatedBy';
 
@@ -70,6 +71,19 @@ class JobOpenings extends Model
     public function scopeRemoteJob(Builder $query): void
     {
         $query->where('RemoteJob', '=', true);
+    }
+
+    /**
+     * @return array[]
+     */
+    public function getAutoNumberOptions(): array
+    {
+        return [
+            'JobOpeningSystemID' => [
+                'format' => 'RLR_?_JOB', // autonumber format. '?' will be replaced with the generated number.
+                'length' => 5 // The number of digits in an autonumber
+            ]
+        ];
     }
 
     protected $casts = [
