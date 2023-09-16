@@ -12,7 +12,7 @@ use Wildside\Userstamps\Userstamps;
 
 class JobOpenings extends Model
 {
-    use HasFactory, SoftDeletes, Userstamps, AutoNumberTrait;
+    use AutoNumberTrait, HasFactory, SoftDeletes, Userstamps;
 
     const CREATED_BY = 'CreatedBy';
 
@@ -81,8 +81,8 @@ class JobOpenings extends Model
         return [
             'JobOpeningSystemID' => [
                 'format' => 'RLR_?_JOB', // autonumber format. '?' will be replaced with the generated number.
-                'length' => 5 // The number of digits in an autonumber
-            ]
+                'length' => 5, // The number of digits in an autonumber
+            ],
         ];
     }
 
