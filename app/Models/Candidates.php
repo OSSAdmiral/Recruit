@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Candidates extends Model
 {
-    use SoftDeletes, HasFactory, AutoNumberTrait;
+    use AutoNumberTrait, HasFactory, SoftDeletes;
 
     protected $fillable = [
         'CandidateId',
