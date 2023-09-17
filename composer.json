@@ -24,6 +24,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "mallardduck/blade-lucide-icons": "^1.11",
+        "marjose123/filament-lockscreen": "^2.0",
         "njxqlus/filament-progressbar": "^1.0",
         "spatie/laravel-permission": "^5.10",
         "wildside/userstamps": "^2.3"
