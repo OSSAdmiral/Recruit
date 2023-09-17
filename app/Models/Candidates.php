@@ -49,7 +49,7 @@ class Candidates extends Model
     public function getAutoNumberOptions(): array
     {
         return [
-            'JobOpeningSystemID' => [
+            'CandidateId' => [
                 'format' => 'RLR_?_CANDP', // autonumber format. '?' will be replaced with the generated number.
                 'length' => 5, // The number of digits in an autonumber
             ],
