@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Alfa6661\AutoNumber\AutoNumberTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,7 +12,7 @@ use Wildside\Userstamps\Userstamps;
 
 class JobCandidates extends Model
 {
-    use HasFactory, SoftDeletes, Userstamps;
+    use HasFactory, SoftDeletes, Userstamps, AutoNumberTrait;
 
     const CREATED_BY = 'CreatedBy';
 
@@ -67,5 +68,18 @@ class JobCandidates extends Model
     public function attachments(): HasMany
     {
         return $this->hasMany(Attachments::class, 'attachmentOwner', 'id');
+    }
+
+    /**
+     * @return array[]
+     */
+    public function getAutoNumberOptions(): array
+    {
+        return [
+            'JobCandidateId' => [
+                'format' => 'RLR_?_JOBCAND', // autonumber format. '?' will be replaced with the generated number.
+                'length' => 5, // The number of digits in an autonumber
+            ],
+        ];
     }
 }
