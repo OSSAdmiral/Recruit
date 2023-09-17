@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\JobOpeningsResource\Pages;
 
 use App\Filament\Resources\JobOpeningsResource;
-use Filament\Pages\Actions\DeleteAction;
+use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 
 class EditJobOpenings extends EditRecord
@@ -15,6 +15,11 @@ class EditJobOpenings extends EditRecord
         return [
             DeleteAction::make(),
         ];
+    }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('view', ['record' => $this->getRecord()]);
     }
 
     public function getRelationManagers(): array
