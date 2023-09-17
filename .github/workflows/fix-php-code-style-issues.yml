@@ -1,9 +1,7 @@
 name: Fix PHP code style issues
 
 on:
-  push:
-    branches:
-      - '!master'
+  pull_request:
     paths:
       - '**.php'
 
