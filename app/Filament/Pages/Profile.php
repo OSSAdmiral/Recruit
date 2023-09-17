@@ -10,12 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class Profile extends Page
 {
-
     protected static string $view = 'filament.pages.profile';
 
     protected static bool $shouldRegisterNavigation = false;
 
-    protected static ?string $title = "Profile";
+    protected static ?string $title = 'Profile';
 
     public ?array $userComponents = [];
 
@@ -26,10 +25,10 @@ class Profile extends Page
 
     public function getUserComponents(): array
     {
-        return  [
+        return [
             UpdateProfileInformationForm::class,
             UpdatePasswordForm::class,
-            LogoutOtherBrowserSessionForm::class
+            LogoutOtherBrowserSessionForm::class,
         ];
     }
 
@@ -37,7 +36,7 @@ class Profile extends Page
     {
         return [
             'user' => Auth::user(),
-            'components' => $this->userComponents
+            'components' => $this->userComponents,
         ];
     }
 }

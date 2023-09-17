@@ -129,7 +129,6 @@ class LogoutOtherBrowserSessionForm extends Component
         return $deviceDetector;
     }
 
-
     public function browserSessionsTerminated(): void
     {
         Notification::make()
@@ -138,7 +137,6 @@ class LogoutOtherBrowserSessionForm extends Component
             ->body('Your account has been logged out of other browser sessions for security purposes.')
             ->send();
     }
-
 
     /**
      * Get the view / contents that represent the component.

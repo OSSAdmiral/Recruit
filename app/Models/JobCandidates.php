@@ -12,7 +12,7 @@ use Wildside\Userstamps\Userstamps;
 
 class JobCandidates extends Model
 {
-    use HasFactory, SoftDeletes, Userstamps, AutoNumberTrait;
+    use AutoNumberTrait, HasFactory, SoftDeletes, Userstamps;
 
     const CREATED_BY = 'CreatedBy';
 
