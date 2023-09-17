@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use Alfa6661\AutoNumber\AutoNumberTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Candidates extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasFactory, AutoNumberTrait;
 
     protected $fillable = [
         'CandidateId',
@@ -39,6 +41,19 @@ class Candidates extends Model
     public function attachments(): HasMany
     {
         return $this->hasMany(Attachments::class, 'attachmentOwner', 'id');
+    }
+
+    /**
+     * @return array[]
+     */
+    public function getAutoNumberOptions(): array
+    {
+        return [
+            'JobOpeningSystemID' => [
+                'format' => 'RLR_?_CANDP', // autonumber format. '?' will be replaced with the generated number.
+                'length' => 5, // The number of digits in an autonumber
+            ],
+        ];
     }
 
     protected $casts = [
