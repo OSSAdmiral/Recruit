@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\JobOpeningsResource\RelationManagers;
 
 use App\Filament\Enums\AttachmentCategory;
+use Filament\Actions\CreateAction;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -12,6 +13,8 @@ use Filament\Tables\Table;
 class AttachmentsRelationManager extends RelationManager
 {
     protected static string $relationship = 'attachments';
+
+    protected static ?string $recordTitleAttribute = 'attachmentName';
 
     public function form(Form $form): Form
     {
@@ -56,7 +59,6 @@ class AttachmentsRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('attachmentName')
             ->columns([
                 Tables\Columns\TextColumn::make('attachmentName'),
                 Tables\Columns\TextColumn::make('category'),
@@ -76,6 +78,9 @@ class AttachmentsRelationManager extends RelationManager
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+            ])
+            ->groupedBulkActions([
+                Tables\Actions\DeleteBulkAction::make(),
             ])
             ->emptyStateActions([
                 Tables\Actions\CreateAction::make(),
