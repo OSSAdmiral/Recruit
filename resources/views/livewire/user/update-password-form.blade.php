@@ -30,7 +30,8 @@
 
             <div class="text-left">
                 <x-filament::button type="submit">
-                    Update
+                    <span wire:loading.remove wire:target="updatePassword">Update</span>
+                    <span wire:loading wire:target="updatePassword">Updating...</span>
                 </x-filament::button>
             </div>
         </x-filament-panels::form>
