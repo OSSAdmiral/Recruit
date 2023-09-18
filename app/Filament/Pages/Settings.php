@@ -12,11 +12,8 @@ class Settings extends Page
 
     protected static bool $shouldRegisterNavigation = false;
 
-
     public function mount()
     {
 
     }
-
-
 }
