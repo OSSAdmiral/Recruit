@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Contracts\UpdatesUserProfileInformationContracts;
+use App\Implementations\UpdateUserProfileInformationImplementation;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+       app()->singleton(UpdatesUserProfileInformationContracts::class, UpdateUserProfileInformationImplementation::class);
     }
 
     /**

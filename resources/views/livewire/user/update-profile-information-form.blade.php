@@ -10,6 +10,46 @@
     <x-filament::section>
         <x-filament-panels::form wire:submit="updateProfileInformation">
             <!-- Profile Photo -->
+            <div x-data="{ photoName: null, photoPreview: null }" class="space-y-2">
+                <!-- Profile Photo File Input -->
+                <input type="file" class="hidden"
+                       wire:model.live="photo"
+                       x-ref="photo"
+                       x-on:change="
+                                photoName = $refs.photo.files[0].name;
+                                const reader = new FileReader();
+                                reader.onload = (e) => {
+                                    photoPreview = e.target.result;
+                                };
+                                reader.readAsDataURL($refs.photo.files[0]);
+                    " />
+
+                <x-filament-forms::field-wrapper.label for="photo">
+                    Photo
+                </x-filament-forms::field-wrapper.label>
+
+                <!-- Current Profile Photo -->
+                <div x-show="! photoPreview">
+                    <x-filament-panels::avatar.user style="height: 5rem; width: 5rem;" />
+                </div>
+
+                <!-- New Profile Photo Preview -->
+                <template x-if="photoPreview">
+                    <img :src="photoPreview" style="height: 5rem; width: 5rem; border-radius: 9999px; object-fit: cover;">
+                </template>
+
+                <x-filament::button size="sm" x-on:click.prevent="$refs.photo.click()">
+                    New Photo
+                </x-filament::button>
+
+                @if ($this->user->profile_photo_path)
+                    <x-filament::button size="sm" color="danger" wire:click="deleteProfilePhoto">
+                        Remove Photo
+                    </x-filament::button>
+                @endif
+
+                <x-input-error for="photo" />
+            </div>
 
             <!-- Name -->
             <x-filament-forms::field-wrapper id="name" statePath="name" required="required" label="Name">
