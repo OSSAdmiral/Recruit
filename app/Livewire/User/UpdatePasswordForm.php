@@ -12,8 +12,6 @@ use Livewire\Component;
 
 class UpdatePasswordForm extends Component
 {
-
-
     /**
      * The component's state.
      *
@@ -65,7 +63,7 @@ class UpdatePasswordForm extends Component
     /**
      * Get the current user of the application.
      */
-    public function getUserProperty(): Authenticatable|null
+    public function getUserProperty(): ?Authenticatable
     {
         return Auth::user();
     }
@@ -78,7 +76,6 @@ class UpdatePasswordForm extends Component
             ->body('Your password has been updated successfully.')
             ->send();
     }
-
 
     /**
      * Get the view / contents that represent the component.
