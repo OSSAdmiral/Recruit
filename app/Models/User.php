@@ -16,7 +16,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser, HasAvatar
 {
-    use HasApiTokens, HasFactory, HasRoles, Notifiable, HasProfilePhoto;
+    use HasApiTokens, HasFactory, HasProfilePhoto, HasRoles, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -27,7 +27,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         'name',
         'email',
         'password',
-        'profile_photo_path'
+        'profile_photo_path',
     ];
 
     /**
@@ -50,7 +50,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         'password' => 'hashed',
     ];
 
-
     public function canAccessPanel(Panel $panel): bool
     {
         return true;
@@ -58,7 +57,6 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
 
     public function getFilamentAvatarUrl(): ?string
     {
-       return Storage::url($this->profile_photo_path);
+        return Storage::url($this->profile_photo_path);
     }
-
 }
