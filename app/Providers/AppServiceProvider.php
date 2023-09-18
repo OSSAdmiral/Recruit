@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-       app()->singleton(UpdatesUserProfileInformationContracts::class, UpdateUserProfileInformationImplementation::class);
+        app()->singleton(UpdatesUserProfileInformationContracts::class, UpdateUserProfileInformationImplementation::class);
     }
 
     /**
