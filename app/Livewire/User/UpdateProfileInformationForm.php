@@ -55,11 +55,9 @@ class UpdateProfileInformationForm extends Component
                 : $this->state
         );
 
-        if (isset($this->photo)) {
-            redirect(Profile::getUrl());
-        }
-
+        $this->redirect(Profile::getUrl());
         $this->profileInformationUpdated();
+
     }
 
     public function updateUserProfile(User $user, array $input): void

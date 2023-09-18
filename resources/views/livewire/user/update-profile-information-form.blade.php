@@ -67,7 +67,8 @@
 
             <div class="text-left">
                 <x-filament::button type="submit" wire:target="photo">
-                    Update
+                    <span wire:loading.remove wire:target="updateProfileInformation">Update</span>
+                    <span wire:loading wire:target="updateProfileInformation">Updating...</span>
                 </x-filament::button>
             </div>
         </x-filament-panels::form>
