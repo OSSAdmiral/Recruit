@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use function Symfony\Component\Translation\t;
 
 class UpdateProfileInformationForm extends Component
 {
@@ -62,6 +61,7 @@ class UpdateProfileInformationForm extends Component
 
         $this->profileInformationUpdated();
     }
+
     public function updateUserProfile(User $user, array $input): void
     {
         Validator::make($input, [
@@ -136,15 +136,13 @@ class UpdateProfileInformationForm extends Component
     /**
      * Get the current user of the application.
      */
-    public function getUserProperty(): Authenticatable|null
+    public function getUserProperty(): ?Authenticatable
     {
         return Auth::user();
     }
 
-
     /**
      * Get the view / contents that represent the component.
-     *
      */
     public function render()
     {
