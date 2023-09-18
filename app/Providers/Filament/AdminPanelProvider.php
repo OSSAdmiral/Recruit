@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Profile;
+use App\Filament\Pages\Settings;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -44,6 +45,7 @@ class AdminPanelProvider extends PanelProvider
             ->pages([
                 Pages\Dashboard::class,
                 Profile::class,
+                Settings::class
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
@@ -54,6 +56,10 @@ class AdminPanelProvider extends PanelProvider
                     ->label('Profile')
                     ->url(fn (): string => Profile::getUrl())
                     ->icon('ri-user-settings-fill'),
+                MenuItem::make()
+                    ->label('Settings')
+                    ->url(fn (): string => Settings::getUrl())
+                    ->icon('antdesign-setting-o'),
             ])
             ->middleware([
                 EncryptCookies::class,

@@ -19,6 +19,7 @@
         "afatmustafa/filamentv3-turnstile": "^1.0",
         "alfa6661/laravel-autonumber": "^1.0.0",
         "andreiio/blade-remix-icon": "^2.5",
+        "codeat3/blade-ant-design-icons": "^1.7",
         "filament/filament": "^3.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
