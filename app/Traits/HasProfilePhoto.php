@@ -15,10 +15,9 @@ trait HasProfilePhoto
     {
 
         tap($this->profile_photo_path, function ($previous) use ($photo) {
-            $storagePath = 'profile-avatar';
             $this->forceFill([
                 'profile_photo_path' => $photo->storePublicly(
-                    $storagePath, ['disk' => $this->profilePhotoDisk()]
+                    $this->profilePhotoPath(), ['disk' => $this->profilePhotoDisk()]
                 ),
             ])->save();
 
@@ -74,5 +73,10 @@ trait HasProfilePhoto
     protected function profilePhotoDisk(): string
     {
         return config('filament.default_filesystem_disk');
+    }
+
+    protected function profilePhotoPath(): string
+    {
+        return 'profile-avatar';
     }
 }
