@@ -20,6 +20,11 @@ composer install
 npm install && npm run build
 ```
 
+Create symbolic link from your public/storage
+```bash
+php artisan storage:link
+```
+
 Run Database Migration
 ```bash
 php artisan migrate
@@ -29,6 +34,8 @@ Run Database Seeder to populate the database
 ```bash
 php artisan db:seed
 ```
+
+
 
 
 # Pre-defined Access Credentials

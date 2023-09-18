@@ -122,7 +122,7 @@ class JobOpeningsResource extends Resource
                             ->required(),
                     ])->columns(1),
                 Section::make('System Information')
-                    ->hiddenOn(['create','edit'])
+                    ->hiddenOn(['create', 'edit'])
                     ->id('job-opening-system-info')
                     ->icon('heroicon-o-computer-desktop')
                     ->label('System Information')

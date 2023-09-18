@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\JobOpeningsResource\RelationManagers;
 
 use App\Filament\Enums\AttachmentCategory;
-use Filament\Actions\CreateAction;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
