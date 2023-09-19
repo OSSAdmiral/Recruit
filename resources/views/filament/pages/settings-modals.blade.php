@@ -1,24 +1,42 @@
 <x-filament-panels::page>
-    <x-filament::tabs label="Content tabs" x-data="{ activeTab: 'tab1' }">
-        <x-filament::tabs.item
-            alpine-active="activeTab === 'tab1'"
-            x-on:click="activeTab = 'tab1'"
-        >
-            <x-slot name="slot">
-                Company Details
-            </x-slot>
+    <div x-data="{ tab: 'tab1' }">
+        <x-filament::tabs label="Content tabs" contained="true">
+            @foreach($tabsComponents as $components)
+                <x-filament::tabs.item
+                    @click="tab = '{{$components['tab_name']}}'"
+                    :alpine-active="'tab === \'tab1\''"
+                    icon="heroicon-m-bell"
+                    icon-position="before"
+                >
+                   {{$components['tab_name']}}
+                </x-filament::tabs.item>
+            @endforeach
+            <x-filament::tabs.item
+                @click="tab = 'tab1'"
+                :alpine-active="'tab === \'tab1\''"
+                icon="heroicon-m-bell"
+                icon-position="before"
+            >
+                General Settings
+            </x-filament::tabs.item>
 
+            <x-filament::tabs.item
+                @click="tab = 'tab2'"
+                :alpine-active="'tab === \'tab2\''"
+            >
+                Tab 2
+            </x-filament::tabs.item>
 
+        </x-filament::tabs>
 
-        </x-filament::tabs.item>
-        <x-filament::tabs.item
-            alpine-active="activeTab === 'tab2'"
-            x-on:click="activeTab = 'tab2'"
-        >
-            <x-slot name="slot">
-                User
-            </x-slot>
-        </x-filament::tabs.item>
-        <x-filament::tabs.item>Security Control</x-filament::tabs.item>
-    </x-filament::tabs>
+        <div>
+            <div x-show="tab === 'tab1'">
+                content 1...
+            </div>
+
+            <div x-show="tab === 'tab2'">
+                content 2...
+            </div>
+        </div>
+    </div>
 </x-filament-panels::page>

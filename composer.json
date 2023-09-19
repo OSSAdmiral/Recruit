@@ -30,6 +30,7 @@
         "matomo/device-detector": "^6.1",
         "njxqlus/filament-progressbar": "^1.0",
         "spatie/laravel-permission": "^5.10",
+        "troccoli/blade-health-icons": "*",
         "wildside/userstamps": "^2.3"
     },
     "require-dev": {
