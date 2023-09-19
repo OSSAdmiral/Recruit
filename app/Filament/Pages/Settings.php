@@ -22,11 +22,11 @@ class Settings extends Page
     public function getTabComponents(): array
     {
         return [
-          [
-              'tab_name' => 'Company Details',
-              'icon' => 'healthicons-o-ui-preferences',
-              'components' => '',
-          ]
+            [
+                'tab_name' => 'Company Details',
+                'icon' => 'healthicons-o-ui-preferences',
+                'components' => '',
+            ],
         ];
     }
 }
