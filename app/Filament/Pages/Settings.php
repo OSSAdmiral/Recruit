@@ -20,7 +20,7 @@ class Settings extends Page
         $this->tabsComponents = $this->getTabComponents();
     }
 
-    public function getTabComponents(): \Illuminate\Support\Collection
+    public function getTabComponents(): Collection
     {
         return collect([
 
