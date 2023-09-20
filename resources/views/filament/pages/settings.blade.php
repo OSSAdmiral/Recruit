@@ -1,16 +1,6 @@
 <x-filament-panels::page>
-    <div x-data="{ tab: 'tab1' }">
+    <div x-data="{ tab: 'Company Details' }">
         <x-filament::tabs label="Content tabs" contained="true">
-            @foreach($tabsComponents as $components)
-                <x-filament::tabs.item
-                    @click="tab = '{{$components['tab_name']}}'"
-                    :alpine-active="'tab === \'tab1\''"
-                    icon="heroicon-m-bell"
-                    icon-position="before"
-                >
-                   {{$components['tab_name']}}
-                </x-filament::tabs.item>
-            @endforeach
             <x-filament::tabs.item
                 @click="tab = 'tab1'"
                 :alpine-active="'tab === \'tab1\''"

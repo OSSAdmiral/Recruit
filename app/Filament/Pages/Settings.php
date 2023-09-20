@@ -3,30 +3,27 @@
 namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
+use Illuminate\Support\Collection;
 
 class Settings extends Page
 {
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
-    protected static string $view = 'filament.pages.settings-modals';
+    protected static string $view = 'filament.pages.settings';
 
     protected static bool $shouldRegisterNavigation = false;
 
-    public ?array $tabsComponents = [];
+    public ?Collection $tabsComponents;
 
     public function mount()
     {
         $this->tabsComponents = $this->getTabComponents();
     }
 
-    public function getTabComponents(): array
+    public function getTabComponents(): \Illuminate\Support\Collection
     {
-        return [
-          [
-              'tab_name' => 'Company Details',
-              'icon' => 'healthicons-o-ui-preferences',
-              'components' => '',
-          ]
-        ];
+        return collect([
+
+        ]);
     }
 }
