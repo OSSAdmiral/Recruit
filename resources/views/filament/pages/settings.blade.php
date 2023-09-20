@@ -2,12 +2,12 @@
     <div x-data="{ tab: 'Company Details' }">
         <x-filament::tabs label="Content tabs" contained="true">
             <x-filament::tabs.item
-                @click="tab = 'tab1'"
-                :alpine-active="'tab === \'tab1\''"
-                icon="heroicon-m-bell"
+                @click="tab = 'Company Details'"
+                :alpine-active="'tab === \'Company Details\''"
+                icon="healthicons-o-ui-preferences"
                 icon-position="before"
             >
-                General Settings
+                Company Details
             </x-filament::tabs.item>
 
             <x-filament::tabs.item
@@ -20,8 +20,8 @@
         </x-filament::tabs>
 
         <div>
-            <div x-show="tab === 'tab1'">
-                content 1...
+            <div x-show="tab === 'Company Details'">
+               @livewire(\App\Livewire\Settings\CompanyDetails::class)
             </div>
 
             <div x-show="tab === 'tab2'">
