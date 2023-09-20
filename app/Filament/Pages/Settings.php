@@ -13,17 +13,6 @@ class Settings extends Page
 
     protected static bool $shouldRegisterNavigation = false;
 
-    public ?Collection $tabsComponents;
+    protected ?string $subheading = 'Customize setup';
 
-    public function mount()
-    {
-        $this->tabsComponents = $this->getTabComponents();
-    }
-
-    public function getTabComponents(): Collection
-    {
-        return collect([
-
-        ]);
-    }
 }
