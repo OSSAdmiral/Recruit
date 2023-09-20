@@ -10,7 +10,6 @@ return new class extends SettingsMigration
         $this->migrator->add('company.company_name', 'RecruitLab');
         $this->migrator->add('company.company_website', 'www.recruitlab.com');
         $this->migrator->add('company.company_primary_contact_email', 'help@recruitlab.com');
-        $this->migrator->add('company.company_profile', 'An Opensource Software that focus on providing SMB free Recruitment system.');
         $this->migrator->add('company.company_employee_count', 2);
         $this->migrator->add('company.company_country', 'Philippines');
         $this->migrator->add('company.company_state', 'Leyte');

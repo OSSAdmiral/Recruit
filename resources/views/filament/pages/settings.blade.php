@@ -1,31 +1,19 @@
 <x-filament-panels::page>
-    <div x-data="{ tab: 'Company Details' }">
-        <x-filament::tabs label="Content tabs" contained="true">
+    <div x-data="{ tab: 'General Settings' }">
+        <x-filament::tabs label="Content tabs">
             <x-filament::tabs.item
-                @click="tab = 'Company Details'"
-                :alpine-active="'tab === \'Company Details\''"
+                @click="tab = 'General Settings'"
+                :alpine-active="'tab === \'General Settings\''"
                 icon="healthicons-o-ui-preferences"
                 icon-position="before"
             >
-                Company Details
-            </x-filament::tabs.item>
-
-            <x-filament::tabs.item
-                @click="tab = 'tab2'"
-                :alpine-active="'tab === \'tab2\''"
-            >
-                Tab 2
+                General Settings
             </x-filament::tabs.item>
 
         </x-filament::tabs>
-
         <div>
-            <div x-show="tab === 'Company Details'">
+            <div x-show="tab === 'General Settings'">
                @livewire(\App\Livewire\Settings\CompanyDetails::class)
-            </div>
-
-            <div x-show="tab === 'tab2'">
-                content 2...
             </div>
         </div>
     </div>
