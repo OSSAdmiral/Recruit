@@ -8,6 +8,7 @@ use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
+use Filament\Resources\RelationManagers\RelationGroup;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\IconPosition;
 use Filament\Tables;
@@ -15,6 +16,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Tapp\FilamentAuthenticationLog\RelationManagers\AuthenticationLogsRelationManager;
 
 class UserResource extends Resource
 {
@@ -126,6 +128,9 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
+            RelationGroup::make('Authentication Logs', [
+                AuthenticationLogsRelationManager::class,
+            ]),
             //
         ];
     }

@@ -19,4 +19,9 @@ class EditUser extends EditRecord
             Actions\RestoreAction::make(),
         ];
     }
+
+    public function getRelationManagers(): array
+    {
+        return [];
+    }
 }
