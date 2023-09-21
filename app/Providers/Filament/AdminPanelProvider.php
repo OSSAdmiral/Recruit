@@ -22,6 +22,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use lockscreen\FilamentLockscreen\Http\Middleware\Locker;
 use lockscreen\FilamentLockscreen\Lockscreen;
 use Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin;
+use Tapp\FilamentAuthenticationLog\FilamentAuthenticationLogPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -71,6 +72,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 FilamentProgressbarPlugin::make()->color('#29b'),
+                FilamentAuthenticationLogPlugin::make(),
                 new Lockscreen(),
             ]);
     }

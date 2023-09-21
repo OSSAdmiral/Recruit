@@ -13,11 +13,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
+use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser, HasAvatar
 {
-    use HasApiTokens, HasFactory, HasProfilePhoto, HasRoles, Notifiable, SoftDeletes;
+    use HasApiTokens, HasFactory, HasProfilePhoto, HasRoles, Notifiable, SoftDeletes, AuthenticationLoggable;
 
     /**
      * The attributes that are mass assignable.
