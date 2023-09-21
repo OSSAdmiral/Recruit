@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Filament\Pages\Profile;
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -37,32 +36,32 @@ class UserResource extends Resource
                 Forms\Components\Grid::make()
                     ->columns(1)
                     ->schema([
-                    Forms\Components\FileUpload::make('profile_photo_path')
-                        ->label('')
-                        ->alignCenter()
-                        ->avatar()
-                        ->visibility('public')
-                        ->directory('profile-avatar')
-                        ->disk(config('filament.default_filesystem_disk'))
-                        ->image(),
-                ]),
+                        Forms\Components\FileUpload::make('profile_photo_path')
+                            ->label('')
+                            ->alignCenter()
+                            ->avatar()
+                            ->visibility('public')
+                            ->directory('profile-avatar')
+                            ->disk(config('filament.default_filesystem_disk'))
+                            ->image(),
+                    ]),
                 Forms\Components\Section::make()
                     ->columns(2)
                     ->schema([
-                    Forms\Components\TextInput::make('name')
-                        ->required()
-                        ->placeholder('John Doe'),
-                    Forms\Components\TextInput::make('email')
-                        ->required()
-                        ->email(),
-                    Forms\Components\TextInput::make('password')
-                        ->required()
-                        ->confirmed()
-                        ->password(),
-                    Forms\Components\TextInput::make('password_confirmation')
-                        ->required()
-                        ->password(),
-                ])
+                        Forms\Components\TextInput::make('name')
+                            ->required()
+                            ->placeholder('John Doe'),
+                        Forms\Components\TextInput::make('email')
+                            ->required()
+                            ->email(),
+                        Forms\Components\TextInput::make('password')
+                            ->required()
+                            ->confirmed()
+                            ->password(),
+                        Forms\Components\TextInput::make('password_confirmation')
+                            ->required()
+                            ->password(),
+                    ])
                     ->columnSpan(['lg' => fn (?User $record) => $record === null ? 3 : 2]),
 
                 Forms\Components\Section::make()
@@ -84,37 +83,40 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-               Tables\Columns\ImageColumn::make('profile_photo_path')
-                   ->label('Profile Photo')
-                   ->defaultImageUrl(fn (Model $record) =>  $record->profile_photo_url)
-                   ->circular(),
-               Tables\Columns\TextColumn::make('name')
-                   ->searchable()
-                   ->sortable(),
-               Tables\Columns\TextColumn::make('email')
-                   ->sortable()
-                   ->searchable(),
-               Tables\Columns\IconColumn::make('email_verified_at')
-                   ->boolean()
-                   ->label('Verified Email'),
+                Tables\Columns\ImageColumn::make('profile_photo_path')
+                    ->label('Profile Photo')
+                    ->defaultImageUrl(fn (Model $record) => $record->profile_photo_url)
+                    ->circular(),
+                Tables\Columns\TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('email')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\IconColumn::make('email_verified_at')
+                    ->boolean()
+                    ->label('Verified Email'),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make()
-                    ->url(fn(Model $record) => $record->id === auth()->id() ? Profile::getUrl() : UserResource::getUrl('view', ['record' => $record])  ),
+                    ->url(fn (Model $record) => $record->id === auth()->id() ? Profile::getUrl() : UserResource::getUrl('view', ['record' => $record])),
                 Tables\Actions\EditAction::make()
-                    ->url(fn(Model $record) => $record->id === auth()->id() ? Profile::getUrl() : UserResource::getUrl('edit', ['record' => $record])  ),
+                    ->url(fn (Model $record) => $record->id === auth()->id() ? Profile::getUrl() : UserResource::getUrl('edit', ['record' => $record])),
                 Tables\Actions\DeleteAction::make()
-                    ->action(function (Model $record){
-                        if($record->id === auth()->id()) return Notification::make()
-                            ->title('Error!')
-                            ->body('You cannot delete your own profile.')
-                            ->icon('heroicon-o-shield-exclamation')
-                            ->iconPosition(IconPosition::Before)
-                            ->danger()
-                            ->send();
+                    ->action(function (Model $record) {
+                        if ($record->id === auth()->id()) {
+                            return Notification::make()
+                                ->title('Error!')
+                                ->body('You cannot delete your own profile.')
+                                ->icon('heroicon-o-shield-exclamation')
+                                ->iconPosition(IconPosition::Before)
+                                ->danger()
+                                ->send();
+                        }
+
                         return $record->delete();
                     })
                     ->requiresConfirmation(),
