@@ -33,7 +33,6 @@ class AdminPanelProvider extends PanelProvider
             ->maxContentWidth('full')
             ->id('recruit')
             ->path('')
-            ->topNavigation()
             ->passwordReset()
             ->emailVerification()
             ->login()
