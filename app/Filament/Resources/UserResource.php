@@ -23,11 +23,56 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user';
 
+    protected static ?string $recordTitleAttribute = 'name';
+
     public static function form(Form $form): Form
     {
         return $form
+            ->columns(3)
             ->schema([
-                //
+                Forms\Components\Grid::make()
+                    ->columns(1)
+                    ->schema([
+                    Forms\Components\FileUpload::make('profile_photo_path')
+                        ->label('')
+                        ->alignCenter()
+                        ->avatar()
+                        ->visibility('public')
+                        ->directory('profile-avatar')
+                        ->disk(config('filament.default_filesystem_disk'))
+                        ->image(),
+                ]),
+                Forms\Components\Section::make()
+                    ->columns(2)
+                    ->schema([
+                    Forms\Components\TextInput::make('name')
+                        ->required()
+                        ->placeholder('John Doe'),
+                    Forms\Components\TextInput::make('email')
+                        ->required()
+                        ->email(),
+                    Forms\Components\TextInput::make('password')
+                        ->required()
+                        ->confirmed()
+                        ->password(),
+                    Forms\Components\TextInput::make('password_confirmation')
+                        ->required()
+                        ->password(),
+                ])
+                    ->columnSpan(['lg' => fn (?User $record) => $record === null ? 3 : 2]),
+
+                Forms\Components\Section::make()
+                    ->schema([
+                        Forms\Components\Placeholder::make('created_at')
+                            ->label('Created at')
+                            ->content(fn (User $record): ?string => $record->created_at?->diffForHumans()),
+
+                        Forms\Components\Placeholder::make('updated_at')
+                            ->label('Last modified at')
+                            ->content(fn (User $record): ?string => $record->updated_at?->diffForHumans()),
+                    ])
+                    ->columnSpan(['lg' => 1])
+                    ->hidden(fn (?User $record) => $record === null),
             ]);
     }
 
@@ -39,9 +84,15 @@ class UserResource extends Resource
                    ->label('Profile Photo')
                    ->defaultImageUrl(url(filled($avatar = auth()->user()->getFilamentAvatarUrl()) ? $avatar : filament()->getUserAvatarUrl(auth()->user())))
                    ->circular(),
-               Tables\Columns\TextColumn::make('name'),
-               Tables\Columns\TextColumn::make('email'),
-               Tables\Columns\BooleanColumn::make('email_verified_at'),
+               Tables\Columns\TextColumn::make('name')
+                   ->searchable()
+                   ->sortable(),
+               Tables\Columns\TextColumn::make('email')
+                   ->sortable()
+                   ->searchable(isIndividual: true, isGlobal: false),
+               Tables\Columns\BooleanColumn::make('email_verified_at')
+                    ->sortable()
+                    ->label('Verified'),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
