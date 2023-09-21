@@ -80,7 +80,7 @@ class UserResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-//            ->where('id', '!=', auth()->user()->id)
+            ->where('id', '!=', auth()->user()->id)
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
