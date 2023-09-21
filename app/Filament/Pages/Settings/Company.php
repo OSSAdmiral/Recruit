@@ -15,6 +15,8 @@ class Company extends Page
 
     protected static bool $shouldRegisterNavigation = true;
 
+    protected static ?int $navigationSort = 3;
+
     protected static ?string $navigationGroup = 'Settings';
 
     protected ?string $heading ='';
