@@ -2,12 +2,15 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Pages\Profile;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\IconPosition;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -99,16 +102,22 @@ class UserResource extends Resource
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                    Tables\Actions\ForceDeleteBulkAction::make(),
-                    Tables\Actions\RestoreBulkAction::make(),
-                ]),
+                Tables\Actions\ViewAction::make()
+                    ->url(fn(Model $record) => $record->id === auth()->id() ? Profile::getUrl() : UserResource::getUrl('view', ['record' => $record])  ),
+                Tables\Actions\EditAction::make()
+                    ->url(fn(Model $record) => $record->id === auth()->id() ? Profile::getUrl() : UserResource::getUrl('edit', ['record' => $record])  ),
+                Tables\Actions\DeleteAction::make()
+                    ->action(function (Model $record){
+                        if($record->id === auth()->id()) return Notification::make()
+                            ->title('Error!')
+                            ->body('You cannot delete your own profile.')
+                            ->icon('heroicon-o-shield-exclamation')
+                            ->iconPosition(IconPosition::Before)
+                            ->danger()
+                            ->send();
+                        return $record->delete();
+                    })
+                    ->requiresConfirmation(),
             ]);
     }
 
