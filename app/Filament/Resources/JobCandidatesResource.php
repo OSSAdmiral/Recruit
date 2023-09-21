@@ -26,7 +26,7 @@ class JobCandidatesResource extends Resource
 
     protected static ?int $navigationSort = 2;
 
-    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
+    protected static ?string $navigationIcon = 'vaadin-diploma-scroll';
 
     public static function form(Form $form): Form
     {
