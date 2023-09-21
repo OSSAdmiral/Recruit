@@ -83,9 +83,7 @@ class UserResource extends Resource
             ->columns([
                Tables\Columns\ImageColumn::make('profile_photo_path')
                    ->label('Profile Photo')
-                   ->defaultImageUrl(function (Model $record){
-                       return $record->profile_photo_url;
-                   })
+                   ->defaultImageUrl(fn (Model $record) =>  $record->profile_photo_url)
                    ->circular(),
                Tables\Columns\TextColumn::make('name')
                    ->searchable()
