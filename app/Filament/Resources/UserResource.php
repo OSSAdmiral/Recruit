@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class UserResource extends Resource
@@ -82,17 +83,21 @@ class UserResource extends Resource
             ->columns([
                Tables\Columns\ImageColumn::make('profile_photo_path')
                    ->label('Profile Photo')
-                   ->defaultImageUrl(url(filled($avatar = auth()->user()->getFilamentAvatarUrl()) ? $avatar : filament()->getUserAvatarUrl(auth()->user())))
+                   ->defaultImageUrl(function (Model $record){
+                       return $record->profile_photo_url;
+                   })
                    ->circular(),
                Tables\Columns\TextColumn::make('name')
                    ->searchable()
                    ->sortable(),
                Tables\Columns\TextColumn::make('email')
                    ->sortable()
-                   ->searchable(isIndividual: true, isGlobal: false),
-               Tables\Columns\BooleanColumn::make('email_verified_at')
-                    ->sortable()
-                    ->label('Verified'),
+                   ->searchable(),
+               Tables\Columns\IconColumn::make('email_verified_at')
+                   ->trueIcon('heroicon-o-check-badge')
+                   ->falseIcon('heroicon-o-x-mark')
+                   ->boolean()
+                   ->label('Verified Email'),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -128,10 +133,15 @@ class UserResource extends Resource
         ];
     }
 
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'email'];
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-            ->where('id', '!=', auth()->user()->id)
+//            ->where('id', '!=', auth()->user()->id)
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
