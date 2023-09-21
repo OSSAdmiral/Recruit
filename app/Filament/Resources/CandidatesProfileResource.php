@@ -23,6 +23,8 @@ class CandidatesProfileResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'fullName';
 
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+
     public static function form(Form $form): Form
     {
         return $form

@@ -21,6 +21,8 @@ class DepartmentsResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'DepartmentName';
 
+    protected static ?string $navigationIcon = 'heroicon-o-building-office';
+
     public static function form(Form $form): Form
     {
         return $form

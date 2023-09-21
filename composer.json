@@ -32,7 +32,7 @@
         "njxqlus/filament-progressbar": "^1.0",
         "spatie/laravel-permission": "^5.10",
         "spatie/laravel-settings": "^3.2",
-        "troccoli/blade-health-icons": "*",
+        "troccoli/blade-health-icons": "^2.0",
         "wildside/userstamps": "^2.3"
     },
     "require-dev": {

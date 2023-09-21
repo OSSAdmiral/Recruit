@@ -19,6 +19,8 @@ class ReferralsResource extends Resource
 
     protected static ?int $navigationSort = 5;
 
+    protected static ?string $navigationIcon = 'healthicons-o-referral';
+
     public static function form(Form $form): Form
     {
         return $form
