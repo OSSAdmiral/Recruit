@@ -19,10 +19,9 @@ class Company extends Page
 
     protected static ?string $navigationGroup = 'Settings';
 
-    protected ?string $heading ='';
+    protected ?string $heading = '';
 
     protected static ?string $navigationLabel = 'Company Details';
-
 
     /**
      * The component's state.
@@ -32,7 +31,6 @@ class Company extends Page
     /**
      * Prepare the component.
      */
-
     public function mount(GeneralSetting $setting): void
     {
         $this->state = [
@@ -77,7 +75,4 @@ class Company extends Page
             ->body('Your Company information has been updated successfully.')
             ->send();
     }
-
-
-
 }

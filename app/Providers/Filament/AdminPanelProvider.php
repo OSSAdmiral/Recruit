@@ -3,7 +3,6 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Profile;
-use App\Filament\Pages\Settings;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -53,7 +52,7 @@ class AdminPanelProvider extends PanelProvider
                 MenuItem::make()
                     ->label('Profile')
                     ->url(fn (): string => Profile::getUrl())
-                    ->icon('ri-user-settings-fill')
+                    ->icon('ri-user-settings-fill'),
             ])
             ->middleware([
                 EncryptCookies::class,
