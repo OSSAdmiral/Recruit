@@ -92,8 +92,6 @@ class UserResource extends Resource
                    ->sortable()
                    ->searchable(),
                Tables\Columns\IconColumn::make('email_verified_at')
-                   ->trueIcon('heroicon-o-check-badge')
-                   ->falseIcon('heroicon-o-x-mark')
                    ->boolean()
                    ->label('Verified Email'),
             ])
