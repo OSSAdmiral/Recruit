@@ -25,6 +25,7 @@
         "codeat3/blade-vaadin-icons": "^1.4",
         "filament/filament": "^3.0",
         "guzzlehttp/guzzle": "^7.2",
+        "hasnayeen/themes": "^3.0",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
