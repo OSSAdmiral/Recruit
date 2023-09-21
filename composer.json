@@ -20,6 +20,7 @@
         "alfa6661/laravel-autonumber": "^1.0.0",
         "andreiio/blade-remix-icon": "^2.5",
         "codeat3/blade-ant-design-icons": "^1.7",
+        "codeat3/blade-carbon-icons": "^2.16",
         "codeat3/blade-iconpark": "^1.5",
         "filament/filament": "^3.0",
         "guzzlehttp/guzzle": "^7.2",

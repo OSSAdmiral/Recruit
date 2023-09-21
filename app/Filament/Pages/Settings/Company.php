@@ -1,14 +1,27 @@
 <?php
 
-namespace App\Livewire\Settings;
+namespace App\Filament\Pages\Settings;
 
 use App\Settings\GeneralSetting;
 use Filament\Notifications\Notification;
+use Filament\Pages\Page;
 use Illuminate\Support\Facades\Validator;
-use Livewire\Component;
 
-class CompanyDetails extends Component
+class Company extends Page
 {
+    protected static ?string $navigationIcon = 'carbon-location-company';
+
+    protected static string $view = 'filament.pages.settings.company';
+
+    protected static bool $shouldRegisterNavigation = true;
+
+    protected static ?string $navigationGroup = 'Settings';
+
+    protected ?string $heading ='';
+
+    protected static ?string $navigationLabel = 'Company Details';
+
+
     /**
      * The component's state.
      */
@@ -17,6 +30,7 @@ class CompanyDetails extends Component
     /**
      * Prepare the component.
      */
+
     public function mount(GeneralSetting $setting): void
     {
         $this->state = [
@@ -33,7 +47,7 @@ class CompanyDetails extends Component
 
     public function saveSettings(GeneralSetting $setting): void
     {
-        $this->resetErrorBag();
+
         Validator::make($this->state, [
             'site_name' => ['required', 'string', 'max:255'],
             'company_name' => ['required', 'string', 'max:255'],
@@ -62,8 +76,6 @@ class CompanyDetails extends Component
             ->send();
     }
 
-    public function render()
-    {
-        return view('livewire.settings.company-details');
-    }
+
+
 }
