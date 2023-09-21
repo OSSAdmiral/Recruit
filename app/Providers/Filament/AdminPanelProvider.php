@@ -53,11 +53,7 @@ class AdminPanelProvider extends PanelProvider
                 MenuItem::make()
                     ->label('Profile')
                     ->url(fn (): string => Profile::getUrl())
-                    ->icon('ri-user-settings-fill'),
-                MenuItem::make()
-                    ->label('Setup')
-                    ->url(fn (): string => Settings::getUrl())
-                    ->icon('antdesign-setting-o'),
+                    ->icon('ri-user-settings-fill')
             ])
             ->middleware([
                 EncryptCookies::class,
