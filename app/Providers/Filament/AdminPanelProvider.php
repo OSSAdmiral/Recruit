@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Pages\Profile;
+use Awcodes\FilamentQuickCreate\QuickCreatePlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -25,6 +26,7 @@ use lockscreen\FilamentLockscreen\Http\Middleware\Locker;
 use lockscreen\FilamentLockscreen\Lockscreen;
 use Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin;
 use Tapp\FilamentAuthenticationLog\FilamentAuthenticationLogPlugin;
+use Tapp\FilamentAuthenticationLog\Resources\AuthenticationLogResource;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -79,6 +81,10 @@ class AdminPanelProvider extends PanelProvider
                 FilamentAuthenticationLogPlugin::make(),
                 new Lockscreen(),
                 ThemesPlugin::make(),
+                QuickCreatePlugin::make()
+                    ->excludes([
+                        AuthenticationLogResource::class,
+                    ]),
             ]);
     }
 }

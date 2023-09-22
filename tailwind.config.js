@@ -8,6 +8,7 @@ export default {
       './app/Filament/**/*.php',
       './resources/views/filament/**/*.blade.php',
       './vendor/filament/**/*.blade.php',
+      './awcodes/filament-quick-create/resources/**/*.blade.php',
   ],
   theme: {
     extend: {},
