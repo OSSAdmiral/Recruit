@@ -35,6 +35,10 @@ Run Database Seeder to populate the database
 php artisan db:seed
 ```
 
+if you experience slow loading, run this
+```bash
+php artisan icons:cache
+```
 
 
 
