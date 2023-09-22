@@ -23,18 +23,20 @@ class DatabaseSeeder extends Seeder
     {
 
         // Permissions
-        $this->command->warn(PHP_EOL . 'Creating set of permission for roles...');
-        $this->withProgressBar(1, function (){
+        $this->command->warn(PHP_EOL.'Creating set of permission for roles...');
+        $this->withProgressBar(1, function () {
             Artisan::call('permissions:sync -C -Y');
+
             return [];
         });
         $this->command->info('Sets of permissions has been created.');
 
         // Roles
-        $this->command->warn(PHP_EOL . 'Creating super admin role...');
+        $this->command->warn(PHP_EOL.'Creating super admin role...');
         $this->withProgressBar(1, function () {
             $role = Role::create(['name' => 'Super Admin']);
             $role->givePermissionTo(Permission::all());
+
             return [];
         });
         $this->command->info('Super admin role has been created.');
@@ -44,15 +46,16 @@ class DatabaseSeeder extends Seeder
         $user_admin = $this->withProgressBar(1, fn () => User::factory(1)->create([
             'name' => 'Super Admin',
             'email' => 'superuser@mail.com',
-            'password' => 'password'
+            'password' => 'password',
         ]));
         $this->command->info('Admin user created.');
 
         // Assigning Role to Admin
-        $this->command->warn(PHP_EOL . 'Assigning admin role to user...');
+        $this->command->warn(PHP_EOL.'Assigning admin role to user...');
         $this->withProgressBar(1, function () use ($user_admin) {
             $user_admin->random(1)
                 ->first()->assignRole('Super Admin');
+
             return [];
         });
         $this->command->info('Admin role assigned.');

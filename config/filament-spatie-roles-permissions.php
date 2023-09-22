@@ -20,7 +20,7 @@ return [
 
     'guard_names' => [
         'web' => 'web',
-        'api' => 'api'
+        'api' => 'api',
     ],
 
     'toggleable_guard_names' => [
