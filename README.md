@@ -35,6 +35,12 @@ Run Database Seeder to populate the database
 php artisan db:seed
 ```
 
+Generate Permissions 
+```bash
+php artisan permissions:sync -C -Y
+```
+
+
 if you experience slow loading, run this
 ```bash
 php artisan icons:cache

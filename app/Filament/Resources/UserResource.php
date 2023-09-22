@@ -22,7 +22,7 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = -1;
 
     protected static ?string $navigationGroup = 'Security & Control';
 
@@ -56,6 +56,9 @@ class UserResource extends Resource
                         Forms\Components\TextInput::make('email')
                             ->required()
                             ->email(),
+                        Forms\Components\Select::make('roles')
+                            ->preload()
+                            ->relationship('roles', 'name'),
                         Forms\Components\TextInput::make('password')
                             ->required()
                             ->confirmed()
