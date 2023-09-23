@@ -23,11 +23,6 @@ return [
      * Job Opening Module Field setup and options
      */
     'job_opening' => [
-        'status_options' => [
-            'New' => 'New',
-            'Opened' => 'Opened',
-            'Closed' => 'Closed',
-        ],
         'required_skill_options' => [
             'management' => 'Management',
         ],
