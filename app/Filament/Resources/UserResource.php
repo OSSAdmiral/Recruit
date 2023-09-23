@@ -11,11 +11,13 @@ use Filament\Notifications\Notification;
 use Filament\Resources\RelationManagers\RelationGroup;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\IconPosition;
+use Filament\Support\Enums\IconSize;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use STS\FilamentImpersonate\Tables\Actions\Impersonate;
 use Tapp\FilamentAuthenticationLog\RelationManagers\AuthenticationLogsRelationManager;
 
 class UserResource extends Resource
@@ -54,16 +56,19 @@ class UserResource extends Resource
                             ->required()
                             ->placeholder('John Doe'),
                         Forms\Components\TextInput::make('email')
+                            ->unique()
                             ->required()
                             ->email(),
                         Forms\Components\Select::make('roles')
                             ->preload()
                             ->relationship('roles', 'name'),
                         Forms\Components\TextInput::make('password')
+                            ->length(8)
                             ->required()
                             ->confirmed()
                             ->password(),
                         Forms\Components\TextInput::make('password_confirmation')
+                            ->length(8)
                             ->required()
                             ->password(),
                     ])
@@ -106,6 +111,12 @@ class UserResource extends Resource
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
+                Impersonate::make()
+                    ->color('danger')
+                    ->link()
+                    ->iconSize(IconSize::Small)
+                    ->label('Login as')
+                    ->icon('fas-user-secret'),
                 Tables\Actions\ViewAction::make()
                     ->url(fn (Model $record) => $record->id === auth()->id() ? Profile::getUrl() : UserResource::getUrl('view', ['record' => $record])),
                 Tables\Actions\EditAction::make()
