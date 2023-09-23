@@ -11,18 +11,20 @@ use Filament\Notifications\Notification;
 use Filament\Resources\RelationManagers\RelationGroup;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\IconPosition;
+use Filament\Support\Enums\IconSize;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use STS\FilamentImpersonate\Tables\Actions\Impersonate;
 use Tapp\FilamentAuthenticationLog\RelationManagers\AuthenticationLogsRelationManager;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = -1;
 
     protected static ?string $navigationGroup = 'Security & Control';
 
@@ -54,13 +56,19 @@ class UserResource extends Resource
                             ->required()
                             ->placeholder('John Doe'),
                         Forms\Components\TextInput::make('email')
+                            ->unique()
                             ->required()
                             ->email(),
+                        Forms\Components\Select::make('roles')
+                            ->preload()
+                            ->relationship('roles', 'name'),
                         Forms\Components\TextInput::make('password')
+                            ->length(8)
                             ->required()
                             ->confirmed()
                             ->password(),
                         Forms\Components\TextInput::make('password_confirmation')
+                            ->length(8)
                             ->required()
                             ->password(),
                     ])
@@ -84,6 +92,9 @@ class UserResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->emptyStateHeading('No other system user.')
+            ->emptyStateIcon('heroicon-o-user-plus')
+            ->emptyStateDescription('Add new user to reflect here.')
             ->columns([
                 Tables\Columns\ImageColumn::make('profile_photo_path')
                     ->label('Profile Photo')
@@ -122,6 +133,15 @@ class UserResource extends Resource
                         return $record->delete();
                     })
                     ->requiresConfirmation(),
+                Impersonate::make()
+                    ->color('warning')
+                    ->hidden(function (Model $record) {
+                        return ! $record->can('User.impersonate');
+                    })
+                    ->link()
+                    ->iconSize(IconSize::Small)
+                    ->label('Impersonate')
+                    ->icon('fas-user-secret'),
             ]);
     }
 
@@ -153,7 +173,7 @@ class UserResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-//            ->where('id', '!=', auth()->user()->id)
+            ->where('id', '!=', auth()->user()->id)
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);

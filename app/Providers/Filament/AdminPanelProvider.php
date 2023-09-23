@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
 use App\Filament\Pages\Profile;
 use Awcodes\FilamentQuickCreate\QuickCreatePlugin;
 use Filament\Http\Middleware\Authenticate;
@@ -70,7 +71,7 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
                 /* Plugin Middleware */
-                SetTheme::class
+                SetTheme::class,
             ])
             ->authMiddleware([
                 Authenticate::class,
@@ -85,6 +86,7 @@ class AdminPanelProvider extends PanelProvider
                     ->excludes([
                         AuthenticationLogResource::class,
                     ]),
+                FilamentSpatieRolesPermissionsPlugin::make(),
             ]);
     }
 }

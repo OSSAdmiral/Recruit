@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Althinect\FilamentSpatieRolesPermissions\Concerns\HasSuperAdmin;
 use App\Traits\HasProfilePhoto;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
@@ -18,7 +19,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser, HasAvatar
 {
-    use AuthenticationLoggable, HasApiTokens, HasFactory, HasProfilePhoto, HasRoles, Notifiable, SoftDeletes;
+    use AuthenticationLoggable, HasApiTokens, HasFactory, HasProfilePhoto, HasRoles, HasSuperAdmin, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -53,6 +54,11 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
     ];
 
     public function canAccessPanel(Panel $panel): bool
+    {
+        return true;
+    }
+
+    public function canImpersonate(): bool
     {
         return true;
     }
