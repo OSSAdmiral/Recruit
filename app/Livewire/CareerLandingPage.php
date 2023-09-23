@@ -26,7 +26,7 @@ class CareerLandingPage extends Component
 
     private static function queryTable(): Builder
     {
-        return JobOpenings::query()->jobStillOpen()->farFromTargetDate()->where('published_career_site', '=', true);
+        return JobOpenings::query()->jobStillOpen()->where('published_career_site', '=', 1);
     }
 
     private function jobTypes(): void
