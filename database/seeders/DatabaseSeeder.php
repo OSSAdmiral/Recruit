@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->command->warn(PHP_EOL.'Creating set of permission for roles...');
         $this->withProgressBar(1, function () {
             Artisan::call('permissions:sync -C -Y');
+
             return [];
         });
         $this->command->info('Sets of permissions has been created.');
@@ -36,6 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->withProgressBar(1, function () {
             $role = Role::create(['name' => 'Super Admin']);
             $role->givePermissionTo(Permission::all());
+
             return [];
         });
         $this->command->info('Super admin role has been created.');
@@ -46,12 +48,12 @@ class DatabaseSeeder extends Seeder
             $role = Role::create(['name' => 'Administrator']);
             $permissions = Permission::query();
             $excludedPermission = ['impersonate'];
-            foreach ($excludedPermission as $value)
-            {
+            foreach ($excludedPermission as $value) {
                 $permissions = $permissions->where('name', 'not like', '%'.$value);
             }
 
             $role->givePermissionTo($permissions->get('name')->toArray());
+
             return [];
         });
         $this->command->info('Admin role has been created.');
@@ -61,13 +63,13 @@ class DatabaseSeeder extends Seeder
         $this->withProgressBar(1, function () {
             $role = Role::create(['name' => 'Standard']);
             $permissions = Permission::query();
-            $excludedPermission = ['delete','impersonate', 'restore'];
-            foreach ($excludedPermission as $value)
-            {
+            $excludedPermission = ['delete', 'impersonate', 'restore'];
+            foreach ($excludedPermission as $value) {
                 $permissions = $permissions->where('name', 'not like', '%'.$value);
             }
 
             $role->givePermissionTo($permissions->get('name')->toArray());
+
             return [];
         });
         $this->command->info('Standard role has been created.');
