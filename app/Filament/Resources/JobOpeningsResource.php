@@ -21,7 +21,6 @@ use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 class JobOpeningsResource extends Resource
@@ -178,10 +177,9 @@ class JobOpeningsResource extends Resource
                         ->label('Unpublished')
                         ->requiresConfirmation()
                         ->deselectRecordsAfterCompletion()
-                        ->action(function(Collection $records){
-                            foreach ($records as $record)
-                            {
-                                $record->published_career_site=0;
+                        ->action(function (Collection $records) {
+                            foreach ($records as $record) {
+                                $record->published_career_site = 0;
                                 $record->save();
                             }
                             Notification::make()
@@ -195,10 +193,9 @@ class JobOpeningsResource extends Resource
                         ->tooltip('Publish this opening job to the career page')
                         ->requiresConfirmation()
                         ->deselectRecordsAfterCompletion()
-                        ->action(function(Collection $records){
-                            foreach ($records as $record)
-                            {
-                                $record->published_career_site=1;
+                        ->action(function (Collection $records) {
+                            foreach ($records as $record) {
+                                $record->published_career_site = 1;
                                 $record->save();
                             }
                             Notification::make()
@@ -220,10 +217,9 @@ class JobOpeningsResource extends Resource
                             ->native(false)
                             ->required(),
                     ])
-                    ->action(function(Collection $records, array $data){
-                        foreach ($records as $record)
-                        {
-                            $record->Status=$data['Status'];
+                    ->action(function (Collection $records, array $data) {
+                        foreach ($records as $record) {
+                            $record->Status = $data['Status'];
                             $record->save();
                         }
                         Notification::make()

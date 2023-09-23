@@ -14,5 +14,4 @@ enum JobOpeningStatus: string implements HasLabel
     {
         return $this->name;
     }
-
 }

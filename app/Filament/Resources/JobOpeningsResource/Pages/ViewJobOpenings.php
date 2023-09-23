@@ -22,8 +22,8 @@ class ViewJobOpenings extends ViewRecord
                 ->icon('heroicon-o-arrow-uturn-up')
                 ->tooltip('Publish this opening job to the career page')
                 ->label('Publish')
-                ->hidden(fn(Model $record) => $record->published_career_site === 1 ?? false)
-                ->action(function (Model $record){
+                ->hidden(fn (Model $record) => $record->published_career_site === 1 ?? false)
+                ->action(function (Model $record) {
                     $record->published_career_site = 1;
                     $record->save();
                     Notification::make()
@@ -37,8 +37,8 @@ class ViewJobOpenings extends ViewRecord
                 ->tooltip('Unpublished this opening job in the career page')
                 ->label('Unpublished')
                 ->requiresConfirmation()
-                ->hidden(fn(Model $record) => $record->published_career_site === 0 ?? false)
-                ->action(function (Model $record){
+                ->hidden(fn (Model $record) => $record->published_career_site === 0 ?? false)
+                ->action(function (Model $record) {
                     $record->published_career_site = 0;
                     $record->save();
                     Notification::make()
