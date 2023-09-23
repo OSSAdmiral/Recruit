@@ -61,9 +61,11 @@ password
 > `Super Admin` - All permission is granted
 > 
 >`Admin` - All permission is granted, but not including the following:
->   - Impersonating the user
+>   - Impersonating user
 > 
-> `Standard` - All permission is granted, but not including the delete permissions.
+> `Standard` - All permission is granted, but not including the following permissions.
+>  - delete
+>  - restore
 
 ## About RecruitLab
 
