@@ -111,12 +111,6 @@ class UserResource extends Resource
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
-                Impersonate::make()
-                    ->color('danger')
-                    ->link()
-                    ->iconSize(IconSize::Small)
-                    ->label('Login as')
-                    ->icon('fas-user-secret'),
                 Tables\Actions\ViewAction::make()
                     ->url(fn (Model $record) => $record->id === auth()->id() ? Profile::getUrl() : UserResource::getUrl('view', ['record' => $record])),
                 Tables\Actions\EditAction::make()
@@ -136,6 +130,15 @@ class UserResource extends Resource
                         return $record->delete();
                     })
                     ->requiresConfirmation(),
+                Impersonate::make()
+                    ->color('warning')
+                    ->hidden(function (Model $record){
+                        return !$record->can('User.impersonate');
+                    })
+                    ->link()
+                    ->iconSize(IconSize::Small)
+                    ->label('Impersonate')
+                    ->icon('fas-user-secret'),
             ]);
     }
 
