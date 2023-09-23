@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Enums\JobOpeningStatus;
 use App\Filament\Resources\JobOpeningsResource\Pages;
 use App\Filament\Resources\JobOpeningsResource\RelationManagers;
 use App\Models\Departments;
@@ -14,11 +15,14 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class JobOpeningsResource extends Resource
 {
@@ -59,10 +63,10 @@ class JobOpeningsResource extends Resource
                             ->displayFormat('m/d/Y')
                             ->required(),
                         Select::make('Status')
-                            ->options(config('recruit.job_opening.status_options'))
+                            ->options(JobOpeningStatus::class)
                             ->hiddenOn('create')
                             ->native(false)
-                            ->default('new')
+                            ->default('New')
                             ->required(),
                         TextInput::make('Salary')
                             ->numeric(),
@@ -158,12 +162,76 @@ class JobOpeningsResource extends Resource
                     ->boolean()
                     ->trueIcon('heroicon-o-check-badge'),
             ])->emptyStateActions([
-                Tables\Actions\CreateAction::make(),
+                Tables\Actions\CreateAction::make()
+                    ->icon('heroicon-m-plus-small'),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\BulkAction::make('unpublished')
+                        ->tooltip('Unpublished this opening job in the career page')
+                        ->icon('heroicon-o-arrow-uturn-left')
+                        ->label('Unpublished')
+                        ->requiresConfirmation()
+                        ->deselectRecordsAfterCompletion()
+                        ->action(function(Collection $records){
+                            foreach ($records as $record)
+                            {
+                                $record->published_career_site=0;
+                                $record->save();
+                            }
+                            Notification::make()
+                                ->body('Job Opening has been unpublished.')
+                                ->success()
+                                ->send();
+                        }),
+                    Tables\Actions\BulkAction::make('published')
+                        ->label('Publish')
+                        ->icon('heroicon-o-arrow-uturn-up')
+                        ->tooltip('Publish this opening job to the career page')
+                        ->requiresConfirmation()
+                        ->deselectRecordsAfterCompletion()
+                        ->action(function(Collection $records){
+                            foreach ($records as $record)
+                            {
+                                $record->published_career_site=1;
+                                $record->save();
+                            }
+                            Notification::make()
+                                ->body('Job Opening has been published.')
+                                ->success()
+                                ->send();
+                        }),
+                ])
+                    ->icon('heroicon-o-globe-alt')
+                    ->label('Publish/Unpublished'),
+                Tables\Actions\BulkAction::make('change_status')
+                    ->label('Update Status')
+                    ->icon('heroicon-o-pencil-square')
+                    ->requiresConfirmation()
+                    ->deselectRecordsAfterCompletion()
+                    ->form([
+                        Select::make('Status')
+                            ->options(JobOpeningStatus::class)
+                            ->native(false)
+                            ->required(),
+                    ])
+                    ->action(function(Collection $records, array $data){
+                        foreach ($records as $record)
+                        {
+                            $record->Status=$data['Status'];
+                            $record->save();
+                        }
+                        Notification::make()
+                            ->body("Job Opening status has been successfully updated to {$data['Status']}.")
+                            ->success()
+                            ->send();
+                    }),
+
             ]);
     }
 
