@@ -110,7 +110,7 @@ return [
          */
         'custom_permissions' => [
             //'view-log'
-            'impersonate',
+            'User.impersonate',
         ],
 
         'user_model' => \App\Models\User::class,
