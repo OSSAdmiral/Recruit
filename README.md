@@ -56,6 +56,15 @@ superuser@mail.com
 password
 ```
 
+> **Notes For Roles**
+> 
+> `Super Admin` - All permission is granted
+> 
+>`Admin` - All permission is granted, but not including the following:
+>   - Impersonating the user
+> 
+> `Standard` - All permission is granted, but not including the delete permissions.
+
 ## About RecruitLab
 
 RecruitLab is a web application System with rich feature.
