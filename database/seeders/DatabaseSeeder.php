@@ -26,20 +26,51 @@ class DatabaseSeeder extends Seeder
         $this->command->warn(PHP_EOL.'Creating set of permission for roles...');
         $this->withProgressBar(1, function () {
             Artisan::call('permissions:sync -C -Y');
-
             return [];
         });
         $this->command->info('Sets of permissions has been created.');
 
         // Roles
+        /* Super Administrator Role */
         $this->command->warn(PHP_EOL.'Creating super admin role...');
         $this->withProgressBar(1, function () {
             $role = Role::create(['name' => 'Super Admin']);
             $role->givePermissionTo(Permission::all());
-
             return [];
         });
         $this->command->info('Super admin role has been created.');
+
+        /* Administrator Role */
+        $this->command->warn(PHP_EOL.'Creating admin role...');
+        $this->withProgressBar(1, function () {
+            $role = Role::create(['name' => 'Administrator']);
+            $permissions = Permission::query();
+            $excludedPermission = ['impersonate'];
+            foreach ($excludedPermission as $value)
+            {
+                $permissions = $permissions->where('name', 'not like', '%'.$value);
+            }
+
+            $role->givePermissionTo($permissions->get('name')->toArray());
+            return [];
+        });
+        $this->command->info('Admin role has been created.');
+
+        /* Standard Role */
+        $this->command->warn(PHP_EOL.'Creating standard role...');
+        $this->withProgressBar(1, function () {
+            $role = Role::create(['name' => 'Standard']);
+            $permissions = Permission::query();
+            $excludedPermission = ['delete','impersonate', 'restore'];
+            foreach ($excludedPermission as $value)
+            {
+                $permissions = $permissions->where('name', 'not like', '%'.$value);
+            }
+
+            $role->givePermissionTo($permissions->get('name')->toArray());
+            return [];
+        });
+        $this->command->info('Standard role has been created.');
 
         // Admin
         $this->command->warn(PHP_EOL.'Creating admin user...');
@@ -51,14 +82,14 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Admin user created.');
 
         // Assigning Role to Admin
-        $this->command->warn(PHP_EOL.'Assigning admin role to user...');
+        $this->command->warn(PHP_EOL.'Assigning super admin role to user...');
         $this->withProgressBar(1, function () use ($user_admin) {
             $user_admin->random(1)
                 ->first()->assignRole('Super Admin');
 
             return [];
         });
-        $this->command->info('Admin role assigned.');
+        $this->command->info('Super Admin role assigned.');
 
         // Departments
         $this->command->warn(PHP_EOL.'Creating Departments...');
