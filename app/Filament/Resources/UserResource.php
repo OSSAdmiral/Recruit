@@ -132,8 +132,8 @@ class UserResource extends Resource
                     ->requiresConfirmation(),
                 Impersonate::make()
                     ->color('warning')
-                    ->hidden(function (Model $record){
-                        return !$record->can('User.impersonate');
+                    ->hidden(function (Model $record) {
+                        return ! $record->can('User.impersonate');
                     })
                     ->link()
                     ->iconSize(IconSize::Small)
