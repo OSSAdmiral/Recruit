@@ -92,6 +92,9 @@ class UserResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->emptyStateHeading('No other system user.')
+            ->emptyStateIcon('heroicon-o-user-plus')
+            ->emptyStateDescription('Add new user to reflect here.')
             ->columns([
                 Tables\Columns\ImageColumn::make('profile_photo_path')
                     ->label('Profile Photo')
@@ -170,7 +173,7 @@ class UserResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-//            ->where('id', '!=', auth()->user()->id)
+            ->where('id', '!=', auth()->user()->id)
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
