@@ -25,6 +25,12 @@ class CandidatePanelProvider extends PanelProvider
         return $panel
             ->id('candidate')
             ->path('candidate')
+            ->authGuard('candidate_web')
+            ->authPasswordBroker('candidate_users')
+            ->registration()
+            ->passwordReset()
+            ->emailVerification()
+            ->login()
             ->emailVerification()
             ->colors([
                 'primary' => Color::Amber,
