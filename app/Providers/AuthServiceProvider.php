@@ -28,18 +28,18 @@ class AuthServiceProvider extends ServiceProvider
     {
         //
         /* Bypass Policy for Candidate Portal User */
-        if(Auth::guard('candidate_web')->check())
-        {
-            Gate::before(function (?CandidateUser $user){
-                ddd($user);
-            });
-        }
+
+        Gate::before(function ($user, $ability, $model){
+           if(\auth()->guard('candidate_web')->check()){
+               return true;
+           }
+           return null;
+        });
 
 
-
-       /* Gate::before(function (User $user, string $ability) {
+        Gate::before(function (User $user, string $ability) {
             return $user->isSuperAdmin() ? true : null;
-        });*/
+        });
 
 
     }
