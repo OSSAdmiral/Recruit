@@ -3,11 +3,8 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
-use App\Models\CandidateUser;
 use App\Models\User;
-use Illuminate\Auth\SessionGuard;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
@@ -29,18 +26,17 @@ class AuthServiceProvider extends ServiceProvider
         //
         /* Bypass Policy for Candidate Portal User */
 
-        Gate::before(function ($user, $ability, $model){
-           if(\auth()->guard('candidate_web')->check()){
-               return true;
-           }
-           return null;
-        });
+        Gate::before(function ($user, $ability, $model) {
+            if (\auth()->guard('candidate_web')->check()) {
+                return true;
+            }
 
+            return null;
+        });
 
         Gate::before(function (User $user, string $ability) {
             return $user->isSuperAdmin() ? true : null;
         });
-
 
     }
 }
