@@ -42,8 +42,7 @@ class CandidatePanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Candidate/Widgets'), for: 'App\\Filament\\Candidate\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                Widgets\AccountWidget::class
             ])
             ->middleware([
                 EncryptCookies::class,
