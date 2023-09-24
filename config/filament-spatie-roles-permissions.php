@@ -21,7 +21,7 @@ return [
     'guard_names' => [
         'web' => 'web',
         'api' => 'api',
-        'candidate_web'
+        'candidate_web',
     ],
 
     'toggleable_guard_names' => [
@@ -40,7 +40,7 @@ return [
     'generator' => [
 
         'guard_names' => [
-            'web'
+            'web',
         ],
 
         'permission_affixes' => [
