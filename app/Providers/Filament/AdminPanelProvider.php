@@ -39,6 +39,8 @@ class AdminPanelProvider extends PanelProvider
             ->id('recruit')
             ->path('')
             ->passwordReset()
+            ->authGuard('web')
+            ->authPasswordBroker('users')
             ->emailVerification()
             ->login()
             ->colors([
