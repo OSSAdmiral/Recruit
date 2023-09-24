@@ -3,16 +3,12 @@
 namespace App\Filament\Candidate\Resources;
 
 use App\Filament\Candidate\Resources\JobOpeningsResource\Pages;
-use App\Filament\Candidate\Resources\JobOpeningsResource\RelationManagers;
 use App\Models\JobOpenings;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Support\Enums\Alignment;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class JobOpeningsResource extends Resource
 {
