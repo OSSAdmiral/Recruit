@@ -25,8 +25,7 @@ class CareerLandingPage extends Component
         $this->jobsList = static::queryTable()->count() <= 0 ? [] : static::queryTable()->get()->toArray();
         static::jobTypes();
 
-        if(session()->has('password_hash_candidate_web'))
-        {
+        if (session()->has('password_hash_candidate_web')) {
             Notification::make()
                 ->body('Login to your candidate portal for applying to experience 5sec job apply.')
                 ->icon('heroicon-o-exclamation-triangle')
@@ -35,7 +34,7 @@ class CareerLandingPage extends Component
                         ->color('success')
                         ->label('Redirect to my Portal')
                         ->url(filament()->getPanel('candidate')->getLoginUrl())
-                        ->button()
+                        ->button(),
                 ])
                 ->warning()
                 ->send();

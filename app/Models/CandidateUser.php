@@ -10,10 +10,9 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 
-
 class CandidateUser extends Authenticatable implements FilamentUser
 {
-    use HasFactory, Notifiable, HasApiTokens, AuthenticationLoggable;
+    use AuthenticationLoggable, HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
         'name',

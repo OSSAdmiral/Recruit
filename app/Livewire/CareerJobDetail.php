@@ -20,8 +20,7 @@ class CareerJobDetail extends Component
         $this->referenceNumber = $jobReferenceNumber;
         $this->jobOpeningDetails($jobReferenceNumber);
 
-        if(session()->has('password_hash_candidate_web'))
-        {
+        if (session()->has('password_hash_candidate_web')) {
             Notification::make()
                 ->body('Login to your candidate portal for applying to experience 5sec job apply.')
                 ->icon('heroicon-o-exclamation-triangle')
@@ -30,7 +29,7 @@ class CareerJobDetail extends Component
                         ->color('success')
                         ->label('Redirect to my Portal')
                         ->url(filament()->getPanel('candidate')->getLoginUrl())
-                        ->button()
+                        ->button(),
                 ])
                 ->warning()
                 ->send();
