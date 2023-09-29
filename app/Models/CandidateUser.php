@@ -55,17 +55,11 @@ class CandidateUser extends Model implements AuthenticatableContract, Authorizab
         'password' => 'hashed',
     ];
 
-    /**
-     * @return HasMany
-     */
-    public function mySavedJob(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function mySavedJob(): HasMany
     {
         return $this->hasMany(SavedJob::class, 'record_owner', 'id');
     }
 
-    /**
-     * @return HasMany
-     */
     public function myAppliedJobs(): HasMany
     {
         return $this->hasMany(JobCandidates::class, 'Email', $this->email);

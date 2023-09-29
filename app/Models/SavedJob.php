@@ -15,10 +15,7 @@ class SavedJob extends Model
         'record_owner',
     ];
 
-    /**
-     * @return BelongsTo
-     */
-    public function mySavedJob(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function mySavedJob(): BelongsTo
     {
         return $this->belongsTo(CandidateUser::class, 'record_owner', 'id');
     }
