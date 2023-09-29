@@ -3,7 +3,6 @@
 namespace App\Filament\Candidate\Resources\JobOpeningsResource\Pages;
 
 use App\Filament\Candidate\Resources\JobOpeningsResource;
-use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
 class ListJobOpenings extends ListRecords
