@@ -6,6 +6,7 @@ use App\Filament\Candidate\Resources\JobOpeningsResource\Pages;
 use App\Filament\Candidate\Resources\JobOpeningsResource\RelationManagers;
 use App\Models\JobOpenings;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Support\Enums\Alignment;
@@ -13,6 +14,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\HtmlString;
 
 class JobOpeningsResource extends Resource
 {
@@ -24,7 +26,25 @@ class JobOpeningsResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('JobTitle')
+                    ->maxLength(225)
+                    ->required(),
+                Forms\Components\TextInput::make('Salary'),
+                Forms\Components\Checkbox::make('RemoteJob')
+                    ->inline(false)
+                    ->default(false),
+                Forms\Components\Section::make('Description Information')
+                    ->id('job-opening-description-information')
+                    ->icon('heroicon-o-briefcase')
+                    ->label('Description Information')
+                    ->schema([
+                        Forms\Components\RichEditor::make('JobDescription')
+                            ->label('Job Description'),
+                        Forms\Components\RichEditor::make('JobRequirement')
+                            ->label('Requirements'),
+                        Forms\Components\RichEditor::make('JobBenefits')
+                            ->label('Benefits'),
+                    ])
             ]);
     }
 
@@ -44,7 +64,7 @@ class JobOpeningsResource extends Resource
                     ->label('Type'),
                 Tables\Columns\TextColumn::make('JobDescription')
                     ->label('Description')
-                    ->limit(),
+                    ->limit(length: 50),
             ])
             ->filters([
                 //
