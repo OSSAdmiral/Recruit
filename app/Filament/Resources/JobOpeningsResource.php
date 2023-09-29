@@ -67,8 +67,7 @@ class JobOpeningsResource extends Resource
                             ->native(false)
                             ->default('New')
                             ->required(),
-                        TextInput::make('Salary')
-                            ->numeric(),
+                        TextInput::make('Salary'),
                         Select::make('Department')
                             ->options(Departments::all()->pluck('DepartmentName', 'id'))
                             ->required(),
