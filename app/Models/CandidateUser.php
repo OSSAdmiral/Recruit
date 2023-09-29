@@ -12,6 +12,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -53,6 +54,22 @@ class CandidateUser extends Model implements AuthenticatableContract, Authorizab
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * @return HasMany
+     */
+    public function mySavedJob(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(SavedJob::class, 'record_owner', 'id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function myAppliedJobs(): HasMany
+    {
+        return $this->hasMany(JobCandidates::class, 'Email', $this->email);
+    }
 
     public function canAccessPanel(Panel $panel): bool
     {
