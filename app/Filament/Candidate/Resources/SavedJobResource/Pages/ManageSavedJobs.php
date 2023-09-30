@@ -3,7 +3,6 @@
 namespace App\Filament\Candidate\Resources\SavedJobResource\Pages;
 
 use App\Filament\Candidate\Resources\SavedJobResource;
-use Filament\Actions;
 use Filament\Resources\Pages\ManageRecords;
 
 class ManageSavedJobs extends ManageRecords
@@ -15,6 +14,4 @@ class ManageSavedJobs extends ManageRecords
         return [
         ];
     }
-
-
 }

@@ -3,7 +3,6 @@
 namespace App\Filament\Candidate\Resources;
 
 use App\Filament\Candidate\Resources\SavedJobResource\Pages;
-use App\Filament\Candidate\Resources\SavedJobResource\RelationManagers;
 use App\Models\SavedJob;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -11,14 +10,12 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Livewire\Component;
 
 class SavedJobResource extends Resource
 {
     protected static ?string $model = SavedJob::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-heart';
-
 
     public static function form(Form $form): Form
     {
@@ -77,7 +74,7 @@ class SavedJobResource extends Resource
             ])
             ->actions([
                 Tables\Actions\Action::make('view')
-                    ->url(fn(SavedJob $record) => JobOpeningsResource::getUrl('view', ['record' => $record->id])),
+                    ->url(fn (SavedJob $record) => JobOpeningsResource::getUrl('view', ['record' => $record->id])),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
