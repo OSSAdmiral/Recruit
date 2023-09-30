@@ -2,30 +2,37 @@
 
 namespace App\Filament\Candidate\Resources;
 
-use App\Filament\Candidate\Resources\JobOpeningsResource\Pages;
-use App\Models\JobOpenings;
+use App\Filament\Candidate\Resources\SavedJobResource\Pages;
+use App\Filament\Candidate\Resources\SavedJobResource\RelationManagers;
+use App\Models\SavedJob;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Livewire\Component;
 
-class JobOpeningsResource extends Resource
+class SavedJobResource extends Resource
 {
-    protected static ?string $model = JobOpenings::class;
+    protected static ?string $model = SavedJob::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-briefcase';
+    protected static ?string $navigationIcon = 'heroicon-o-heart';
+
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('JobTitle')
+                /*Forms\Components\TextInput::make('JobTitle')
+                    ->rela
+                    ->label('Job Title')
                     ->maxLength(225)
                     ->required(),
-                Forms\Components\TextInput::make('Salary'),
+                Forms\Components\TextInput::make('Salary')
+                    ->label('Salary'),
                 Forms\Components\Checkbox::make('RemoteJob')
+                    ->label('Remote')
                     ->inline(false)
                     ->default(false),
                 Forms\Components\Section::make('Description Information')
@@ -39,7 +46,7 @@ class JobOpeningsResource extends Resource
                             ->label('Requirements'),
                         Forms\Components\RichEditor::make('JobBenefits')
                             ->label('Benefits'),
-                    ]),
+                    ]),*/
             ]);
     }
 
@@ -47,17 +54,21 @@ class JobOpeningsResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('JobTitle')
+                Tables\Columns\TextColumn::make('jobOpening.JobTitle')
                     ->searchable()
                     ->label('Job Title'),
-                Tables\Columns\TextColumn::make('Salary')
+                Tables\Columns\TextColumn::make('jobOpening.Salary')
                     ->label('Salary'),
-                Tables\Columns\IconColumn::make('RemoteJob')
+                Tables\Columns\IconColumn::make('jobOpening.RemoteJob')
+                    ->label('Remote')
                     ->searchable()
                     ->boolean(),
-                Tables\Columns\TextColumn::make('JobType')
+                Tables\Columns\TextColumn::make('jobOpening.JobType')
+                    ->toggleable()
+                    ->searchable()
                     ->label('Type'),
-                Tables\Columns\TextColumn::make('JobDescription')
+                Tables\Columns\TextColumn::make('jobOpening.JobDescription')
+                    ->toggleable()
                     ->label('Description')
                     ->limit(length: 50),
             ])
@@ -65,29 +76,28 @@ class JobOpeningsResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-            ], position: Tables\Enums\ActionsPosition::BeforeCells);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
+                Tables\Actions\Action::make('view')
+                    ->url(fn(SavedJob $record) => JobOpeningsResource::getUrl('view', ['record' => $record->id])),
+                Tables\Actions\DeleteAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
+            ]);
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListJobOpenings::route('/'),
-            'view' => Pages\ViewJobOpenings::route('/{record}'),
+            'index' => Pages\ManageSavedJobs::route('/'),
         ];
     }
 
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-            ->jobStillOpen()
-            ->where('published_career_site', '=', 1);
+            ->where('record_owner', '=', auth()->id());
+
     }
 }
