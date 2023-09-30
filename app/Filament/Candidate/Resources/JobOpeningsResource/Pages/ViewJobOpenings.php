@@ -36,10 +36,10 @@ class ViewJobOpenings extends ViewRecord
     {
         $id = $this->record->id;
         // check if the job is already saved before or not
-        if (SavedJob::whereJobopening($id)->count() <= 0) {
+        if (SavedJob::whereJob($id)->count() <= 0) {
             // Save the Job
             SavedJob::create([
-                'jobopening' => $id,
+                'job' => $id,
                 'record_owner' => auth()->id(),
             ])->save();
         }

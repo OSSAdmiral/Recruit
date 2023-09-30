@@ -11,12 +11,17 @@ class SavedJob extends Model
     use HasFactory;
 
     protected $fillable = [
-        'jobopening',
+        'job',
         'record_owner',
     ];
 
-    public function mySavedJob(): BelongsTo
+    public function saveJobRecordOwner(): BelongsTo
     {
         return $this->belongsTo(CandidateUser::class, 'record_owner', 'id');
+    }
+
+    public function jobOpening(): BelongsTo
+    {
+        return $this->belongsTo(JobOpenings::class, 'job', 'id');
     }
 }

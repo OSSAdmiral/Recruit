@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('saved_jobs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('jobopening');
-            $table->foreignId('record_owner');
+            $table->unsignedBigInteger('job');
+            $table->unsignedBigInteger('record_owner');
             $table->timestamps();
         });
     }
