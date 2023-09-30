@@ -32,8 +32,9 @@ class CandidatePanelProvider extends PanelProvider
             ->emailVerification()
             ->login()
             ->emailVerification()
+            ->maxContentWidth('full')
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Gray,
             ])
             ->discoverResources(in: app_path('Filament/Candidate/Resources'), for: 'App\\Filament\\Candidate\\Resources')
             ->discoverPages(in: app_path('Filament/Candidate/Pages'), for: 'App\\Filament\\Candidate\\Pages')
