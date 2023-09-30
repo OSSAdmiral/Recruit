@@ -10,6 +10,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 class SavedJobResource extends Resource
 {
@@ -74,7 +75,7 @@ class SavedJobResource extends Resource
             ])
             ->actions([
                 Tables\Actions\Action::make('view')
-                    ->url(fn (SavedJob $record) => JobOpeningsResource::getUrl('view', ['record' => $record->id])),
+                    ->url(fn (SavedJob $record) => JobOpeningsResource::getUrl('view', ['record' => $record->jobOpening()->find($record->job)])),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
