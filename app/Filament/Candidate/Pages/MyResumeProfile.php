@@ -16,7 +16,6 @@ class MyResumeProfile extends Page
 
     protected static string $view = 'filament.candidate.pages.my-resume-profile';
 
-
     public function form(Form $form): Form
     {
         return $form
@@ -54,9 +53,8 @@ class MyResumeProfile extends Page
                                 // ...
                             ]),
 
-                    ])
+                    ]),
             ])
             ->statePath('data');
     }
-
 }
