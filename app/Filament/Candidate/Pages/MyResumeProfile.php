@@ -2,13 +2,11 @@
 
 namespace App\Filament\Candidate\Pages;
 
-use App\Models\Candidates;
-use Filament\Forms\Components\Tabs;
 use Filament\Forms;
+use Filament\Forms\Components\Tabs;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use Filament\Support\RawJs;
 use Illuminate\Support\Carbon;
 
 class MyResumeProfile extends Page
@@ -20,7 +18,6 @@ class MyResumeProfile extends Page
     protected static ?int $navigationSort = 3;
 
     protected static string $view = 'filament.candidate.pages.my-resume-profile';
-
 
     public function updateRecord(): void
     {
