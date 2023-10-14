@@ -1,5 +1,5 @@
 <x-filament-panels::page>
-    <form wire:submit="create">
+    <form wire:submit="updateRecord">
         {{ $this->form }}
 
 
@@ -10,6 +10,7 @@
                 icon-position="before"
                 iconSize="sm"
                 type="submit"
+                wire:target="updateRecord"
             >
                 Update
             </x-filament::button>
