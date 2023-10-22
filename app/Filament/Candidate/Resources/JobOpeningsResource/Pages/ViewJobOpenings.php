@@ -21,9 +21,10 @@ class ViewJobOpenings extends ViewRecord
         return [
 
             Action::make('save_job')
-                ->icon(function() {
+                ->icon(function () {
                     $existing = SavedJob::whereJob($this->record->id)->get()->count();
-                    return $existing === 0 ? 'heroicon-o-heart': 'heroicon-s-heart';
+
+                    return $existing === 0 ? 'heroicon-o-heart' : 'heroicon-s-heart';
                 })
                 ->color(Color::Red)
                 ->label('Save Job')
@@ -33,12 +34,12 @@ class ViewJobOpenings extends ViewRecord
                 ->icon('heroicon-o-briefcase')
                 ->color(Color::Green)
                 ->requiresConfirmation()
-                ->modalDescription(function(){
+                ->modalDescription(function () {
                     return new HtmlString('Are you sure you want to send your Resume without updating your resume?'.
                         '<br><br><i style="color: indianred">Note: You cannot update your submitted resume to the Job you applied.</i>');
 
                 })
-                ->modalCancelAction(function (){
+                ->modalCancelAction(function () {
                     return Action::make('Update Resume')
                         ->color(Color::Teal)
                         ->url(MyResumeProfile::getUrl());

@@ -3,9 +3,8 @@
 namespace App\Filament\Candidate\Pages;
 
 use App\Models\Candidates;
-use Eloquent;
-use Filament\Forms\Components\Tabs;
 use Filament\Forms;
+use Filament\Forms\Components\Tabs;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
@@ -26,9 +25,9 @@ class MyResumeProfile extends Page
 
     public function mount(): void
     {
-        $this->data =[
+        $this->data = [
             'Email' => $this->getResumeProfile()->count() === 0 ? auth()->user()->email : $this->getResumeProfile()->toArray()['Email'],
-            ...$this->getResumeProfile()->toArray()
+            ...$this->getResumeProfile()->toArray(),
         ];
 
         $this->form->fill($this->data);
@@ -37,7 +36,7 @@ class MyResumeProfile extends Page
     protected function getResumeProfile(): Collection
     {
         // Key matching using the login email address
-         return Candidates::where('Email', '=', auth()->user()->email)->get();
+        return Candidates::where('Email', '=', auth()->user()->email)->get();
     }
 
     public function updateRecord(): void
