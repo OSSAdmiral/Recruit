@@ -1,5 +1,5 @@
 :construction: This project is under hard development and not yet ready for production :construction:
-<p align="center"><img src="https://github.com/RecruitLab/.github/assets/18107626/7ecd02ac-d48e-4710-8f15-c419b9802ba9" width="400" alt="Laravel Logo"></p>
+<p align="center"><img src="https://github.com/OSSAdmiral/.github/blob/c325ef79481c1b02d675f71247d4f8131d0496fa/Profile/Admiral%20(OSS)%20%20743x360.png" width="400" alt="Admiral OSS"></p>
 
 [![Laravel](https://img.shields.io/badge/Laravel-v10-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://img.shields.io/badge/Laravel-v10-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 [![PHP](https://img.shields.io/badge/PHP-v8.1-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://img.shields.io/badge/PHP-v8.1-777BB4?style=for-the-badge&logo=php&logoColor=white)
