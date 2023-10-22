@@ -2,6 +2,7 @@
 
 namespace App\Filament\Candidate\Resources\JobOpeningsResource\Pages;
 
+use App\Filament\Candidate\Pages\MyResumeProfile;
 use App\Filament\Candidate\Resources\JobOpeningsResource;
 use App\Models\CandidateUser;
 use App\Models\SavedJob;
@@ -9,6 +10,7 @@ use Filament\Actions\Action;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Support\Colors\Color;
+use Illuminate\Support\HtmlString;
 
 class ViewJobOpenings extends ViewRecord
 {
@@ -19,7 +21,10 @@ class ViewJobOpenings extends ViewRecord
         return [
 
             Action::make('save_job')
-                ->icon('heroicon-o-heart')
+                ->icon(function() {
+                    $existing = SavedJob::whereJob($this->record->id)->get()->count();
+                    return $existing === 0 ? 'heroicon-o-heart': 'heroicon-s-heart';
+                })
                 ->color(Color::Red)
                 ->label('Save Job')
                 ->action(fn () => $this->saveJob()),
@@ -27,6 +32,18 @@ class ViewJobOpenings extends ViewRecord
                 ->label('Apply Job')
                 ->icon('heroicon-o-briefcase')
                 ->color(Color::Green)
+                ->requiresConfirmation()
+                ->modalDescription(function(){
+                    return new HtmlString('Are you sure you want to send your Resume without updating your resume?'.
+                        '<br><br><i style="color: indianred">Note: You cannot update your submitted resume to the Job you applied.</i>');
+
+                })
+                ->modalCancelAction(function (){
+                    return Action::make('Update Resume')
+                        ->color(Color::Teal)
+                        ->url(MyResumeProfile::getUrl());
+                })
+                ->modalCancelActionLabel('Update Resume')
                 ->action(fn () => $this->applyJob()),
 
         ];
