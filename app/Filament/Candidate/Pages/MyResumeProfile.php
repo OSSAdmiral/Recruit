@@ -2,11 +2,14 @@
 
 namespace App\Filament\Candidate\Pages;
 
-use Filament\Forms;
+use App\Models\Candidates;
+use Eloquent;
 use Filament\Forms\Components\Tabs;
+use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Carbon;
 
 class MyResumeProfile extends Page
@@ -19,8 +22,30 @@ class MyResumeProfile extends Page
 
     protected static string $view = 'filament.candidate.pages.my-resume-profile';
 
+    public ?array $data = [];
+
+    public function mount(): void
+    {
+        $this->data =[
+            'Email' => $this->getResumeProfile()->count() === 0 ? auth()->user()->email : $this->getResumeProfile()->toArray()['Email'],
+            ...$this->getResumeProfile()->toArray()
+        ];
+
+        $this->form->fill($this->data);
+    }
+
+    protected function getResumeProfile(): Collection
+    {
+        // Key matching using the login email address
+         return Candidates::where('Email', '=', auth()->user()->email)->get();
+    }
+
     public function updateRecord(): void
     {
+        // validate form and its data
+        $this->form->getState();
+        // update or create new record
+        Candidates::upsert($this->data, ['Email']);
         Notification::make()
             ->title('Profile information updated')
             ->success()
@@ -39,13 +64,17 @@ class MyResumeProfile extends Page
                             ->columns(2)
                             ->schema([
                                 Forms\Components\TextInput::make('FirstName')
+                                    ->required()
                                     ->label('First Name'),
                                 Forms\Components\TextInput::make('LastName')
+                                    ->required()
                                     ->label('Last Name'),
                                 Forms\Components\TextInput::make('Mobile')
                                     ->label('Mobile')
+                                    ->required()
                                     ->tel(),
                                 Forms\Components\TextInput::make('Email')
+                                    ->disabled()
                                     ->required(),
                                 Forms\Components\Select::make('ExperienceInYears')
                                     ->label('Experience In Years')
