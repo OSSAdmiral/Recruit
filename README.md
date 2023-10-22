@@ -67,17 +67,17 @@ password
 >  - delete
 >  - restore
 
-## About RecruitLab
+## About OSSAdmiral-Recruit
 
-RecruitLab is a web application System with rich feature.
+OSSAdmiral-Recruit is a web application System with rich feature.
 
 ## Contributing
 
-Thank you for considering contributing to the RecruitLab-Recruit.
+Thank you for considering contributing to the OSSAdmiral-Recruit.
 
 ## Code of Conduct
 
-In order to ensure that the RecruitLab community is welcoming to all, please review and abide by the [Code of Conduct](#).
+In order to ensure that the OSSAdmiral community is welcoming to all, please review and abide by the [Code of Conduct](#).
 
 ## Security Vulnerabilities
 
