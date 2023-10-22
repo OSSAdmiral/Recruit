@@ -85,4 +85,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail u
 
 ## License
 
-The RecruitLab-Recruit  is open-sourced software licensed under the [GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/).
+The OSSAdmiral-Recruit  is open-sourced software licensed under the [GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/).
