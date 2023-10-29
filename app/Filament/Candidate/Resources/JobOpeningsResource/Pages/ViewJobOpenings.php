@@ -4,6 +4,7 @@ namespace App\Filament\Candidate\Resources\JobOpeningsResource\Pages;
 
 use App\Filament\Candidate\Pages\MyResumeProfile;
 use App\Filament\Candidate\Resources\JobOpeningsResource;
+use App\Filament\Enums\JobCandidateStatus;
 use App\Models\Candidates;
 use App\Models\CandidateUser;
 use App\Models\JobCandidates;
@@ -126,8 +127,19 @@ class ViewJobOpenings extends ViewRecord
                     'candidate' => $this->getMyCandidateProfile()->toArray()[0]['id'],
                     'mobile' => $this->getMyCandidateProfile()->toArray()[0]['Mobile'],
                     'Email' => $this->getMyCandidateProfile()->toArray()[0]['Email'],
-
-
+                    'ExperienceInYears' =>$this->getMyCandidateProfile()->toArray()[0]['ExperienceInYears'],
+                    'ExpectedSalary' =>$this->getMyCandidateProfile()->toArray()[0]['ExpectedSalary'],
+                    'HighestQualificationHeld' => $this->getMyCandidateProfile()->toArray()[0]['HighestQualificationHeld'],
+                    'CurrentEmployer' =>  $this->getMyCandidateProfile()->toArray()[0]['CurrentEmployer'],
+                    'CurrentJobTitle' =>  $this->getMyCandidateProfile()->toArray()[0]['CurrentJobTitle'],
+                    'CurrentSalary' =>  $this->getMyCandidateProfile()->toArray()[0]['CurrentSalary'],
+                    'CandidateStatus' =>  JobCandidateStatus::New,
+                    'SkillSet' =>  $this->getMyCandidateProfile()->toArray()[0]['SkillSet'],
+                    'Street' => $this->getMyCandidateProfile()->toArray()[0]['Street'],
+                    'City' => $this->getMyCandidateProfile()->toArray()[0]['City'],
+                    'Country' => $this->getMyCandidateProfile()->toArray()[0]['Country'],
+                    'ZipCode' => $this->getMyCandidateProfile()->toArray()[0]['ZipCode'],
+                    'State' => $this->getMyCandidateProfile()->toArray()[0]['State'],
                 ]);
                 Notifications\Notification::make()
                     ->color(Color::Green)
