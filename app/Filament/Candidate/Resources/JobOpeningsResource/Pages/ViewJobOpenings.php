@@ -138,8 +138,6 @@ class ViewJobOpenings extends ViewRecord
                     ->send();
             }
 
-
-
         }
 
     }
