@@ -12,7 +12,6 @@ use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Support\RawJs;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -113,7 +112,7 @@ class JobCandidatesResource extends Resource
                     Forms\Components\TextInput::make('CurrentJobTitle')
                         ->label('Current Job Title'),
                     Forms\Components\TextInput::make('CurrentSalary')
-                        ->label('Current Salary')
+                        ->label('Current Salary'),
                 ])->columns(2),
         ];
     }
