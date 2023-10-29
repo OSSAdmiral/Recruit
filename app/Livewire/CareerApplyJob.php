@@ -87,7 +87,7 @@ class CareerApplyJob extends Component implements HasActions, HasForms
         // Job Candidates
         $job_candidates = JobCandidates::create([
             'JobId' => $this->record->id,
-            'CandidateSource' => 'Career Portal',
+            'CandidateSource' => 'Career Page',
             'CandidateStatus' => JobCandidateStatus::New,
             'candidate' => $candidate->id,
             'mobile' => $data['mobile'],
