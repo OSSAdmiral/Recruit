@@ -6,7 +6,9 @@ use App\Filament\Candidate\Pages\MyResumeProfile;
 use App\Filament\Candidate\Resources\JobOpeningsResource;
 use App\Models\Candidates;
 use App\Models\CandidateUser;
+use App\Models\JobCandidates;
 use App\Models\SavedJob;
+use App\Models\User;
 use Filament\Actions\Action;
 use Filament\Notifications;
 use Filament\Resources\Pages\ViewRecord;
@@ -94,11 +96,40 @@ class ViewJobOpenings extends ViewRecord
                 ->icon('heroicon-o-exclamation-circle')
                 ->body('You\'ve already applied this job.')
                 ->send();
-
+        } else {
+            //            TODO: Work on this logic
+            if(count($this->getMyCandidateProfile()->toArray()) === 0)
+            {
+                Notifications\Notification::make()
+                    ->color(Color::Orange)
+                    ->icon('heroicon-o-exclamation-circle')
+                    ->title('Applying Job Cancelled.')
+                    ->body('Please update your resume profile before applying a job.')
+                    ->actions([
+                        Notifications\Actions\Action::make('update_resume')
+                            ->label('Update Resume')
+                            ->icon('heroicon-o-document-text')
+                            ->color(Color::Green)
+                            ->url(MyResumeProfile::getUrl())
+                            ->button(),
+                        Notifications\Actions\Action::make('maybe_later')
+                            ->label('Maybe Later')
+                            ->button(),
+                    ])
+                    ->persistent()
+                    ->send();
             } else {
                 // create a candidate job record
+                $candidateProfile = $this->getMyCandidateProfile()->toArray()[0];
+                $job = JobCandidates::create([
+                    'JobId' => $this->record->id,
+                    'CandidateSource' => 'Portal',
+                    'candidate' => $this->getMyCandidateProfile()->toArray()[0]['id'],
+                    'mobile' => $this->getMyCandidateProfile()->toArray()[0]['Mobile'],
+                    'Email' => $this->getMyCandidateProfile()->toArray()[0]['Email'],
 
 
+                ]);
                 Notifications\Notification::make()
                     ->color(Color::Green)
                     ->icon('heroicon-o-check-circle')
@@ -109,7 +140,7 @@ class ViewJobOpenings extends ViewRecord
 
 
 
-
+        }
 
     }
 
