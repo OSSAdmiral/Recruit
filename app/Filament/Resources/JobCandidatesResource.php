@@ -114,9 +114,6 @@ class JobCandidatesResource extends Resource
                         ->label('Current Job Title'),
                     Forms\Components\TextInput::make('CurrentSalary')
                         ->label('Current Salary')
-                        ->mask(RawJs::make(<<<'JS'
-                                $money($input, '.',',')
-                                JS)),
                 ])->columns(2),
         ];
     }
