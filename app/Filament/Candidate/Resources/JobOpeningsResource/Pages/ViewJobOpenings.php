@@ -97,7 +97,6 @@ class ViewJobOpenings extends ViewRecord
                 ->body('You\'ve already applied this job.')
                 ->send();
         } else {
-            //            TODO: Work on this logic
             if(count($this->getMyCandidateProfile()->toArray()) === 0)
             {
                 Notifications\Notification::make()
