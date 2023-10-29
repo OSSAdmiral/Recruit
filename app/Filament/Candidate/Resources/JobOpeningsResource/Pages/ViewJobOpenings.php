@@ -8,7 +8,6 @@ use App\Models\Candidates;
 use App\Models\CandidateUser;
 use App\Models\JobCandidates;
 use App\Models\SavedJob;
-use App\Models\User;
 use Filament\Actions\Action;
 use Filament\Notifications;
 use Filament\Resources\Pages\ViewRecord;
@@ -26,10 +25,10 @@ class ViewJobOpenings extends ViewRecord
 
             Action::make('save_job')
                 ->icon(function () {
-                    return $this->isAlreadySaveJob() === true ? 'heroicon-s-heart': 'heroicon-o-heart';
+                    return $this->isAlreadySaveJob() === true ? 'heroicon-s-heart' : 'heroicon-o-heart';
                 })
                 ->color(Color::Red)
-                ->label(function() {
+                ->label(function () {
                     return $this->isAlreadySaveJob() === true ? 'Job Saved' : 'Save Job';
                 })
                 ->action(fn () => $this->saveJob()),
@@ -58,7 +57,7 @@ class ViewJobOpenings extends ViewRecord
     {
         $id = $this->record->id;
         // check if the job is already saved before or not
-        if (!$this->isAlreadySaveJob()) {
+        if (! $this->isAlreadySaveJob()) {
             // Save the Job
             SavedJob::create([
                 'job' => $id,
@@ -71,7 +70,7 @@ class ViewJobOpenings extends ViewRecord
                 ->send();
             // force refresh the page.
             $this->redirect(url(JobOpeningsResource::getUrl('view', [$id])));
-        }else{
+        } else {
             // remove the save job
             SavedJob::whereJob($id)->whereRecordOwner(auth()->user()->id)->delete();
             Notifications\Notification::make()
@@ -82,7 +81,6 @@ class ViewJobOpenings extends ViewRecord
             // force refresh the page.
             $this->redirect(url(JobOpeningsResource::getUrl('view', [$id])));
         }
-
 
     }
 
@@ -98,8 +96,7 @@ class ViewJobOpenings extends ViewRecord
                 ->send();
         } else {
             //            TODO: Work on this logic
-            if(count($this->getMyCandidateProfile()->toArray()) === 0)
-            {
+            if (count($this->getMyCandidateProfile()->toArray()) === 0) {
                 Notifications\Notification::make()
                     ->color(Color::Orange)
                     ->icon('heroicon-o-exclamation-circle')
@@ -128,7 +125,6 @@ class ViewJobOpenings extends ViewRecord
                     'mobile' => $this->getMyCandidateProfile()->toArray()[0]['Mobile'],
                     'Email' => $this->getMyCandidateProfile()->toArray()[0]['Email'],
 
-
                 ]);
                 Notifications\Notification::make()
                     ->color(Color::Green)
@@ -145,13 +141,14 @@ class ViewJobOpenings extends ViewRecord
     protected function isAlreadySaveJob(): bool
     {
         $existing = SavedJob::whereJob($this->record->id)->whereRecordOwner(auth()->user()->id)->count();
+
         return $existing > 0;
 
     }
+
     protected function getMyCandidateProfile(): Collection
     {
         // Key matching using the login email address
         return Candidates::where('Email', '=', auth()->user()->email)->get();
     }
-
 }
