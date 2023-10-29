@@ -4,12 +4,14 @@ namespace App\Filament\Candidate\Resources\JobOpeningsResource\Pages;
 
 use App\Filament\Candidate\Pages\MyResumeProfile;
 use App\Filament\Candidate\Resources\JobOpeningsResource;
+use App\Models\Candidates;
 use App\Models\CandidateUser;
 use App\Models\SavedJob;
 use Filament\Actions\Action;
-use Filament\Notifications\Notification;
+use Filament\Notifications;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Support\Colors\Color;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\HtmlString;
 
 class ViewJobOpenings extends ViewRecord
@@ -22,12 +24,12 @@ class ViewJobOpenings extends ViewRecord
 
             Action::make('save_job')
                 ->icon(function () {
-                    $existing = SavedJob::whereJob($this->record->id)->get()->count();
-
-                    return $existing === 0 ? 'heroicon-o-heart' : 'heroicon-s-heart';
+                    return $this->isAlreadySaveJob() === true ? 'heroicon-s-heart': 'heroicon-o-heart';
                 })
                 ->color(Color::Red)
-                ->label('Save Job')
+                ->label(function() {
+                    return $this->isAlreadySaveJob() === true ? 'Job Saved' : 'Save Job';
+                })
                 ->action(fn () => $this->saveJob()),
             Action::make('apply')
                 ->label('Apply Job')
@@ -54,18 +56,31 @@ class ViewJobOpenings extends ViewRecord
     {
         $id = $this->record->id;
         // check if the job is already saved before or not
-        if (SavedJob::whereJob($id)->count() <= 0) {
+        if (!$this->isAlreadySaveJob()) {
             // Save the Job
             SavedJob::create([
                 'job' => $id,
                 'record_owner' => auth()->id(),
             ])->save();
+            Notifications\Notification::make()
+                ->color(Color::Green)
+                ->icon('heroicon-o-check-circle')
+                ->body('Job has been added to your job list.')
+                ->send();
+            // force refresh the page.
+            $this->redirect(url(JobOpeningsResource::getUrl('view', [$id])));
+        }else{
+            // remove the save job
+            SavedJob::whereJob($id)->whereRecordOwner(auth()->user()->id)->delete();
+            Notifications\Notification::make()
+                ->color(Color::Green)
+                ->icon('heroicon-o-check-circle')
+                ->body('Job has been removed to your job list.')
+                ->send();
+            // force refresh the page.
+            $this->redirect(url(JobOpeningsResource::getUrl('view', [$id])));
         }
-        Notification::make()
-            ->color(Color::Green)
-            ->icon('heroicon-o-check-circle')
-            ->body('Job has been added to your job list.')
-            ->send();
+
 
     }
 
@@ -74,21 +89,40 @@ class ViewJobOpenings extends ViewRecord
         // Make sure that the applicant didn't applied to the same job using the email address
         $myAppliedJobs = CandidateUser::find(auth()->id())->myAppliedJobs()->whereId($this->record->id)->get()->toArray();
         if (count($myAppliedJobs) > 0) {
-            Notification::make()
+            Notifications\Notification::make()
                 ->color(Color::Orange)
                 ->icon('heroicon-o-exclamation-circle')
                 ->body('You\'ve already applied this job.')
                 ->send();
-        } else {
-            //            TODO: Work on this logic
 
-            Notification::make()
-                ->color(Color::Green)
-                ->icon('heroicon-o-check-circle')
-                ->title('Job Applied')
-                ->body('You\'re resume and data has been sent to the hiring party.')
-                ->send();
-        }
+            } else {
+                // create a candidate job record
+
+
+                Notifications\Notification::make()
+                    ->color(Color::Green)
+                    ->icon('heroicon-o-check-circle')
+                    ->title('Job Applied')
+                    ->body('You\'re resume and data has been sent to the hiring party.')
+                    ->send();
+            }
+
+
+
+
 
     }
+
+    protected function isAlreadySaveJob(): bool
+    {
+        $existing = SavedJob::whereJob($this->record->id)->whereRecordOwner(auth()->user()->id)->count();
+        return $existing > 0;
+
+    }
+    protected function getMyCandidateProfile(): Collection
+    {
+        // Key matching using the login email address
+        return Candidates::where('Email', '=', auth()->user()->email)->get();
+    }
+
 }
