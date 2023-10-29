@@ -24,8 +24,19 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
-       /* Gate::before(function (User $user, string $ability) {
+        /* Bypass Policy for Candidate Portal User */
+
+        Gate::before(function ($user, $ability, $model) {
+            if (\auth()->guard('candidate_web')->check()) {
+                return true;
+            }
+
+            return null;
+        });
+
+        Gate::before(function (User $user, string $ability) {
             return $user->isSuperAdmin() ? true : null;
-        });*/
+        });
+
     }
 }

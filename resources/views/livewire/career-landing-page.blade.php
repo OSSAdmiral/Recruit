@@ -21,10 +21,10 @@
                         <!-- Desktop sign in links -->
                         <ul class="crp1m cyy4k cnk8m czlxp cp7rp">
                             <li>
-                                <a class="crp1m czlxp chrwa cxa4q c9csv ckncn c0ndj c91mf chlg0" href="#">Sign in</a>
+                                <a class="crp1m czlxp chrwa cxa4q c9csv ckncn c0ndj c91mf chlg0" href="{{filament()->getPanel('candidate')->getLoginUrl()}}">Sign in</a>
                             </li>
                             <li>
-                                <a class="crp1m czlxp chrwa cxa4q c9csv ckncn c0ndj c91mf chlg0" href="#">Sign up</a>
+                                <a class="crp1m czlxp chrwa cxa4q c9csv ckncn c0ndj c91mf chlg0" href="{{filament()->getPanel('candidate')->getRegistrationUrl()}}">Sign up</a>
                             </li>
                         </ul>
                     </nav>

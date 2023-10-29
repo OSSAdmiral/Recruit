@@ -21,6 +21,7 @@ return [
     'guard_names' => [
         'web' => 'web',
         'api' => 'api',
+        'candidate_web',
     ],
 
     'toggleable_guard_names' => [

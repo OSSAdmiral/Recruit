@@ -12,7 +12,6 @@ use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Support\RawJs;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -89,9 +88,6 @@ class JobCandidatesResource extends Resource
                             '5years+' => '5 Years & Above',
                         ]),
                     Forms\Components\TextInput::make('ExpectedSalary')
-                        ->mask(RawJs::make(<<<'JS'
-                                $money($input, '.',',')
-                                JS))
                         ->label('Expected Salary'),
                     Forms\Components\Select::make('HighestQualificationHeld')
                         ->options([
@@ -116,10 +112,7 @@ class JobCandidatesResource extends Resource
                     Forms\Components\TextInput::make('CurrentJobTitle')
                         ->label('Current Job Title'),
                     Forms\Components\TextInput::make('CurrentSalary')
-                        ->label('Current Salary')
-                        ->mask(RawJs::make(<<<'JS'
-                                $money($input, '.',',')
-                                JS)),
+                        ->label('Current Salary'),
                 ])->columns(2),
         ];
     }
