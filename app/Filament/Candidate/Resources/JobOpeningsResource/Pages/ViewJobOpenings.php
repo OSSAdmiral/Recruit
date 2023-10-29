@@ -24,10 +24,10 @@ class ViewJobOpenings extends ViewRecord
 
             Action::make('save_job')
                 ->icon(function () {
-                    return $this->isAlreadySaveJob() === true ? 'heroicon-s-heart': 'heroicon-o-heart';
+                    return $this->isAlreadySaveJob() === true ? 'heroicon-s-heart' : 'heroicon-o-heart';
                 })
                 ->color(Color::Red)
-                ->label(function() {
+                ->label(function () {
                     return $this->isAlreadySaveJob() === true ? 'Job Saved' : 'Save Job';
                 })
                 ->action(fn () => $this->saveJob()),
@@ -56,7 +56,7 @@ class ViewJobOpenings extends ViewRecord
     {
         $id = $this->record->id;
         // check if the job is already saved before or not
-        if (!$this->isAlreadySaveJob()) {
+        if (! $this->isAlreadySaveJob()) {
             // Save the Job
             SavedJob::create([
                 'job' => $id,
@@ -69,7 +69,7 @@ class ViewJobOpenings extends ViewRecord
                 ->send();
             // force refresh the page.
             $this->redirect(url(JobOpeningsResource::getUrl('view', [$id])));
-        }else{
+        } else {
             // remove the save job
             SavedJob::whereJob($id)->whereRecordOwner(auth()->user()->id)->delete();
             Notifications\Notification::make()
@@ -80,7 +80,6 @@ class ViewJobOpenings extends ViewRecord
             // force refresh the page.
             $this->redirect(url(JobOpeningsResource::getUrl('view', [$id])));
         }
-
 
     }
 
@@ -95,34 +94,30 @@ class ViewJobOpenings extends ViewRecord
                 ->body('You\'ve already applied this job.')
                 ->send();
 
-            } else {
-                // create a candidate job record
+        } else {
+            // create a candidate job record
 
-
-                Notifications\Notification::make()
-                    ->color(Color::Green)
-                    ->icon('heroicon-o-check-circle')
-                    ->title('Job Applied')
-                    ->body('You\'re resume and data has been sent to the hiring party.')
-                    ->send();
-            }
-
-
-
-
+            Notifications\Notification::make()
+                ->color(Color::Green)
+                ->icon('heroicon-o-check-circle')
+                ->title('Job Applied')
+                ->body('You\'re resume and data has been sent to the hiring party.')
+                ->send();
+        }
 
     }
 
     protected function isAlreadySaveJob(): bool
     {
         $existing = SavedJob::whereJob($this->record->id)->whereRecordOwner(auth()->user()->id)->count();
+
         return $existing > 0;
 
     }
+
     protected function getMyCandidateProfile(): Collection
     {
         // Key matching using the login email address
         return Candidates::where('Email', '=', auth()->user()->email)->get();
     }
-
 }
