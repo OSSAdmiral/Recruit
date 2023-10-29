@@ -69,7 +69,7 @@ password
 
 ## Discord
 
-[![Discord Banner 4](https://discord.com/api/guilds/1165859974086393916/widget.png?style=banner4)]https://discord.com/invite/3GEXVFzk
+<a href="https://discord.com/invite/3GEXVFzk"> <img src="https://discord.com/api/guilds/1165859974086393916/widget.png?style=banner4" /></a>
 
 ## About OSSAdmiral-Recruit
 
