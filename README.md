@@ -67,6 +67,10 @@ password
 >  - delete
 >  - restore
 
+## Discord
+
+![Discord Banner 4](https://discordapp.com/api/guilds/1165859974086393916/widget.png?style=banner4)
+
 ## About OSSAdmiral-Recruit
 
 OSSAdmiral-Recruit is a web application System with rich feature.
