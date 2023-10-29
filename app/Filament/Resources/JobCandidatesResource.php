@@ -89,9 +89,6 @@ class JobCandidatesResource extends Resource
                             '5years+' => '5 Years & Above',
                         ]),
                     Forms\Components\TextInput::make('ExpectedSalary')
-                        ->mask(RawJs::make(<<<'JS'
-                                $money($input, '.',',')
-                                JS))
                         ->label('Expected Salary'),
                     Forms\Components\Select::make('HighestQualificationHeld')
                         ->options([
