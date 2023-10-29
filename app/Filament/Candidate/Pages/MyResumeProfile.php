@@ -26,8 +26,8 @@ class MyResumeProfile extends Page
     public function mount(): void
     {
         $this->data = [
-            'Email' => $this->getResumeProfile()->count() === 0 ? auth()->user()->email : $this->getResumeProfile()->toArray()['Email'],
-            ...$this->getResumeProfile()->toArray(),
+              'Email' => $this->getResumeProfile()->count() === 0 ? auth()->user()->email : $this->getResumeProfile()->toArray()[0]['Email'],
+            ...$this->getResumeProfile()->toArray()[0],
         ];
 
         $this->form->fill($this->data);
@@ -44,7 +44,7 @@ class MyResumeProfile extends Page
         // validate form and its data
         $this->form->getState();
         // update or create new record
-        Candidates::upsert($this->data, ['Email']);
+        Candidates::updateOrCreate(['Email' => auth()->user()->email],$this->data);
         Notification::make()
             ->title('Profile information updated')
             ->success()
