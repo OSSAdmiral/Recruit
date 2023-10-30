@@ -2,30 +2,29 @@
 
 namespace App\Filament\Candidate\Pages;
 
+use Filament\Forms\Components;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
-use Filament\Forms\Components;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class Account extends Page
 {
     protected static bool $shouldRegisterNavigation = false;
+
     protected static string $view = 'filament.candidate.pages.accounts';
 
     public ?array $data = [];
 
-
-    public  function updateAccount(): void
+    public function updateAccount(): void
     {
         $this->form->getState();
 
-        if(filled($this->data['new_password']))
-        {
+        if (filled($this->data['new_password'])) {
             auth()->user()->forceFill([
                 'password' => Hash::make($this->data['new_password']),
             ])->save();
-        }else{
+        } else {
             auth()->user()->forceFill([
                 'name' => $this->data['name'],
             ])->save();
@@ -33,7 +32,7 @@ class Account extends Page
         // update the session hash password; this make the user able to navigate the system without re-login after changing password.
         if (session() !== null) {
             session()->put([
-                'password_hash_candidate_web'=> Auth::user()?->getAuthPassword(),
+                'password_hash_candidate_web' => Auth::user()?->getAuthPassword(),
             ]);
         }
 
@@ -41,8 +40,8 @@ class Account extends Page
 
     public function mount()
     {
-            $this->data = auth()->user()->toArray();
-            $this->form->fill($this->data);
+        $this->data = auth()->user()->toArray();
+        $this->form->fill($this->data);
     }
 
     public function form(Form $form): Form
@@ -56,7 +55,7 @@ class Account extends Page
                     Components\TextInput::make('email')
                         ->email()
                         ->disabled()
-                        ->readOnly()
+                        ->readOnly(),
                 ])->columns(2),
             Components\Section::make('Change Password')
                 ->schema([
@@ -76,11 +75,8 @@ class Account extends Page
 
                 ]),
 
-
         ])
             ->columns(1)
             ->statePath('data');
     }
-
-
 }
