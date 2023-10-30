@@ -3,7 +3,6 @@
 namespace App\Providers\Filament;
 
 use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
-use App\Filament\Pages\Auth\Login;
 use App\Filament\Pages\Profile;
 use Awcodes\FilamentQuickCreate\QuickCreatePlugin;
 use Filament\Http\Middleware\Authenticate;
@@ -24,7 +23,6 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use lockscreen\FilamentLockscreen\Http\Middleware\Locker;
 use lockscreen\FilamentLockscreen\Lockscreen;
@@ -47,7 +45,7 @@ class AdminPanelProvider extends PanelProvider
             ->emailVerification()
             ->login()
             ->renderHook('panels::auth.login.form.before',
-                fn(): View => view('filament.pages.auth.login')
+                fn (): View => view('filament.pages.auth.login')
             )
             ->colors([
                 'primary' => Color::Amber,
