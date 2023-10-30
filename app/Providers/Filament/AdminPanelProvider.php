@@ -16,6 +16,7 @@ use Filament\Support\Colors\Color;
 use Filament\Widgets;
 use Hasnayeen\Themes\Http\Middleware\SetTheme;
 use Hasnayeen\Themes\ThemesPlugin;
+use Illuminate\Contracts\View\View;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -43,6 +44,9 @@ class AdminPanelProvider extends PanelProvider
             ->authPasswordBroker('users')
             ->emailVerification()
             ->login()
+            ->renderHook('panels::auth.login.form.before',
+                fn (): View => view('filament.pages.auth.login')
+            )
             ->colors([
                 'primary' => Color::Amber,
             ])
