@@ -44,6 +44,7 @@ class CandidatePanelProvider extends PanelProvider
                     ->url(fn (): string => Account::getUrl())
                     ->icon('heroicon-o-user'),
             ])
+            ->favicon(asset('favicon.png'))
             ->discoverResources(in: app_path('Filament/Candidate/Resources'), for: 'App\\Filament\\Candidate\\Resources')
             ->discoverPages(in: app_path('Filament/Candidate/Pages'), for: 'App\\Filament\\Candidate\\Pages')
             ->pages([
