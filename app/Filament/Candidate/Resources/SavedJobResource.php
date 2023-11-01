@@ -17,16 +17,16 @@ class SavedJobResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-heart';
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 3;
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::count();
+        return static::getModel()::count() > 0 ? static::getModel()::count() : '';
     }
 
     public static function getNavigationBadgeColor(): ?string
     {
-        return static::getModel()::count() > 0 ? 'success' : 'info';
+        return static::getModel()::count() > 0 ? 'success' : '';
     }
 
     public static function form(Form $form): Form

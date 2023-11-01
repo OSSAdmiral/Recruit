@@ -2,10 +2,13 @@
 
 namespace App\Filament\Enums;
 
+use App\Traits\EnumToArray;
 use Filament\Support\Contracts\HasLabel;
 
 enum JobCandidateStatus: string implements HasLabel
 {
+    use EnumToArray;
+
     case New = 'New';
     case WaitingForEvaluation = 'Waiting-for-Evaluation';
     case Contacted = 'Contacted';
@@ -41,6 +44,6 @@ enum JobCandidateStatus: string implements HasLabel
 
     public function getLabel(): ?string
     {
-        return $this->name;
+        return $this->value;
     }
 }
