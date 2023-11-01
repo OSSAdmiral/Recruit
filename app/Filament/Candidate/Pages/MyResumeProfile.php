@@ -17,7 +17,7 @@ class MyResumeProfile extends Page
 
     protected ?string $subheading = 'This profile will be used once you apply a job in the portal.';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 4;
 
     protected static string $view = 'filament.candidate.pages.my-resume-profile';
 
