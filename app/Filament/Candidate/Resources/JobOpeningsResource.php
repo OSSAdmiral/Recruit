@@ -19,7 +19,6 @@ class JobOpeningsResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
-
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
