@@ -4,6 +4,7 @@ namespace App\Filament\Candidate\Resources;
 
 use App\Filament\Candidate\Resources\AppliedJobListResource\Pages;
 use App\Filament\Candidate\Resources\AppliedJobListResource\RelationManagers;
+use App\Filament\Enums\JobCandidateStatus;
 use App\Models\JobCandidates;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -59,7 +60,9 @@ class AppliedJobListResource extends Resource
                     ->label('Application Status'),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('status')
+                    ->options(JobCandidateStatus::class)
+                    ->attribute('CandidateStatus')
             ])
             ->actions([
             ])
