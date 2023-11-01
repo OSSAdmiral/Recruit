@@ -3,10 +3,8 @@
 namespace App\Filament\Candidate\Resources;
 
 use App\Filament\Candidate\Resources\AppliedJobListResource\Pages;
-use App\Filament\Candidate\Resources\AppliedJobListResource\RelationManagers;
 use App\Filament\Enums\JobCandidateStatus;
 use App\Models\JobCandidates;
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -19,11 +17,11 @@ class AppliedJobListResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationLabel = "My Applied Jobs";
+    protected static ?string $navigationLabel = 'My Applied Jobs';
 
-    protected static ?string $modelLabel = "Applied Job";
+    protected static ?string $modelLabel = 'Applied Job';
 
-    protected static ?string $pluralModelLabel = "Applied Jobs";
+    protected static ?string $pluralModelLabel = 'Applied Jobs';
 
     protected static ?int $navigationSort = 2;
 
@@ -62,21 +60,19 @@ class AppliedJobListResource extends Resource
             ->filters([
                 Tables\Filters\SelectFilter::make('status')
                     ->options(JobCandidateStatus::class)
-                    ->attribute('CandidateStatus')
+                    ->attribute('CandidateStatus'),
             ])
             ->actions([
             ])
             ->emptyStateHeading('No Job Applied.')
             ->emptyStateDescription('Once you applied a job, it will appear here.')
-            ->emptyStateIcon('heroicon-o-briefcase')
-            ;
+            ->emptyStateIcon('heroicon-o-briefcase');
     }
 
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()->where('Email', '=', auth()->user()->email);
     }
-
 
     public static function getRelations(): array
     {

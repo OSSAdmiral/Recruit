@@ -7,7 +7,6 @@ use Filament\Support\Contracts\HasLabel;
 
 enum JobOpeningStatus: string implements HasLabel
 {
-
     use EnumToArray;
 
     case New = 'New';
