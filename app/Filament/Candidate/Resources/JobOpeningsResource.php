@@ -21,7 +21,7 @@ class JobOpeningsResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::count() > 0 ? static::getModel()::count() :   '';
+        return static::getModel()::count() > 0 ? static::getModel()::count() : '';
     }
 
     public static function getNavigationBadgeColor(): ?string
