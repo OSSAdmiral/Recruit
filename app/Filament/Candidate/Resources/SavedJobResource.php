@@ -21,12 +21,12 @@ class SavedJobResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::count();
+        return static::getModel()::count() > 0 ?? '';
     }
 
     public static function getNavigationBadgeColor(): ?string
     {
-        return static::getModel()::count() > 0 ? 'success' : 'info';
+        return static::getModel()::count() > 0 ? 'success' : '';
     }
 
     public static function form(Form $form): Form
