@@ -56,6 +56,9 @@ class AppliedJobListResource extends Resource
                     ->label('Job Title'),
                 Tables\Columns\BooleanColumn::make('job.RemoteJob')
                     ->label('Remote Job'),
+                Tables\Columns\TextColumn::make('job.Salary')
+                    ->toggleable()
+                    ->label('Salary'),
                 Tables\Columns\TextColumn::make('CandidateStatus')
                     ->label('Application Status'),
             ])
