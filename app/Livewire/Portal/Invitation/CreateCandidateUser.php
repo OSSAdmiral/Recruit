@@ -3,14 +3,13 @@
 namespace App\Livewire\Portal\Invitation;
 
 use App\Models\candidatePortalInvitation;
+use Illuminate\Http\Request;
 use Livewire\Attributes\Title;
 use Livewire\Component;
-use Illuminate\Http\Request;
 
 class CreateCandidateUser extends Component
 {
-
-    Public candidatePortalInvitation $candidatePortalInvitation;
+    public candidatePortalInvitation $candidatePortalInvitation;
 
     public function mount(Request $request, candidatePortalInvitation $id): void
     {

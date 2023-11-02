@@ -26,37 +26,36 @@ class ViewCandidatesProfile extends ViewRecord
                 ->icon('heroicon-o-envelope')
                 ->color(Color::Green)
                 ->label('Invite to Portal')
-                ->action(fn () => $this->portalInvite())
+                ->action(fn () => $this->portalInvite()),
         ];
     }
 
     protected function portalInvite(): void
     {
         $candidate = Candidates::find($this->record->id)->first();
-        if ($this->isAlreadyInvited())
-        {
+        if ($this->isAlreadyInvited()) {
             $existing_invite = $this->portalInvitationModel()->first();
             $id = $existing_invite->id;
-            $invite_link  = URL::signedRoute('portal.invite', ['id' => $id]);
+            $invite_link = URL::signedRoute('portal.invite', ['id' => $id]);
             $candidate->notifyNow(new \App\Notifications\CandidatePortalInvitation($candidate, $invite_link));
             // update the date sent
             $existing_invite->touch('sent_at');
-        }else{
+        } else {
             $invite = candidatePortalInvitation::create([
                 'name' => "{$this->record->LastName} {$this->record->FirstName}",
                 'email' => $this->record->email,
                 'sent_at' => Carbon::now(),
             ]);
-            $invite_link  = URL::signedRoute('portal.invite', ['id' => $invite->id]);
+            $invite_link = URL::signedRoute('portal.invite', ['id' => $invite->id]);
             $candidate->notifyNow(new \App\Notifications\CandidatePortalInvitation($candidate, $invite_link));
         }
 
         Notification::make('invitation_success')
-                ->success()
-                ->icon('heroicon-o-envelope')
-                ->title('Invitation Sent')
-                ->body('Invitation has been successfully sent.')
-                ->send();
+            ->success()
+            ->icon('heroicon-o-envelope')
+            ->title('Invitation Sent')
+            ->body('Invitation has been successfully sent.')
+            ->send();
     }
 
     protected function portalInvitationModel(): Builder
@@ -66,7 +65,8 @@ class ViewCandidatesProfile extends ViewRecord
 
     protected function isAlreadyInvited(): bool
     {
-      $existing = $this->portalInvitationModel();
-      return  $existing->count() > 0 ;
+        $existing = $this->portalInvitationModel();
+
+        return $existing->count() > 0;
     }
 }

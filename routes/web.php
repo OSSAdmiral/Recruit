@@ -20,7 +20,6 @@ Route::get('/career/job/apply/{jobReferenceNumber}', \App\Livewire\CareerApplyJo
 // Candidate Portal Invitation
 Route::get('portal/invite/{id}', \App\Livewire\Portal\Invitation\CreateCandidateUser::class)->name('portal.invite');
 
-
 //Route::get('/invite', function () {
 
 //    $user = \App\Models\User::find(1);
