@@ -71,7 +71,7 @@ class CareerApplyJob extends Component implements HasActions, HasForms
             'FirstName' => $data['FirstName'],
             'LastName' => $data['LastName'],
             'Mobile' => $data['mobile'],
-            'Email' => $data['Email'],
+            'email' => $data['Email'],
             'ExperienceInYears' => $data['experience'],
             'Street' => $data['Street'],
             'City' => $data['City'],

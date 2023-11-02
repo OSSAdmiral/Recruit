@@ -86,7 +86,7 @@ class CandidatesProfileResource extends Resource
                     Forms\Components\TextInput::make('Mobile')
                         ->label('Mobile')
                         ->tel(),
-                    Forms\Components\TextInput::make('Email')
+                    Forms\Components\TextInput::make('email')
                         ->required(),
                     Forms\Components\Select::make('ExperienceInYears')
                         ->label('Experience In Years')
