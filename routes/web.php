@@ -22,11 +22,8 @@ Route::get('/career/job/apply/{jobReferenceNumber}', \App\Livewire\CareerApplyJo
 
 Route::get('/invite', function () {
 
-    $user = \App\Models\User::find(1);
-    $candidates = \App\Models\Candidates::find(1);
-    $user->notifyNow(new \App\Notifications\CandidatePortalInvitation($candidates));
-//    Mail::send('welcome', [], fn($message) =>
-//    $message->to('admin@example.com')->subject('Testing mailpit'));
-
+//    $user = \App\Models\User::find(1);
+//    $candidates = \App\Models\Candidates::find(1);
+//    $candidates->notifyNow(new \App\Notifications\CandidatePortalInvitation($candidates));
 
 });
