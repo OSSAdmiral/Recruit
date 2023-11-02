@@ -5,7 +5,6 @@ namespace App\Notifications;
 use App\Models\Candidates;
 use App\Settings\GeneralSetting;
 use Illuminate\Bus\Queueable;
-use Illuminate\Mail\Mailable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -17,8 +16,10 @@ class CandidatePortalInvitation extends Notification implements ShouldQueue
     use Queueable;
 
     private Model|array|null $candidate;
+
     private string $companyName;
-    private  string $signup_link;
+
+    private string $signup_link;
 
     /**
      * Create a new notification instance.
@@ -55,7 +56,7 @@ class CandidatePortalInvitation extends Notification implements ShouldQueue
             ->with(new HtmlString("1. <strong>Tailored Job Opportunities</strong>: Our portal will provide you with a personalized job-matching experience. You'll receive job recommendations that align with your skills, experience, and career aspirations."))
             ->with(new HtmlString("2. <strong>Application Tracking</strong>: Easily keep track of your application status, interview updates, and hiring progress for positions you've applied to within our organization."))
             ->with(new HtmlString("3. <strong>Company Insights</strong>: Gain a deeper understanding of our culture, values, and the teams you'll potentially be a part of. Get a behind-the-scenes look at what it's like to work at {$this->companyName}."))
-            ->with(new HtmlString("4. <strong>Community Engagement</strong>: Connect with fellow candidates, employees, and industry professionals through discussion forums, networking events, and knowledge-sharing opportunities."))
+            ->with(new HtmlString('4. <strong>Community Engagement</strong>: Connect with fellow candidates, employees, and industry professionals through discussion forums, networking events, and knowledge-sharing opportunities.'))
             ->line('To get started, simply click on the link below to create your portal account:')
             ->action('Sign Up', $this->signup_link)
             ->line('Please use the same email address that you used during your application process to ensure seamless access to your candidate profile.')
