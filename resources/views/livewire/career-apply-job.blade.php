@@ -10,7 +10,7 @@
                     <div class="c1ls3 cqho4 clp4z csqne cqs3o">
 
                         <!-- Site branding -->
-                        <div class="cqfuo cg571">
+                        <div class="cqfuo cg571 rounded-full shrink-0 grow-0 h-8 w-8">
                             <!-- Logo -->
                             <a class="cdfr0 cq3a6" href="#" aria-label="{{ filament()->getBrandName() }}">
                                 @if ($favicon = filament()->getFavicon())
