@@ -13,7 +13,7 @@ use Illuminate\Notifications\RoutesNotifications;
 
 class Candidates extends Model
 {
-    use AutoNumberTrait, HasFactory, SoftDeletes, Notifiable, HasDatabaseNotifications, RoutesNotifications;
+    use AutoNumberTrait, HasDatabaseNotifications, HasFactory, Notifiable, RoutesNotifications, SoftDeletes;
 
     protected $fillable = [
         'CandidateId',
