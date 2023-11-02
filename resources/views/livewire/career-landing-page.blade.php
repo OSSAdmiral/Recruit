@@ -7,7 +7,7 @@
                 <div class="crp1m c7htb czlxp c7kkg cf6y5">
 
                     <!-- Site branding -->
-                    <div class="cg571 cqfuo">
+                    <div class="cg571 cqfuo rounded-full shrink-0 grow-0 h-8 w-8">
                         <!-- Logo -->
                         <a class="cdfr0 cq3a6" href="#" aria-label="{{ filament()->getBrandName() }}">
                             @if ($favicon = filament()->getFavicon())
