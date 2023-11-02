@@ -24,11 +24,11 @@ class CandidatePortalInvitation extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public function __construct(Candidates $candidates)
+    public function __construct(Candidates $candidates, $inviteLink = null)
     {
         $this->candidate = $candidates;
         $this->companyName = (new GeneralSetting)->company_name;
-        $this->signup_link = filament()->getPanel('candidate')->getRegistrationUrl();
+        $this->signup_link = $inviteLink;
     }
 
     /**
