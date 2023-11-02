@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\HasDatabaseNotifications;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\RoutesNotifications;
 
 class Candidates extends Model
 {
-    use AutoNumberTrait, HasFactory, SoftDeletes, Notifiable;
+    use AutoNumberTrait, HasFactory, SoftDeletes, Notifiable, HasDatabaseNotifications, RoutesNotifications;
 
     protected $fillable = [
         'CandidateId',
