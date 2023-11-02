@@ -67,6 +67,12 @@ password
 >  - delete
 >  - restore
 
+### Initial Route
+
+> `Main Page` - {SERVER_IP}/login
+> `Candidate Portal` - {SERVER_IP}/portal/candidate
+> `Career Page` - {SERVER_IP}/career
+
 ## Discord
 
 <a href="https://discord.gg/RK6mDerFjs"> <img src="https://discord.com/api/guilds/1165859974086393916/widget.png?style=banner4" /></a>
