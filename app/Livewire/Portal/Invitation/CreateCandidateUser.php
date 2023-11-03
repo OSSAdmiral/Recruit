@@ -14,17 +14,17 @@ use Phpsa\FilamentPasswordReveal\Password;
 
 class CreateCandidateUser extends SimplePage
 {
-    use InteractsWithForms;
-    use InteractsWithFormActions;
     use InteractsWithActions;
+    use InteractsWithFormActions;
+    use InteractsWithForms;
 
     public candidatePortalInvitation $candidatePortalInvitation;
 
-    protected ?string $subheading = "Candidate Portal Invitation - Verify and create account.";
+    protected ?string $subheading = 'Candidate Portal Invitation - Verify and create account.';
 
-    protected static ?string $title = "Candidate Portal Invitation";
+    protected static ?string $title = 'Candidate Portal Invitation';
 
-    protected ?string $heading = "";
+    protected ?string $heading = '';
 
     public ?array $data = [];
 
