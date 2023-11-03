@@ -139,13 +139,7 @@ class JobCandidatesResource extends Resource
                     ->label('Candidate Name'),
                 Tables\Columns\TextColumn::make('Email'),
                 Tables\Columns\TextColumn::make('CandidateStatus')
-                    ->label('Candidate Status')
-                    ->color(fn (string $state): string => match ($state) {
-                        'draft' => 'gray',
-                        'reviewing' => 'warning',
-                        'published' => 'success',
-                        'rejected' => 'danger',
-                    }),
+                    ->label('Candidate Status'),
                 Tables\Columns\TextColumn::make('CandidateSource')
                     ->label('Candidate Source')
                     ->toggleable(isToggledHiddenByDefault: true),
