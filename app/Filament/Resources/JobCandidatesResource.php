@@ -49,12 +49,14 @@ class JobCandidatesResource extends Resource
                         ->options(JobOpenings::all()->pluck('JobTitle', 'id'))
                         ->required(),
                     Forms\Components\Select::make('CandidateStatus')
+                        ->label('Candidate Status')
                         ->options(JobCandidateStatus::class)
                         ->required(),
                     Forms\Components\TextInput::make('CandidateSource')
                         ->nullable('')
                         ->default('web'),
                     Forms\Components\Select::make('CandidateOwner')
+                        ->label('Candidate Owner')
                         ->options(User::all()->pluck('name', 'id'))
                         ->nullable(),
                 ])->columns(2),
@@ -71,7 +73,7 @@ class JobCandidatesResource extends Resource
             Forms\Components\Section::make('Candidate Basic Information')
                 ->schema([
                     Forms\Components\Select::make('candidate')
-                        ->options(Candidates::all()->pluck('FullName', 'id'))
+                        ->options(Candidates::all()->pluck('full_name', 'id'))
                         ->required(),
                     Forms\Components\TextInput::make('mobile')
                         ->nullable(),

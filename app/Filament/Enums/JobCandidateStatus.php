@@ -7,7 +7,6 @@ use Filament\Support\Contracts\HasLabel;
 
 enum JobCandidateStatus: string implements HasLabel
 {
-    use EnumToArray;
 
     case New = 'New';
     case WaitingForEvaluation = 'Waiting-for-Evaluation';
