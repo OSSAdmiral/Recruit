@@ -39,6 +39,7 @@
         "matomo/device-detector": "^6.1",
         "njxqlus/filament-progressbar": "^1.0",
         "owenvoke/blade-fontawesome": "^2.4",
+        "phpsa/filament-password-reveal": "^2.0",
         "rappasoft/laravel-authentication-log": "^3.0",
         "spatie/laravel-permission": "^5.10",
         "spatie/laravel-settings": "^3.2",
