@@ -42,7 +42,7 @@ class ViewCandidatesProfile extends ViewRecord
             $existing_invite->touch('sent_at');
         } else {
             $invite = candidatePortalInvitation::create([
-                'name' => "{$this->record->LastName} {$this->record->FirstName}",
+                'name' => "{$this->record->FirstName} {$this->record->LastName}",
                 'email' => $this->record->email,
                 'sent_at' => Carbon::now(),
             ]);
