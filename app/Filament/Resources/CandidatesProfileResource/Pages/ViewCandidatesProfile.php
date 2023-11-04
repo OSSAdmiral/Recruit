@@ -52,7 +52,7 @@ class ViewCandidatesProfile extends ViewRecord
             $existing_invite = $this->portalInvitationModel()->first();
             $id = $existing_invite->id;
             $invite_link = URL::signedRoute('portal.invite', ['id' => $id]);
-            $candidate->notifyNow(new \App\Notifications\CandidatePortalInvitation($candidate, $invite_link));
+            $candidate->notifyNow(new \App\Notifications\Candidates\CandidatePortalInvitation($candidate, $invite_link));
             // update the date sent
             $existing_invite->touch('sent_at');
 
@@ -63,7 +63,7 @@ class ViewCandidatesProfile extends ViewRecord
                 'sent_at' => Carbon::now(),
             ]);
             $invite_link = URL::signedRoute('portal.invite', ['id' => $invite->id]);
-            $candidate->notifyNow(new \App\Notifications\CandidatePortalInvitation($candidate, $invite_link));
+            $candidate->notifyNow(new \App\Notifications\Candidates\CandidatePortalInvitation($candidate, $invite_link));
         }
         $this->notificatioinInviteSent();
 

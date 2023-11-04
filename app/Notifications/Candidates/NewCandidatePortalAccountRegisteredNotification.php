@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Notifications\Candidates;
 
 use App\Models\Candidates;
-use App\Settings\GeneralSetting;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;

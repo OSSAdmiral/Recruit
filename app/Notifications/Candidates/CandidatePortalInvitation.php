@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Notifications\Candidates;
 
 use App\Models\Candidates;
 use App\Settings\GeneralSetting;
