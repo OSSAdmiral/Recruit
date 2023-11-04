@@ -50,7 +50,7 @@ class UserResource extends Resource
                             ->image(),
                     ]),
                 Forms\Components\Section::make()
-                    ->columns(2)
+                    ->columns(1)
                     ->schema([
                         Forms\Components\TextInput::make('name')
                             ->required()
@@ -61,16 +61,8 @@ class UserResource extends Resource
                             ->email(),
                         Forms\Components\Select::make('roles')
                             ->preload()
+                            ->required()
                             ->relationship('roles', 'name'),
-                        Forms\Components\TextInput::make('password')
-                            ->length(8)
-                            ->required()
-                            ->confirmed()
-                            ->password(),
-                        Forms\Components\TextInput::make('password_confirmation')
-                            ->length(8)
-                            ->required()
-                            ->password(),
                     ])
                     ->columnSpan(['lg' => fn (?User $record) => $record === null ? 3 : 2]),
 
@@ -83,6 +75,9 @@ class UserResource extends Resource
                         Forms\Components\Placeholder::make('updated_at')
                             ->label('Last modified at')
                             ->content(fn (User $record): ?string => $record->updated_at?->diffForHumans()),
+                        Forms\Components\Placeholder::make('joined_at')
+                            ->label('Joined at')
+                            ->content(fn (User $record): ?string => $record->joined_at?->diffForHumans()),
                     ])
                     ->columnSpan(['lg' => 1])
                     ->hidden(fn (?User $record) => $record === null),
