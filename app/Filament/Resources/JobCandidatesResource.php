@@ -137,7 +137,7 @@ class JobCandidatesResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('candidateProfile.FullName')
+                Tables\Columns\TextColumn::make('candidateProfile.full_name')
                     ->label('Candidate Name'),
                 Tables\Columns\TextColumn::make('Email'),
                 Tables\Columns\TextColumn::make('CandidateStatus')
