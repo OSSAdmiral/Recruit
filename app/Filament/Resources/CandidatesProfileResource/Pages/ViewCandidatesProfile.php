@@ -30,7 +30,7 @@ class ViewCandidatesProfile extends ViewRecord
                     ->label('Invite to Portal')
                     ->close()
                     ->action(fn () => $this->portalInvite()),
-            ])
+            ]),
         ];
     }
 
@@ -38,13 +38,13 @@ class ViewCandidatesProfile extends ViewRecord
     {
         $candidate = Candidates::find($this->record->id)->first();
 
-        if($this->candidateUserModel()->count() > 0)
-        {
+        if ($this->candidateUserModel()->count() > 0) {
             Notification::make('invitation_error')
                 ->warning()
                 ->title('Candidate Already Registered')
                 ->body('The candidate you\'re inviting is already registered in the portal.')
                 ->send();
+
             return;
         }
 
@@ -66,7 +66,6 @@ class ViewCandidatesProfile extends ViewRecord
             $candidate->notifyNow(new \App\Notifications\Candidates\CandidatePortalInvitation($candidate, $invite_link));
         }
         $this->notificatioinInviteSent();
-
 
     }
 

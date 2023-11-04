@@ -34,7 +34,7 @@ class CandidateUser extends Model implements AuthenticatableContract, Authorizab
         'email',
         'password',
         'email_verified_at',
-        'remember_token'
+        'remember_token',
     ];
 
     /**

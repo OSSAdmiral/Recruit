@@ -38,12 +38,15 @@ class CreateCandidateUser extends SimplePage
 
     protected static string $layout = 'components.layouts.simple';
 
-
     public function mount(Request $request, candidatePortalInvitation $id): void
     {
-        if (! $request->hasValidSignature()) abort(403, 'Invalid Signature');
+        if (! $request->hasValidSignature()) {
+            abort(403, 'Invalid Signature');
+        }
         $this->candidatePortalInvitation = $id;
-        if($this->candidatePortalInvitation->joined_at) abort(410, 'Link has Expired');
+        if ($this->candidatePortalInvitation->joined_at) {
+            abort(410, 'Link has Expired');
+        }
         $this->data = [...$this->candidatePortalInvitation->toArray()];
     }
 
@@ -54,7 +57,7 @@ class CreateCandidateUser extends SimplePage
             'name' => $this->candidatePortalInvitation->name,
             'email' => $this->candidatePortalInvitation->email,
             'password' => \Hash::make($this->data['password']),
-            'email_verified_at' => Carbon::now()
+            'email_verified_at' => Carbon::now(),
         ]);
         $this->candidatePortalInvitation->joined_at = Carbon::now();
         $this->candidatePortalInvitation->save();
@@ -68,7 +71,6 @@ class CreateCandidateUser extends SimplePage
             ->send();
 
         $this->redirect(filament()->getPanel('candidate')->getLoginUrl());
-
 
     }
 
@@ -113,6 +115,7 @@ class CreateCandidateUser extends SimplePage
     {
         return true;
     }
+
     public function hasLogo(): bool
     {
         return true;
