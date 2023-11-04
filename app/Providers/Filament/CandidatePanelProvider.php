@@ -29,11 +29,9 @@ class CandidatePanelProvider extends PanelProvider
             ->path('portal/candidate')
             ->authGuard('candidate_web')
             ->authPasswordBroker('candidate_users')
-            ->registration()
             ->passwordReset()
             ->emailVerification()
             ->login()
-            ->emailVerification()
             ->maxContentWidth('full')
             ->colors([
                 'primary' => Color::Gray,
