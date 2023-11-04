@@ -67,7 +67,7 @@ class CreateCandidateUser extends SimplePage
             ->success()
             ->duration(10000)
             ->title('Your Candidate Portal Account is Ready')
-            ->body('You can now access you candidate information in the portal, by using the credential you\'ve provided.')
+            ->body('You can now access your candidate information in the portal, by using the credential you\'ve provided.')
             ->send();
 
         $this->redirect(filament()->getPanel('candidate')->getLoginUrl());
