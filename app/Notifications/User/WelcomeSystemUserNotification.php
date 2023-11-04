@@ -5,7 +5,6 @@ namespace App\Notifications\User;
 use App\Models\User;
 use Filament\Exceptions\NoDefaultPanelSetException;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -14,9 +13,12 @@ class WelcomeSystemUserNotification extends Notification
     use Queueable;
 
     protected ?User $user;
+
     protected ?string $login_link;
+
     /**
      * Create a new notification instance.
+     *
      * @throws NoDefaultPanelSetException
      */
     public function __construct(?User $user)
@@ -47,8 +49,7 @@ class WelcomeSystemUserNotification extends Notification
             ->line('You can now log in with your registered email address and the password you created during the registration process. If you ever forget your password, you can use the "Forgot Password" feature on the login page to reset it.')
             ->action('Login Now!', $this->login_link)
             ->line('If you have any questions or need assistance as you explore the system, please feel free to contact our support team.')
-            ->line('Thank you for choosing our system, and we look forward to seeing the positive impact of your contributions.')
-                   ;
+            ->line('Thank you for choosing our system, and we look forward to seeing the positive impact of your contributions.');
     }
 
     /**

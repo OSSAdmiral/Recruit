@@ -8,8 +8,8 @@ use Carbon\Carbon;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Exceptions\NoDefaultPanelSetException;
-use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms;
+use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Notifications\Notification;
 use Filament\Pages\Concerns\InteractsWithFormActions;
 use Filament\Pages\SimplePage;
@@ -23,7 +23,6 @@ class CreateSystemUserForm extends SimplePage
     use InteractsWithFormActions;
     use InteractsWithForms;
 
-
     protected ?string $subheading = 'System User Invitation - Verify and create account.';
 
     protected static ?string $title = 'Recruit System Invitation';
@@ -34,7 +33,7 @@ class CreateSystemUserForm extends SimplePage
 
     public ?User $user;
 
-    public static string $view = "livewire.user.invitation.create-system-user";
+    public static string $view = 'livewire.user.invitation.create-system-user';
 
     protected static string $layout = 'components.layouts.simple';
 
@@ -117,6 +116,4 @@ class CreateSystemUserForm extends SimplePage
     {
         return true;
     }
-
-
 }

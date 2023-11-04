@@ -17,10 +17,9 @@ class CreateUser extends CreateRecord
 {
     protected static string $resource = UserResource::class;
 
-    protected static ?string $title = "Invite User";
+    protected static ?string $title = 'Invite User';
 
     protected static bool $canCreateAnother = false;
-
 
     protected function getCreatedNotification(): ?Notification
     {
@@ -52,6 +51,7 @@ class CreateUser extends CreateRecord
             'invitation_id' => Str::uuid(),
         ]);
     }
+
     protected function afterCreate(): void
     {
         // Send Invitation to the user

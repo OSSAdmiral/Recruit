@@ -33,7 +33,7 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         'profile_photo_path',
         'sent_at',
         'joined_at',
-        'invitation_id'
+        'invitation_id',
     ];
 
     /**
