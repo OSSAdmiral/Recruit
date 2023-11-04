@@ -15,6 +15,7 @@ use Filament\Notifications\Notification;
 use Filament\Pages\BasePage;
 use Filament\Pages\Concerns\InteractsWithFormActions;
 use Filament\Pages\SimplePage;
+use Filament\Support\Colors\Color;
 use Illuminate\Http\Request;
 use Phpsa\FilamentPasswordReveal\Password;
 
@@ -105,6 +106,7 @@ class CreateCandidateUser extends SimplePage
     {
         return Action::make('authenticate')
             ->label('Create Account')
+            ->color(Color::Gray)
             ->submit('create');
     }
 
