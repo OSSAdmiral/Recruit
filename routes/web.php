@@ -19,6 +19,7 @@ Route::get('/career/job/apply/{jobReferenceNumber}', \App\Livewire\CareerApplyJo
 
 // Candidate Portal Invitation
 Route::get('portal/invite/{id}', \App\Livewire\Portal\Invitation\CreateCandidateUser::class)->name('portal.invite');
+Route::get('/invite/{id}', \App\Livewire\User\Invitation\CreateSystemUserForm::class)->name('system-user.invite');
 
 //Route::get('/invite', function () {
 
