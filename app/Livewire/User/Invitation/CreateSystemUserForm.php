@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Livewire\Portal\Invitation;
+namespace App\Livewire\User\Invitation;
 
-use App\Models\candidatePortalInvitation;
-use App\Models\Candidates;
-use App\Models\CandidateUser;
-use App\Notifications\Candidates\NewCandidatePortalAccountRegisteredNotification;
+use App\Models\User;
+use App\Notifications\User\WelcomeSystemUserNotification;
 use Carbon\Carbon;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
+use Filament\Exceptions\NoDefaultPanelSetException;
 use Filament\Forms;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Notifications\Notification;
@@ -18,59 +17,61 @@ use Filament\Support\Colors\Color;
 use Illuminate\Http\Request;
 use Phpsa\FilamentPasswordReveal\Password;
 
-class CreateCandidateUser extends SimplePage
+class CreateSystemUserForm extends SimplePage
 {
     use InteractsWithActions;
     use InteractsWithFormActions;
     use InteractsWithForms;
 
-    public candidatePortalInvitation $candidatePortalInvitation;
+    protected ?string $subheading = 'System User Invitation - Verify and create account.';
 
-    protected ?string $subheading = 'Candidate Portal Invitation - Verify and create account.';
-
-    protected static ?string $title = 'Candidate Portal Invitation';
+    protected static ?string $title = 'Recruit System Invitation';
 
     protected ?string $heading = '';
 
     public ?array $data = [];
 
-    public static string $view = 'livewire.portal.invitation.create-candidate-user';
+    public ?User $user;
+
+    public static string $view = 'livewire.user.invitation.create-system-user';
 
     protected static string $layout = 'components.layouts.simple';
 
-    public function mount(Request $request, candidatePortalInvitation $id): void
+    public function mount(Request $request, ?string $id): void
     {
         if (! $request->hasValidSignature()) {
             abort(403, 'Invalid Signature');
         }
-        $this->candidatePortalInvitation = $id;
-        if ($this->candidatePortalInvitation->joined_at) {
+        $this->user = User::whereInvitationId($id)->first();
+        if ($this->user === null || $this->user->joined_at) {
             abort(410, 'Link has Expired');
         }
-        $this->data = [...$this->candidatePortalInvitation->toArray()];
+
+        $this->data = [...$this->user->toArray()];
     }
 
-    public function create(): void
+    /**
+     * @throws NoDefaultPanelSetException
+     */
+    public function create()
     {
         $this->form->getState();
-        $candidate_user = CandidateUser::create([
-            'name' => $this->candidatePortalInvitation->name,
-            'email' => $this->candidatePortalInvitation->email,
+        $this->user->forceFill([
             'password' => \Hash::make($this->data['password']),
             'email_verified_at' => Carbon::now(),
-        ]);
-        $this->candidatePortalInvitation->joined_at = Carbon::now();
-        $this->candidatePortalInvitation->save();
-        $candidate = Candidates::whereEmail($this->candidatePortalInvitation->email)->first();
-        $candidate_user->notify(new NewCandidatePortalAccountRegisteredNotification($candidate));
+            'joined_at' => Carbon::now(),
+        ])->save();
+
+        $this->user->notify(new WelcomeSystemUserNotification($this->user));
+
         Notification::make('create_account_success')
             ->success()
             ->duration(10000)
-            ->title('Your Candidate Portal Account is Ready')
-            ->body('You can now access your candidate information in the portal, by using the credential you\'ve provided.')
+            ->title('Your Account is Ready')
+            ->body('You can now access the recruit system, by using the credential you\'ve provided.')
             ->send();
 
-        $this->redirect(filament()->getPanel('candidate')->getLoginUrl());
+        $this->redirect(filament()->getDefaultPanel()->getLoginUrl());
 
     }
 
@@ -86,11 +87,11 @@ class CreateCandidateUser extends SimplePage
                     ->label('Email')
                     ->disabled(),
                 Password::make('password')
-                    ->minLength(5)
+                    ->minLength(8)
                     ->confirmed()
                     ->label('Password'),
                 Password::make('password_confirmation')
-                    ->minLength(5)
+                    ->minLength(8)
                     ->label('Confirm Password'),
             ])
             ->statePath('data');
@@ -106,17 +107,12 @@ class CreateCandidateUser extends SimplePage
     protected function getAuthenticateFormAction(): Action
     {
         return Action::make('authenticate')
-            ->label('Create Account')
+            ->label('Verify & Create Account')
             ->color(Color::Gray)
             ->submit('create');
     }
 
     protected function hasFullWidthFormActions(): bool
-    {
-        return true;
-    }
-
-    public function hasLogo(): bool
     {
         return true;
     }

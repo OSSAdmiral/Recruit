@@ -31,6 +31,9 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         'email',
         'password',
         'profile_photo_path',
+        'sent_at',
+        'joined_at',
+        'invitation_id',
     ];
 
     /**
@@ -50,6 +53,8 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'sent_at' => 'datetime',
+        'joined_at' => 'datetime',
         'password' => 'hashed',
     ];
 
