@@ -62,7 +62,9 @@ class CandidatePortalInvitation extends Notification implements ShouldQueue
             ->line('Please use the same email address that you used during your application process to ensure seamless access to your candidate profile.')
             ->line("We are excited to have you as a part of our talent community and to explore the possibilities of you joining our {$this->companyName} family.")
             ->line("Thank you for considering this invitation. We believe that great opportunities begin with great talent, and you're a testament to that belief.")
-            ->line('We look forward to seeing you on our portal and, hopefully, as a part of our dynamic team.');
+            ->line('We look forward to seeing you on our portal and, hopefully, as a part of our dynamic team.')
+            ->salutation(new HtmlString("Regards,<br/>{$this->companyName}"))
+            ;
     }
 
     /**
