@@ -9,6 +9,14 @@
 ![GitHub](https://img.shields.io/github/license/RecruitLab/Recruit?style=for-the-badge&label=License)
 
 
+# Introduction
+
+Welcome to "Recruit," your innovative open-source system designed to streamline and optimize the talent acquisition process. With Recruit, you can effortlessly manage every aspect of your recruitment efforts, from posting job openings to evaluating candidates and making data-driven decisions. Say goodbye to the complexities of recruitment and embrace a simpler, more efficient solution that empowers your organization to build a top-notch team. Get ready to revolutionize your recruitment strategy with Recruit!
+
+# Official Documentation
+
+Documentation can be found in [OSSAdmiral-Recruit](https://oss-admiral.gitbook.io/recruit/)
+
 # Installation
 
 You can install the dependency package via composer and NPM:
