@@ -15,7 +15,7 @@ Welcome to "Recruit," your innovative open-source system designed to streamline 
 
 # Official Documentation
 
-Documentation can be found in [OSSAdmiral-Recruit](https://oss-admiral.gitbook.io/recruit/)
+Documentation can be found in [OSSAdmiral-Recruit](https://oss-admiral.gitbook.io/ossadmiral-recruit/)
 
 # Installation
 
