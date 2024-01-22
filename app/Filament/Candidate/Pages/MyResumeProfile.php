@@ -3,6 +3,7 @@
 namespace App\Filament\Candidate\Pages;
 
 use App\Models\Candidates;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Form;
@@ -26,9 +27,14 @@ class MyResumeProfile extends Page
     public function mount(): void
     {
         $this->data = [
-            'Email' => $this->getResumeProfile()->count() === 0 ? auth()->user()->email : $this->getResumeProfile()->toArray()[0]['Email'],
-            ...$this->getResumeProfile()->toArray()[0],
+            'Email' => $this->getResumeProfile()->count() === 0 ? Filament::auth()->user()->email : $this->getResumeProfile()->toArray()[0]['Email'],
         ];
+        if($this->getResumeProfile()->count() > 0)
+        {
+            $this->data = [
+                ...$this->getResumeProfile()->toArray()[0],
+            ];
+        }
 
         $this->form->fill($this->data);
     }
@@ -36,7 +42,7 @@ class MyResumeProfile extends Page
     protected function getResumeProfile(): Collection
     {
         // Key matching using the login email address
-        return Candidates::where('Email', '=', auth()->user()->email)->get();
+        return Candidates::where('Email', '=', Filament::auth()->user()->email)->get();
     }
 
     public function updateRecord(): void
