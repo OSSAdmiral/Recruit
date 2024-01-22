@@ -7,12 +7,6 @@
         "framework"
     ],
     "license": "MIT",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/MarJose123/laravel-autonumber"
-        }
-    ],
     "require": {
         "php": "^8.1",
         "abanoubnassem/filament-grecaptcha-field": "^0.0.6",
@@ -89,6 +83,12 @@
         ],
         "format": "./vendor/bin/pint --dirty"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./package/laravel-autonumber"
+        }
+    ],
     "extra": {
         "laravel": {
             "dont-discover": []

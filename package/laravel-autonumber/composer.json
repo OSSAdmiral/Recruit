@@ -1,0 +1,37 @@
+{
+    "name": "alfa6661/laravel-autonumber",
+    "description": "Laravel package to create autonumber for Eloquent model",
+    "keywords": [
+        "laravel",
+        "eloquent",
+        "autonumber"
+    ],
+    "homepage": "https://github.com/alfa6661/laravel-autonumber",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alfa Adhitya",
+            "email": "alfa2159@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/config": "^5.1|^6.0|^7.0|^8.0|^9.0|^10.0",
+        "illuminate/database": "^5.1|^6.0|^7.0|^8.0|^9.0|^10.0",
+        "illuminate/support": "^5.1|^6.0|^7.0|^8.0|^9.0|^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Alfa6661\\AutoNumber\\": "src"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "version": "1.2.6",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Alfa6661\\AutoNumber\\AutoNumberServiceProvider"
+            ]
+        }
+    }
+}

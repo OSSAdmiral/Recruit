@@ -1,4 +1,10 @@
 <?php
+/*
+ * Copyright (c) Marjose Darang. - All Rights Reserved
+ *
+ * Unauthorized copying or redistribution of this file in source and
+ * binary forms via any medium is strictly prohibited.
+ */
 
 return [
 
@@ -12,8 +18,6 @@ return [
      * The number of digits in the autonumber
      */
     'length' => 4,
-
-    'startingValue' => 100000,
 
     /*
      * Whether to update the autonumber value when a model is being updated.
