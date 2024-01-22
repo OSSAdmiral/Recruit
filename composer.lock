@@ -4606,16 +4606,16 @@
         },
         {
             "name": "marjose123/filament-lockscreen",
-            "version": "v2.0.1",
+            "version": "v2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MarJose123/filament-lockscreen.git",
-                "reference": "21b3f1578fb819e3c9879ce7f4bd5f197c7ace92"
+                "reference": "1faca7e9c028934914425ea4cde8f204ff95ccfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MarJose123/filament-lockscreen/zipball/21b3f1578fb819e3c9879ce7f4bd5f197c7ace92",
-                "reference": "21b3f1578fb819e3c9879ce7f4bd5f197c7ace92",
+                "url": "https://api.github.com/repos/MarJose123/filament-lockscreen/zipball/1faca7e9c028934914425ea4cde8f204ff95ccfc",
+                "reference": "1faca7e9c028934914425ea4cde8f204ff95ccfc",
                 "shasum": ""
             },
             "require": {
@@ -4665,7 +4665,7 @@
             ],
             "support": {
                 "issues": "https://github.com/MarJose123/filament-lockscreen/issues",
-                "source": "https://github.com/MarJose123/filament-lockscreen/tree/v2.0.1"
+                "source": "https://github.com/MarJose123/filament-lockscreen/tree/v2.0.2"
             },
             "funding": [
                 {
@@ -4677,7 +4677,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-10-08T02:03:38+00:00"
+            "time": "2024-01-22T06:52:51+00:00"
         },
         {
             "name": "masterminds/html5",

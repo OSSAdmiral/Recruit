@@ -5,6 +5,7 @@ namespace App\Filament\Candidate\Resources;
 use App\Filament\Candidate\Resources\AppliedJobListResource\Pages;
 use App\Filament\Enums\JobCandidateStatus;
 use App\Models\JobCandidates;
+use Filament\Facades\Filament;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -27,12 +28,13 @@ class AppliedJobListResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::where('Email', '=', auth()->user()->email)->count() > 0 ?? '';
+        $count = static::getModel()::where('Email', '=', Filament::auth()->user()->email)->count() ;
+        return $count > 0 ? $count : '';
     }
 
     public static function getNavigationBadgeColor(): ?string
     {
-        return static::getModel()::where('Email', '=', auth()->user()->email)->count() > 0 ? 'success' : '';
+        return static::getModel()::where('Email', '=', Filament::auth()->user()->email)->count() > 0 ? 'success' : '';
     }
 
     public static function form(Form $form): Form
