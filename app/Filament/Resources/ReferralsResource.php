@@ -15,7 +15,7 @@ class ReferralsResource extends Resource
 {
     protected static ?string $model = Referrals::class;
 
-    protected static ?string $recordTitleAttribute = 'postingTitle';
+    protected static ?string $recordTitleAttribute = 'jobopenings.postingTitle';
 
     protected static ?int $navigationSort = 5;
 

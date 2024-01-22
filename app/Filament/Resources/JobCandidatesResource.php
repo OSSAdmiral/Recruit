@@ -21,7 +21,7 @@ class JobCandidatesResource extends Resource
 {
     protected static ?string $model = JobCandidates::class;
 
-    protected static ?string $recordTitleAttribute = 'postingTitle';
+    protected static ?string $recordTitleAttribute = 'job.postingTitle';
 
     protected static ?int $navigationSort = 2;
 

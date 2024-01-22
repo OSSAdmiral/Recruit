@@ -21,7 +21,7 @@ class CandidatesProfileResource extends Resource
 
     protected static ?int $navigationSort = 3;
 
-    protected static ?string $recordTitleAttribute = 'fullName';
+    protected static ?string $recordTitleAttribute = 'full_name';
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
