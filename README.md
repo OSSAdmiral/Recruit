@@ -81,6 +81,25 @@ password
 > `Candidate Portal` - {SERVER_IP}/portal/candidate
 > `Career Page` - {SERVER_IP}/career
 
+## Features
+
+| Location  | Feature            | Status       |
+|-----------|--------------------|--------------|
+| Admin     | Job Opening        | Implemented  |
+| Admin     | Job Candidates     | Implemented  |
+| Admin     | Candidate Profile  | Implemented  |
+| Admin     | Department         | Implemented  |
+| Admin     | Referrals          | Implemented  |
+| Admin     | Users              | Implemented  |
+| Admin     | Roles & Permission | Implemented  |
+| Candidate | Job Opening        | Implemented  |
+| Candidate | My Applied Job     | Implemented  |
+| Candidate | Saved Job          | Implemented  |
+| Candidate | My Resume          | Implemented  |
+|           |                    |              |
+
+
+
 ## Discord
 
 <a href="https://discord.gg/RK6mDerFjs"> <img src="https://discord.com/api/guilds/1165859974086393916/widget.png?style=banner4" /></a>
