@@ -83,20 +83,21 @@ password
 
 ## Features
 
-| Location  | Feature            | Status       |
-|-----------|--------------------|--------------|
-| Admin     | Job Opening        | Implemented  |
-| Admin     | Job Candidates     | Implemented  |
-| Admin     | Candidate Profile  | Implemented  |
-| Admin     | Department         | Implemented  |
-| Admin     | Referrals          | Implemented  |
-| Admin     | Users              | Implemented  |
-| Admin     | Roles & Permission | Implemented  |
-| Candidate | Job Opening        | Implemented  |
-| Candidate | My Applied Job     | Implemented  |
-| Candidate | Saved Job          | Implemented  |
-| Candidate | My Resume          | Implemented  |
-|           |                    |              |
+| Location         | Feature                        | Status      |
+|------------------|--------------------------------|-------------|
+| Admin            | Job Opening                    | Implemented |
+| Admin            | Job Candidates                 | Implemented |
+| Admin            | Candidate Profile              | Implemented |
+| Admin            | Department                     | Implemented |
+| Admin            | Referrals                      | Implemented |
+| Admin            | Users                          | Implemented |
+| Admin            | Roles & Permission             | Implemented |
+| Candidate Portal | Job Opening                    | Implemented |
+| Candidate Portal | My Applied Job                 | Implemented |
+| Candidate Portal | Saved Job                      | Implemented |
+| Candidate Portal | My Resume                      | Implemented |
+| Career Page      | Apply Job via Portal           | Implemented |
+| Career Page      | Apply Job via Application Form | Implemented |
 
 
 
