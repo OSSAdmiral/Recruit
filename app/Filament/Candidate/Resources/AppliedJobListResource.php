@@ -28,7 +28,8 @@ class AppliedJobListResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        $count = static::getModel()::where('Email', '=', Filament::auth()->user()->email)->count() ;
+        $count = static::getModel()::where('Email', '=', Filament::auth()->user()->email)->count();
+
         return $count > 0 ? $count : '';
     }
 

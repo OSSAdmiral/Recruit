@@ -31,7 +31,7 @@ class AutoNumberObserver
      */
     public function saving(Model $model)
     {
-        if (!config('autonumber.onUpdate', false) && $model->exists) {
+        if (! config('autonumber.onUpdate', false) && $model->exists) {
             return;
         }
 

@@ -57,8 +57,7 @@ class InviteNewSystemUserNotification extends Notification
             ->action('Verify and Create Account', $this->verify_link)
             ->line('If you encounter any difficulties during the registration process or have any questions, please do not hesitate to reach out to our support team.')
             ->line('Thank you for choosing to be a part of our system. We look forward to having you on board and working together to achieve success.')
-            ->salutation(new HtmlString("Regards,<br/>{$this->companyName}"))
-            ;
+            ->salutation(new HtmlString("Regards,<br/>{$this->companyName}"));
     }
 
     /**

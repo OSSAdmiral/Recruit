@@ -55,8 +55,7 @@ class NewCandidatePortalAccountRegisteredNotification extends Notification
             ->line("If you encounter any issues during the registration or need assistance, don't hesitate to reach out to our support team.")
             ->line("We're excited to have you as part of our candidate community. Explore job listings, update your profile, and make the most of our portal to advance your career.")
             ->line('Thank you for choosing us, and best of luck in your journey!')
-            ->salutation(new HtmlString("Regards,<br/>{$this->company_name}"))
-            ;
+            ->salutation(new HtmlString("Regards,<br/>{$this->company_name}"));
 
     }
 

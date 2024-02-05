@@ -56,8 +56,7 @@ class WelcomeSystemUserNotification extends Notification
             ->action('Login Now!', $this->login_link)
             ->line('If you have any questions or need assistance as you explore the system, please feel free to contact our support team.')
             ->line('Thank you for choosing our system, and we look forward to seeing the positive impact of your contributions.')
-            ->salutation(new HtmlString("Regards,<br/>{$this->company_name}"))
-            ;
+            ->salutation(new HtmlString("Regards,<br/>{$this->company_name}"));
     }
 
     /**

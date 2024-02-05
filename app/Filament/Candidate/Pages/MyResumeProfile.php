@@ -29,8 +29,7 @@ class MyResumeProfile extends Page
         $this->data = [
             'Email' => $this->getResumeProfile()->count() === 0 ? Filament::auth()->user()->email : $this->getResumeProfile()->toArray()[0]['Email'],
         ];
-        if($this->getResumeProfile()->count() > 0)
-        {
+        if ($this->getResumeProfile()->count() > 0) {
             $this->data = [
                 ...$this->getResumeProfile()->toArray()[0],
             ];
