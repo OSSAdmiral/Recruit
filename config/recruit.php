@@ -19,7 +19,7 @@ return [
             'provider_name' => 'Cloudflare',
         ],
         'Recruit_Captcha' => [
-
+            'provider_name' => 'Basic',
         ],
     ],
 
