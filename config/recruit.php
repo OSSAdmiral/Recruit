@@ -10,14 +10,19 @@ return [
      */
     'enable_captcha' => true,
     'captcha_provider' => [
+        // Applicable value will be the provider name from the "Captcha Provider"
+        'default' => 'Recruit_Captcha',
         'Google' => [
             'provider_name' => 'Google',
         ],
         'Cloudflare' => [
             'provider_name' => 'Cloudflare',
         ],
+        'Recruit_Captcha' => [
+
+        ],
     ],
-    // Applicable value will be the provider name from the "Captcha Provider"
+
     'captcha_provider_name' => 'Cloudflare',
     /*
      * Job Opening Module Field setup and options

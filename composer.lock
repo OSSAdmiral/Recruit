@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2a9640784495041c85653991b8b837e7",
+    "content-hash": "293b0313f8a7294c47d13edb53e4f2a6",
     "packages": [
         {
             "name": "abanoubnassem/filament-grecaptcha-field",
@@ -2052,6 +2052,92 @@
             "time": "2022-12-15T16:57:16+00:00"
         },
         {
+            "name": "dominion-solutions/filament-captcha",
+            "version": "0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dominion-solutions/filament-captcha.git",
+                "reference": "786fa5fdffd3e6da1854466fa407444b6657508d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dominion-solutions/filament-captcha/zipball/786fa5fdffd3e6da1854466fa407444b6657508d",
+                "reference": "786fa5fdffd3e6da1854466fa407444b6657508d",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.2",
+                "filament/forms": "^3.0",
+                "illuminate/contracts": "^10.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.15.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^7.9",
+                "nunomaduro/larastan": "^2.0.1",
+                "orchestra/testbench": "^8.0",
+                "pestphp/pest": "^2.0",
+                "pestphp/pest-plugin-arch": "^2.0",
+                "pestphp/pest-plugin-laravel": "^2.0",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "suggest": {
+                "mews/captcha": "Required for Mews Captcha support",
+                "scyllaly/hcaptcha": "Required for hCaptcha support",
+                "scyllaly/recaptcha": "Required for reCAPTCHA support"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "DominionSolutions\\FilamentCaptcha\\FilamentCaptchaServiceProvider"
+                    ],
+                    "aliases": {
+                        "FilamentCaptcha": "DominionSolutions\\FilamentCaptcha\\Facades\\FilamentCaptcha"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DominionSolutions\\FilamentCaptcha\\": "src/",
+                    "DominionSolutions\\FilamentCaptcha\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark J. Horninger",
+                    "email": "mark.horninger@dominion.solutions",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CAPTCHA Plugin for Filament",
+            "homepage": "https://github.com/dominion-solutions/filament-captcha",
+            "keywords": [
+                "dominion-solutions",
+                "filament-captcha",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/dominion-solutions/filament-captcha/issues",
+                "source": "https://github.com/dominion-solutions/filament-captcha"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/dominion-solutions",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-01-26T02:24:09+00:00"
+        },
+        {
             "name": "dragonmantank/cron-expression",
             "version": "v3.3.3",
             "source": {
@@ -3229,6 +3315,90 @@
                 }
             ],
             "time": "2023-10-09T07:46:37+00:00"
+        },
+        {
+            "name": "intervention/image",
+            "version": "2.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Intervention/image.git",
+                "reference": "04be355f8d6734c826045d02a1079ad658322dad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/04be355f8d6734c826045d02a1079ad658322dad",
+                "reference": "04be355f8d6734c826045d02a1079ad658322dad",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "guzzlehttp/psr7": "~1.1 || ^2.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.2",
+                "phpunit/phpunit": "^4.8 || ^5.7 || ^7.5.15"
+            },
+            "suggest": {
+                "ext-gd": "to use GD library based image processing.",
+                "ext-imagick": "to use Imagick based image processing.",
+                "intervention/imagecache": "Caching extension for the Intervention Image library"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Intervention\\Image\\ImageServiceProvider"
+                    ],
+                    "aliases": {
+                        "Image": "Intervention\\Image\\Facades\\Image"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Intervention\\Image\\": "src/Intervention/Image"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Vogel",
+                    "email": "oliver@intervention.io",
+                    "homepage": "https://intervention.io/"
+                }
+            ],
+            "description": "Image handling and manipulation library with support for Laravel integration",
+            "homepage": "http://image.intervention.io/",
+            "keywords": [
+                "gd",
+                "image",
+                "imagick",
+                "laravel",
+                "thumbnail",
+                "watermark"
+            ],
+            "support": {
+                "issues": "https://github.com/Intervention/image/issues",
+                "source": "https://github.com/Intervention/image/tree/2.7.2"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/interventionio",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/Intervention",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-05-21T17:30:32+00:00"
         },
         {
             "name": "kirschbaum-development/eloquent-power-joins",
@@ -4814,6 +4984,79 @@
                 "wiki": "https://dev.matomo.org/"
             },
             "time": "2024-01-05T09:03:21+00:00"
+        },
+        {
+            "name": "mews/captcha",
+            "version": "3.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mewebstudio/captcha.git",
+                "reference": "7aee0e80bcf7eb17fc0d574244e384e56ae2af77"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mewebstudio/captcha/zipball/7aee0e80bcf7eb17fc0d574244e384e56ae2af77",
+                "reference": "7aee0e80bcf7eb17fc0d574244e384e56ae2af77",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "illuminate/config": "~5|^6|^7|^8|^9|^10",
+                "illuminate/filesystem": "~5|^6|^7|^8|^9|^10",
+                "illuminate/hashing": "~5|^6|^7|^8|^9|^10",
+                "illuminate/session": "~5|^6|^7|^8|^9|^10",
+                "illuminate/support": "~5|^6|^7|^8|^9|^10",
+                "intervention/image": "~2.5",
+                "php": "^7.2|^8.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^8.5|^9.5.10"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Mews\\Captcha\\CaptchaServiceProvider"
+                    ],
+                    "aliases": {
+                        "Captcha": "Mews\\Captcha\\Facades\\Captcha"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Mews\\Captcha\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muharrem ERİN",
+                    "email": "me@mewebstudio.com",
+                    "homepage": "https://github.com/mewebstudio",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel 5/6/7/8/9/10 Captcha Package",
+            "homepage": "https://github.com/mewebstudio/captcha",
+            "keywords": [
+                "captcha",
+                "laravel5 Security",
+                "laravel6 Captcha",
+                "laravel6 Security"
+            ],
+            "support": {
+                "issues": "https://github.com/mewebstudio/captcha/issues",
+                "source": "https://github.com/mewebstudio/captcha/tree/3.3.2"
+            },
+            "time": "2023-07-15T15:07:48+00:00"
         },
         {
             "name": "monolog/monolog",

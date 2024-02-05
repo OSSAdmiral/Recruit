@@ -8,6 +8,7 @@ use App\Filament\Enums\JobCandidateStatus;
 use App\Models\Candidates;
 use App\Models\JobCandidates;
 use App\Models\JobOpenings;
+use DominionSolutions\FilamentCaptcha\Forms\Components\Captcha;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
 use Filament\Forms;
@@ -128,7 +129,9 @@ class CareerApplyJob extends Component implements HasActions, HasForms
                         ->icon('heroicon-o-user')
                         ->columns(2)
                         ->schema(array_merge($this->applicationStepWizard(),
-                            [Forms\Components\Grid::make('1')->schema($this->captchaField())]
+                            [Forms\Components\Grid::make(1)
+                                ->columns(1)
+                                ->schema($this->captchaField())]
                         )),
                     Wizard\Step::make('Assessment')
                         ->visible(false)
@@ -257,17 +260,35 @@ class CareerApplyJob extends Component implements HasActions, HasForms
         if (! config('recruit.enable_captcha')) {
             return [];
         }
-        if (config('recruit.enable_captcha') && config('recruit.captcha_provider') === 'Google') {
-            return [GRecaptcha::make('captcha')];
+        if (config('recruit.enable_captcha')) {
+            if (config('recruit.captcha_provider.default') === 'Google') {
+                return [GRecaptcha::make('captcha')];
+            }
+            if (config('recruit.captcha_provider.default') === 'Cloudflare') {
+                return [
+                    Turnstile::make('turnstile')
+                        ->theme('light')
+                        ->size('normal')
+                        ->language('en-US'),
+                ];
+            }
+
+            // default
+            if (config('recruit.captcha_provider.default') === 'Recruit_Captcha') {
+                return [
+                    Captcha::make('captcha')
+                        ->rules(['captcha'])
+                        ->required()
+                        ->validationMessages([
+                            'captcha' => __('Captcha does not match the image'),
+                        ]),
+                ];
+            }
+
         }
-        if (config('recruit.enable_captcha') && config('recruit.captcha_provider_name') === 'Cloudflare') {
-            return [
-                Turnstile::make('turnstile')
-                    ->theme('light')
-                    ->size('normal')
-                    ->language('en-US'),
-            ];
-        }
+
+        return [];
+
     }
 
     #[Title('Apply Job ')]
