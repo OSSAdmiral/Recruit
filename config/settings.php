@@ -8,6 +8,7 @@ return [
      */
     'settings' => [
         \App\Settings\GeneralSetting::class,
+        \App\Settings\JobOpeningSettings::class,
 
     ],
 

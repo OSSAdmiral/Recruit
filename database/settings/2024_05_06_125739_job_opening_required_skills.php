@@ -1,0 +1,13 @@
+<?php
+
+use Spatie\LaravelSettings\Migrations\SettingsMigration;
+
+return new class extends SettingsMigration {
+    public function up(): void
+    {
+        $this->migrator->add('job_opening_settings.required_skills', [
+            'laravel' => 'Laravel',
+        ]);
+
+    }
+};

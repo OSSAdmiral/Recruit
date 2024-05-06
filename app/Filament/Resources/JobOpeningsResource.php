@@ -8,6 +8,7 @@ use App\Filament\Resources\JobOpeningsResource\RelationManagers;
 use App\Models\Departments;
 use App\Models\JobOpenings;
 use App\Models\User;
+use App\Settings\JobOpeningSettings;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\RichEditor;
@@ -34,6 +35,15 @@ class JobOpeningsResource extends Resource
     protected static ?int $navigationSort = 1;
 
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
+
+    protected static array $requiredSkills = [];
+
+    public function mount(JobOpeningSettings $setting): void
+    {
+        self::$requiredSkills = $setting->requiredSkills;
+        parent::mount();
+
+    }
 
     public static function form(Form $form): Form
     {
@@ -86,7 +96,7 @@ class JobOpeningsResource extends Resource
                             ->required(),
                         Select::make('RequiredSkill')
                             ->multiple()
-                            ->options(config('recruit.job_opening.required_skill_options'))
+                            ->options(self::$requiredSkills)
                             ->required(),
                         Select::make('WorkExperience')
                             ->options(config('recruit.job_opening.work_experience'))
