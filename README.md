@@ -78,7 +78,9 @@ password
 ### Initial Route
 
 > `Main Page` - {SERVER_IP}/login
+
 > `Candidate Portal` - {SERVER_IP}/portal/candidate
+
 > `Career Page` - {SERVER_IP}/career
 
 ## Features
