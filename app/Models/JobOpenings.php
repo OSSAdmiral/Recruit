@@ -37,6 +37,7 @@ class JobOpenings extends Model
         'RequiredSkill',
         'WorkExperience',
         'JobDescription',
+        'AdditionalNotes',
         'City',
         'Country',
         'State',
