@@ -126,7 +126,7 @@ class JobOpeningsResource extends Resource
                             ->required(),
                         RichEditor::make('AdditionalNotes')
                             ->label('Additional Notes')
-                            ->required(),
+                            ->nullable(),
                     ])->columns(1),
                 Section::make('System Information')
                     ->hiddenOn(['create', 'edit'])
