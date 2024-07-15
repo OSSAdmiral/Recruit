@@ -94,6 +94,7 @@ class AdminPanelProvider extends PanelProvider
                         AuthenticationLogResource::class,
                     ]),
                 FilamentSpatieRolesPermissionsPlugin::make(),
-            ]);
+            ])
+            ->spa();
     }
 }
