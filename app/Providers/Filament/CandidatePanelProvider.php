@@ -65,6 +65,7 @@ class CandidatePanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ]);
+            ])
+            ->spa();
     }
 }
